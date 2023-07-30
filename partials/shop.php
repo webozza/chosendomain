@@ -4,6 +4,15 @@
 
 <?php get_header() ?>
 
+<?php
+    $args = array(
+        'post_type' => 'product',
+        'post_per_page' => -1
+    );
+    $product_query = new WC_Product_Query($args);
+    $products = $product_query->get_products();
+?>
+
 <div class="domain-section">
     <div class="domain-inventory-wrap">
 
@@ -24,9 +33,32 @@
 			</div>
 		</div>
 
-        <!-- Domain Loop with Filters -->
+        <!-- Domain Search Controls -->
         <div class="domain-search-controls">
             <button class="di-hide-filters dc-btn dc-btn-primary-muted dc-btn-big"><span class="hide-on-mobile">Hide filters</span> <i class="far fa-eye-slash"></i></button>
+        </div>
+
+        <!-- Domain Loop with Filters -->
+        <div class="domain-inventory-search-wrap">
+            <div class="domain-inventory-sidebar"></div>
+            <div class="domain-inventory-content">
+                <?php
+                    if ($products) {
+                        foreach ($products as $product) {
+                            $product_id = $product->get_id();
+                            $product_title = $product->get_name();
+                            $product_description = $product->get_description();
+                    
+                            ?> 
+                                <div class=""><?= $product_title ?></div>
+                                <div class=""><?= $product_description ?></div>
+                            <?php
+                        }
+                    } else {
+                        echo 'No products found.';
+                    }
+                ?>
+            </div>
         </div>
 
     </div>
