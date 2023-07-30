@@ -10,12 +10,43 @@ Text Domain: astra-child
 Template: astra
 */
 
-/* Layout
+/* Domain Search Box
 ================================================================================*/
 .domain-inventory-search-box {
   border: 1px solid #d3d3d3;
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
-  margin-bottom: 40px;
   max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align: center;
+}
+.domain-section h2 {
+  color: #08104d;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+.switch-domain-type input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+.switch-domain-type label {
+  cursor: pointer;
+  background-color: #fff;
+  color: #686868;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  padding: 21px 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 36px;
+  transition: all 0.1s ease-in-out;
+  min-width: 165px;
+  font-weight: 500;
 }
