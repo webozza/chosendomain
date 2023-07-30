@@ -50,3 +50,10 @@ Template: astra
   min-width: 165px;
   font-weight: 500;
 }
+.switch-domain-type input:checked + label {
+  background: var(--ast-global-color-0);
+  border-radius: 36px;
+  box-shadow: none;
+  color: #fff;
+  font-weight: 600;
+}
