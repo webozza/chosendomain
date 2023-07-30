@@ -40,7 +40,19 @@
 
         <!-- Domain Loop with Filters -->
         <div class="domain-inventory-search-wrap">
-            <div class="domain-inventory-sidebar"></div>
+
+            <!-- FILTERS -->
+            <div class="domain-inventory-sidebar">
+                <div class="domain-inventory-search-filters">
+                    <h3>Filters</h3>
+                    <div class="reset-filters">
+                        <span>No filters applied</span>
+                        <button class="btn-reset-filter" disabled="disabled">Reset all</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOMAINS -->
             <div class="domain-inventory-content">
                 <?php
                     if ($products) {
