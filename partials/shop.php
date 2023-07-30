@@ -6,6 +6,8 @@
 
 <div class="domain-section">
     <div class="domain-inventory-wrap">
+
+        <!-- Domain Inventory Search Box -->
         <div class="domain-inventory-search-box">
 			<h2>Choose your Domain Type</h2>
 			<div class="domain-inventory-domain-type switch-domain-type">
@@ -21,6 +23,12 @@
 				<button class="fire-domain-keyword-search">SEARCH</button>
 			</div>
 		</div>
+
+        <!-- Domain Loop with Filters -->
+        <div class="domain-search-controls">
+            <button class="di-hide-filters dc-btn dc-btn-primary-muted dc-btn-big"><span class="hide-on-mobile">Hide filters</span> <i class="far fa-eye-slash"></i></button>
+        </div>
+
     </div>
 </div>
 

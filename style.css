@@ -87,3 +87,8 @@ Template: astra
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+.dc-btn.dc-btn-primary-muted {
+  color: #4d54eb;
+  background: #eeefff;
+  border: 1px solid #dce5ff;
+}
