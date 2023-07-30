@@ -57,3 +57,33 @@ Template: astra
   color: #fff;
   font-weight: 600;
 }
+.switch-domain-type {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+.domain-inventory-search-field {
+  display: flex;
+  max-width: 550px;
+  margin: 0 auto 10px;
+}
+#domain-search {
+  border: 1px solid #d3d3d3;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 13.5px 22px;
+  font-size: 14px;
+  width: 100%;
+}
+.fire-domain-keyword-search,
+.fire-domain-keyword-search:hover {
+  background: var(--ast-global-color-0);
+  color: #fff;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
