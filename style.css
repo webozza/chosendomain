@@ -92,3 +92,10 @@ Template: astra
   background: #eeefff;
   border: 1px solid #dce5ff;
 }
+
+/* Domain Filters
+=====================================================================*/
+.domain-inventory-search-wrap {
+  display: flex;
+  column-gap: 50px;
+}
