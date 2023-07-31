@@ -1,1 +1,9 @@
-console.log('I am a new choder')
+jQuery(document).ready(function($) {
+
+// toggle functionality
+function toggleCategoryList() {
+    const categoryList = document.getElementById("category-list");
+    categoryList.style.display = (categoryList.style.display === "none") ? "block" : "none";
+}
+
+})

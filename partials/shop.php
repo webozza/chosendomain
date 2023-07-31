@@ -51,8 +51,11 @@
                         <button class="btn-reset-filter" disabled="disabled">Reset all</button>
                     </div>
                     <div class="category-filter">
-                        <label for="category-search">Category</label>
+                        <label for="category-search">Search Category:</label>
                         <input type="text" id="category-search" placeholder="Enter category name...">
+                        <div class="category-toggle-btn" onclick="toggleCategoryList()">Toggle Category List</div>
+                        <div class="category-list" id="category-list">
+                        </div>
                         <div class="category-checkboxes">
                             <input type="checkbox" id="category-1" value="Category 1">
                             <label for="category-1">Category 1</label><br>

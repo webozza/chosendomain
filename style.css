@@ -27,6 +27,21 @@ Template: astra
   padding: 5px;
   margin-bottom: 5px;
 }
+.category-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.category-checkboxes input[type="checkbox"] {
+  margin-right: 5px;
+}
+.category-toggle-btn {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+/* End 
+================================================================================*/
 
 .domain-inventory-search-box {
   border: 1px solid #d3d3d3;
