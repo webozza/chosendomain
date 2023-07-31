@@ -76,14 +76,18 @@
                             data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
                             data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
                             class="sf-meta-range sf-meta-range-slider">
-                            <label>
-                                <input class="sf-input-range-number sf-range-min sf-input-number" min="0" max="10000"
-                                    step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
-                            </label>
-                            <label>
-                                <input class="sf-input-range-number sf-range-max sf-input-number" min="0" max="10000"
-                                    step="1" name="_sfm__sale_price[]" type="number" value="10000" title="">
-                            </label>
+                            <div class="price-range-inputs">
+                                <label>
+                                    <input class="sf-input-range-number sf-range-min sf-input-number" min="0"
+                                        max="10000" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+                                </label>
+                                <span class="sf-range-values-separator"></span>
+                                <label>
+                                    <input class="sf-input-range-number sf-range-max sf-input-number" min="0"
+                                        max="10000" step="1" name="_sfm__sale_price[]" type="number" value="10000"
+                                        title="">
+                                </label>
+                            </div>
                             <div class="meta-slider noUi-target noUi-ltr noUi-horizontal">
                                 <div class="noUi-base">
                                     <div class="noUi-connects">
