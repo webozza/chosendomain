@@ -12,6 +12,17 @@ Template: astra
 
 /* Domain Search Box
 ================================================================================*/
+/*border to the filter section */
+.domain-inventory-search-filters {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/*margin to separate it from the sidebar */
+.domain-inventory-sidebar {
+  margin: 10px;
+}
+
 .domain-inventory-search-box {
   border: 1px solid #d3d3d3;
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.12);
