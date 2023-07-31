@@ -55,6 +55,14 @@
                         <input type="text" id="category-search" placeholder="Enter category name...">
                         <div class="category-toggle-btn" onclick="toggleCategoryList()">Toggle Category List</div>
                         <div class="category-list" id="category-list">
+                            <!-- Your category elements can go here (e.g., list items, checkboxes, etc.) -->
+                            <!-- For example, a list of categories: -->
+                            <ul>
+                                <li>Category 1</li>
+                                <li>Category 2</li>
+                                <li>Category 3</li>
+                                <!-- Add more categories as needed -->
+                            </ul>
                         </div>
                         <div class="category-checkboxes">
                             <input type="checkbox" id="category-1" value="Category 1">
