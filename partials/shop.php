@@ -65,12 +65,51 @@
                             <label for="category-3">Category 3</label><br>
                             <!-- Add more checkboxes for other categories as needed -->
                         </div>
-                        <div id="price_range"></div>
                     </div>
+                    <!-- Price Range Filter -->
+                    <li class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
+                        data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
+                        data-sf-meta-type="number">
+                        <h4>Price</h4>
+                        <div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+                            data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+                            data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+                            data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+                            class="sf-meta-range sf-meta-range-slider">
+                            <label>
+                                <input class="sf-input-range-number sf-range-min sf-input-number" min="0" max="10000"
+                                    step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+                            </label>
+                            <span class="sf-range-values-seperator"> - </span>
+                            <label>
+                                <input class="sf-input-range-number sf-range-max sf-input-number" min="0" max="10000"
+                                    step="1" name="_sfm__sale_price[]" type="number" value="10000" title="">
+                            </label>
+                            <div class="meta-slider noUi-target noUi-ltr noUi-horizontal">
+                                <div class="noUi-base">
+                                    <div class="noUi-connects">
+                                        <div class="noUi-connect"></div>
+                                    </div>
+                                    <div class="noUi-origin">
+                                        <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+                                            role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+                                            aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+                                    </div>
+                                    <div class="noUi-origin">
+                                        <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+                                            role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+                                            aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
                 </div>
-                <!-- DOMAINS -->
-                <div class="domain-inventory-content">
-                    <?php
+            </div>
+            <!-- DOMAINS -->
+            <div class="domain-inventory-content">
+                <?php
 					if ($products) {
 						foreach ($products as $product) {
 							$product_id = $product->get_id();
@@ -78,15 +117,14 @@
 							$product_description = $product->get_description();
 
 					?>
-                    <div class=""><?= $product_title ?></div>
-                    <div class=""><?= $product_description ?></div>
-                    <?php
+                <div class=""><?= $product_title ?></div>
+                <div class=""><?= $product_description ?></div>
+                <?php
 						}
 					} else {
 						echo 'No products found.';
 					}
 					?>
-                </div>
             </div>
         </div>
 
