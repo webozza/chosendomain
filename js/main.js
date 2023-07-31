@@ -29,4 +29,14 @@ $(document).ready(function () {
     inputMax.on('change', function () {
         rangeSlider.noUiSlider.set([null, this.value]);
     });
+
+    const priceSlider = document.querySelector('.meta-slider');
+
+    noUiSlider.create(priceSlider, {
+        start: [0, 10000],
+        connect: true,
+        range: {
+            'min': 0,
+            'max': 10000
+        }
 });
