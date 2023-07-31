@@ -50,31 +50,29 @@
                         <span>No filters applied</span>
                         <button class="btn-reset-filter" disabled="disabled">Reset all</button>
                     </div>
-                    <button class="category-filter" onclick="toggleFunction()">
-                        <div class="category-filter-content" id="category-filter-content">
-                            <label for="category-search">Search Category:</label>
-                            <input type="text" id="category-search" placeholder="Enter category name...">
-                            <div class="category-list">
-                                <!-- Your category elements can go here (e.g., list items, checkboxes, etc.) -->
-                                <!-- For example, a list of categories: -->
-                                <ul>
-                                    <li>Category 1</li>
-                                    <li>Category 2</li>
-                                    <li>Category 3</li>
-                                    <!-- Add more categories as needed -->
-                                </ul>
-                            </div>
-                            <div class="category-checkboxes">
-                                <input type="checkbox" id="category-1" value="Category 1">
-                                <label for="category-1">Category 1</label><br>
-                                <input type="checkbox" id="category-2" value="Category 2">
-                                <label for="category-2">Category 2</label><br>
-                                <input type="checkbox" id="category-3" value="Category 3">
-                                <label for="category-3">Category 3</label><br>
-                                <!-- Add more checkboxes for other categories as needed -->
-                            </div>
+                    <div class="category-filter">
+                        <label for="category-search">Search Category:</label>
+                        <input type="text" id="category-search" placeholder="Enter category name...">
+                        <div class="category-list">
+                            <!-- Your category elements can go here (e.g., list items, checkboxes, etc.) -->
+                            <!-- For example, a list of categories: -->
+                            <ul>
+                                <li>Category 1</li>
+                                <li>Category 2</li>
+                                <li>Category 3</li>
+                                <!-- Add more categories as needed -->
+                            </ul>
                         </div>
-                    </button>
+                        <div class="category-checkboxes">
+                            <input type="checkbox" id="category-1" value="Category 1">
+                            <label for="category-1">Category 1</label><br>
+                            <input type="checkbox" id="category-2" value="Category 2">
+                            <label for="category-2">Category 2</label><br>
+                            <input type="checkbox" id="category-3" value="Category 3">
+                            <label for="category-3">Category 3</label><br>
+                            <!-- Add more checkboxes for other categories as needed -->
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- DOMAINS -->
