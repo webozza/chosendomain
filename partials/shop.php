@@ -51,7 +51,7 @@
                         <button class="btn-reset-filter" disabled="disabled">Reset all</button>
                     </div>
                     <div class="category-filter">
-                        <button class="category-filter-toggle-btn" onclick="toggleCategoryFilter()">Toggle Category
+                        <button class="category-filter-toggle-btn" onclick="toggle()">Toggle Category
                             Filter</button>
                         <div class="category-filter-content" id="category-filter-content">
                             <label for="category-search">Search Category:</label>
