@@ -19,6 +19,23 @@ Template: astra
 .domain-inventory-sidebar {
   margin: 10px;
 }
+/* search input and search icon */
+.search-input-wrapper {
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  /* Add your search icon image URL or use a font icon */
+  /* For example, using a background image */
+  background-image: url('path/to/your/search-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 /* category search box, list, and checkboxes */
 .category-filter {
   margin-top: 10px;

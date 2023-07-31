@@ -51,17 +51,10 @@
                         <button class="btn-reset-filter" disabled="disabled">Reset all</button>
                     </div>
                     <div class="category-filter">
-                        <label for="category-search">Search Category:</label>
-                        <input type="text" id="category-search" placeholder="Enter category name...">
-                        <div class="category-list">
-                            <!-- Your category elements can go here (e.g., list items, checkboxes, etc.) -->
-                            <!-- For example, a list of categories: -->
-                            <ul>
-                                <li>Category 1</li>
-                                <li>Category 2</li>
-                                <li>Category 3</li>
-                                <!-- Add more categories as needed -->
-                            </ul>
+                        <div class="search-input-wrapper">
+                            <label for="category-search">Category</label>
+                            <input type="text" id="category-search" placeholder="Search Categories">
+                            <span class="search-icon"></span>
                         </div>
                         <div class="category-checkboxes">
                             <input type="checkbox" id="category-1" value="Category 1">
