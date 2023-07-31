@@ -1,9 +1,11 @@
 jQuery(document).ready(function($) {
 
-// toggle functionality
-function toggleCategoryList() {
-    const categoryList = document.getElementById("category-list");
-    categoryList.style.display = (categoryList.style.display === "none") ? "block" : "none";
+// category filter toggle functionality
+function toggle() {
+    const categoryFilterContent = document.getElementById("category-filter-content");
+    categoryFilterContent.style.display = (categoryFilterContent.style.display === "none") ? "block" : "none";
 }
+
+
 
 })
