@@ -79,7 +79,11 @@ Template: astra
   align-items: center;
 }
 .sf-range-values-separator {
-  margin: 0 5px;
+  margin: 0 25px;
+}
+
+.noUi-target {
+  margin-top: 15px;
 }
 /* End 
 ================================================================================*/
