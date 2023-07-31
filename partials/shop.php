@@ -65,27 +65,27 @@
                             <label for="category-3">Category 3</label><br>
                             <!-- Add more checkboxes for other categories as needed -->
                         </div>
+                        <div id="price_range"></div>
                     </div>
-                    <div id="price_range"></div>
-                    <!-- DOMAINS -->
-                    <div class="domain-inventory-content">
-                        <?php
-                    if ($products) {
-                        foreach ($products as $product) {
-                            $product_id = $product->get_id();
-                            $product_title = $product->get_name();
-                            $product_description = $product->get_description();
-                    
-                            ?>
-                        <div class=""><?= $product_title ?></div>
-                        <div class=""><?= $product_description ?></div>
-                        <?php
-                        }
-                    } else {
-                        echo 'No products found.';
-                    }
-                ?>
-                    </div>
+                </div>
+                <!-- DOMAINS -->
+                <div class="domain-inventory-content">
+                    <?php
+					if ($products) {
+						foreach ($products as $product) {
+							$product_id = $product->get_id();
+							$product_title = $product->get_name();
+							$product_description = $product->get_description();
+
+					?>
+                    <div class=""><?= $product_title ?></div>
+                    <div class=""><?= $product_description ?></div>
+                    <?php
+						}
+					} else {
+						echo 'No products found.';
+					}
+					?>
                 </div>
             </div>
         </div>
