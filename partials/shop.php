@@ -66,11 +66,10 @@
                             <!-- Add more checkboxes for other categories as needed -->
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- DOMAINS -->
-            <div class="domain-inventory-content">
-                <?php
+                    <div id="price_range"></div>
+                    <!-- DOMAINS -->
+                    <div class="domain-inventory-content">
+                        <?php
                     if ($products) {
                         foreach ($products as $product) {
                             $product_id = $product->get_id();
@@ -78,18 +77,17 @@
                             $product_description = $product->get_description();
                     
                             ?>
-                <div class=""><?= $product_title ?></div>
-                <div class=""><?= $product_description ?></div>
-                <?php
+                        <div class=""><?= $product_title ?></div>
+                        <div class=""><?= $product_description ?></div>
+                        <?php
                         }
                     } else {
                         echo 'No products found.';
                     }
                 ?>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div>
-</div>
-
-<?php get_footer() ?>
+        <?php get_footer() ?>
