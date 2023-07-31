@@ -85,6 +85,9 @@ Template: astra
 .noUi-target {
   margin-top: 15px;
 }
+li.sf-field-post-meta-_sale_price.open {
+  list-style: none;
+}
 /* End 
 ================================================================================*/
 
