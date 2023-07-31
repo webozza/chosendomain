@@ -50,9 +50,7 @@
                         <span>No filters applied</span>
                         <button class="btn-reset-filter" disabled="disabled">Reset all</button>
                     </div>
-                    <div class="category-filter">
-                        <button class="category-filter-toggle-btn" onclick="toggleFunction()">Toggle Category
-                            Filter</button>
+                    <div class="category-filter" onclick="toggleFunction()">
                         <div class="category-filter-content" id="category-filter-content">
                             <label for="category-search">Search Category:</label>
                             <input type="text" id="category-search" placeholder="Enter category name...">
