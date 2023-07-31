@@ -80,7 +80,6 @@
                                 <input class="sf-input-range-number sf-range-min sf-input-number" min="0" max="10000"
                                     step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
                             </label>
-                            <span class="sf-range-values-seperator"> - </span>
                             <label>
                                 <input class="sf-input-range-number sf-range-max sf-input-number" min="0" max="10000"
                                     step="1" name="_sfm__sale_price[]" type="number" value="10000" title="">

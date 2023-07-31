@@ -66,6 +66,21 @@ Template: astra
 .category-checkboxes input[type="checkbox"] {
   margin-right: 5px;
 }
+
+/* Price Range */
+.sf-meta-range ul,
+.sf-meta-range li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.price-range-inputs {
+  display: flex;
+  align-items: center;
+}
+.sf-range-values-separator {
+  margin: 0 5px;
+}
 /* End 
 ================================================================================*/
 
