@@ -50,7 +50,7 @@
                         <span>No filters applied</span>
                         <button class="btn-reset-filter" disabled="disabled">Reset all</button>
                     </div>
-                    <div class="category-filter" onclick="toggleFunction()">
+                    <button class="category-filter" onclick="toggleFunction()">
                         <div class="category-filter-content" id="category-filter-content">
                             <label for="category-search">Search Category:</label>
                             <input type="text" id="category-search" placeholder="Enter category name...">
@@ -74,7 +74,7 @@
                                 <!-- Add more checkboxes for other categories as needed -->
                             </div>
                         </div>
-                    </div>
+                    </button>
                 </div>
             </div>
             <!-- DOMAINS -->
