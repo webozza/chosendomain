@@ -53,14 +53,6 @@
                     <div class="category-filter">
                         <label for="category-search">Search Category:</label>
                         <input type="text" id="category-search" placeholder="Enter category name...">
-                        <div class="category-list">
-                            <ul>
-                                <li>Category 1</li>
-                                <li>Category 2</li>
-                                <li>Category 3</li>
-                                <!-- Add more categories as needed -->
-                            </ul>
-                        </div>
                         <div class="category-checkboxes">
                             <input type="checkbox" id="category-1" value="Category 1">
                             <label for="category-1">Category 1</label><br>
