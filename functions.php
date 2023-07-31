@@ -12,7 +12,6 @@
  * Define Constants
  */
 define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.2' );
-define( 'THEME_VERSION', '1.0.2' );
 
 /**
  * Enqueue styles
@@ -25,10 +24,10 @@ function child_enqueue_styles() {
 
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
-function child_enqueue_script() {
+function custom_main_script() {
 
 	wp_enqueue_style( 'astra-child-theme-js', get_stylesheet_directory_uri() . '/js/main.js', array('jQuery'), true );
 
 }
 
-add_action( 'wp_enqueue_scripts', 'child_enqueue_styles');
+add_action( 'wp_enqueue_scripts', 'custom_main_script');
