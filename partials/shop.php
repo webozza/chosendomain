@@ -154,7 +154,7 @@
 					<div class="slide-accor"> 
 						<div class="filter-title">
                             <h3>DA</h3>
-                            <i
+                            <i class="fa-solid fa-circle-info"></i>
                         </div>
 						<div class="answer">
 
