@@ -590,4 +590,5 @@ li.sf-field-post-meta-_sale_price.open {
 }
 .slide-accor .filter-title {
   padding: 20px;
+  cursor: pointer;
 }
