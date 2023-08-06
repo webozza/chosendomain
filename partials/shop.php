@@ -67,7 +67,9 @@
                 <div class="domain-inventory-search-filters">
                     <h2>Filters</h2>
 					<div class="slide-accor">
-						<h3>Saved Filters </h3>
+						<div class="filter-title">
+                            <h3>Saved Filters </h3>
+                        </div>
 						<div class="answer">
 							<p> No saved filters </p>
 						</div>
