@@ -15,19 +15,9 @@ jQuery(document).ready(function ($) {
 
   //---------------- accordian slide-----------
   $(".slide-accor .answer").hide();
-  $(".slide-accor > h3").on("click", function () {
-    if ($(this).hasClass("active")) {
-      $(this).removeClass("active");
-      $(this).siblings(".answer").slideUp(200);
-      $(".slide-accor > h3").removeClass("fa-minus").addClass("fa-plus");
-    } else {
-      $(".slide-accor > h3").removeClass("fa-minus").addClass("fa-plus");
-      $(this).find("i").removeClass("fa-plus").addClass("fa-minus");
-      $(".slide-accor > h3").removeClass("active");
-      $(this).addClass("active");
-      $(".answer").slideUp(200);
-      $(this).siblings(".answer").slideDown(200);
-    }
+  $(".slide-accor").on("click", function () {
+    $(this).find(".answer").slideToggle();
+    $(this).find("h3").toggleClass("active");
   });
 
   //---------------- search category------------

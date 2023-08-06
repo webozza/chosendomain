@@ -237,15 +237,12 @@ li.sf-field-post-meta-_sale_price.open {
   margin-bottom: 0px;
 }
 .domain-inventory-sidebar .domain-inventory-search-filters h3 {
-  padding: 20px;
   font-size: 16px;
   line-height: 19px;
   color: #08104d;
-  background: #fff;
   cursor: pointer;
   position: relative;
   margin-bottom: 0px;
-  border-bottom: 1px solid #d3d3d3;
 }
 .domain-inventory-sidebar .domain-inventory-search-filters p {
   font-size: 16px;
@@ -255,7 +252,6 @@ li.sf-field-post-meta-_sale_price.open {
   margin-bottom: 0;
 }
 .domain-inventory-sidebar .domain-inventory-search-filters h3.active {
-  background: #f9fafc;
   border-bottom: none;
 }
 .domain-inventory-sidebar .domain-inventory-search-filters .reset-filters {
@@ -346,7 +342,7 @@ li.sf-field-post-meta-_sale_price.open {
 }
 .domain-inventory-sidebar .domain-inventory-search-filters .answer {
   display: none;
-  background: #f9fafc;
+  padding-top: 20px;
 }
 .domain-inventory-search-wrap {
   display: flex;
@@ -578,4 +574,18 @@ li.sf-field-post-meta-_sale_price.open {
 }
 .domain-inventory-search-wrap .domain-inventory-content.full-width {
   width: 100%;
+}
+.filter-title {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.filter-title i {
+  cursor: pointer;
+  color: #08104d;
+}
+.slide-accor {
+  padding: 20px;
+  border-bottom: 1px solid #d3d3d3;
+  background-color: #fff;
 }
