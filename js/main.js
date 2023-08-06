@@ -2,6 +2,7 @@ jQuery(document).ready(function ($) {
   // jQuery code to initialize the range slider
   var priceSlider = $(".price-slider")[0];
   var daSlider = $(".da-slider")[0];
+  var drSlider = $(".dr-slider")[0];
 
   noUiSlider.create(priceSlider, {
     start: [0, 10000],
@@ -13,6 +14,15 @@ jQuery(document).ready(function ($) {
   });
 
   noUiSlider.create(daSlider, {
+    start: [0, 100],
+    connect: true,
+    range: {
+      min: 0,
+      max: 100,
+    },
+  });
+
+  noUiSlider.create(drSlider, {
     start: [0, 100],
     connect: true,
     range: {
@@ -119,6 +129,18 @@ jQuery(document).ready(function ($) {
     applyFilters(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- DR Range Filter ------------
+  drSlider.noUiSlider.on("slide.one", function () {
+    let minPrice = $(this)[0].getPositions()[0];
+    let maxPrice = $(this)[0].getPositions()[1];
+
+    // Set Price
+    $(".dr-range-min").val(minPrice.toFixed());
+    $(".dr-range-max").val(maxPrice.toFixed());
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Category Filter ------------
   let catFilter = () => {
     $('[name="category_filter[]"]').change(async function () {
@@ -171,6 +193,9 @@ jQuery(document).ready(function ($) {
     let minDa = parseFloat($(".da-range-min").val());
     let maxDa = parseFloat($(".da-range-max").val());
 
+    let minDr = parseFloat($(".dr-range-min").val());
+    let maxDr = parseFloat($(".dr-range-max").val());
+
     $(".domain-inventory-content .product-box").each(async function () {
       let domain = $(this);
       let domainCats = domain
@@ -183,10 +208,12 @@ jQuery(document).ready(function ($) {
         domain.find(".product-card h2").text().replace("$", "")
       );
       let da = Number(domain.find(".da").text());
+      let dr = Number(domain.find(".dr").text());
       let domainName = domain.data("domain-name");
 
       let priceFilter = price >= minPrice && price <= maxPrice;
       let daFilter = da >= minDa && da <= maxDa;
+      let drFilter = dr >= minDr && dr <= maxDr;
 
       let catFilter =
         selectedCats.length === 0 ||
@@ -199,7 +226,8 @@ jQuery(document).ready(function ($) {
         catFilter &&
         searchFilter &&
         maxPriceTypeFilter &&
-        daFilter
+        daFilter &&
+        drFilter
       ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");
