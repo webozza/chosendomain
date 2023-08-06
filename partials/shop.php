@@ -261,12 +261,12 @@
 									 <a href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
 							</div>
 							<ul>
-								<li> <span> <?= $da ?> </span> <br> DA </li>
-								<li> <span> <?= $dr ?> </span> <br> DR </li>
-								<li> <span> <?= $live_rd ?> </span> <br> Live <br> RD </li>
-								<li> <span> <?= $hist_rd ?></span><br> Hist <br> RD </li>
-								<li> <span> <?= $age ?> </span> <br> Age </li>
-								<li> <span> <?= $language ?> </span> <br> Language</li>
+								<li> <span class="da"><?= $da ?></span> <br> DA </li>
+								<li> <span class="dr"><?= $dr ?></span> <br> DR </li>
+								<li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
+								<li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
+								<li> <span class="age"><?= $age ?></span> <br> Age </li>
+								<li> <span class="language"><?= $language ?></span> <br> Language</li>
 							</ul>
 						</div>
 					</div>

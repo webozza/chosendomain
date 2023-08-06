@@ -107,6 +107,18 @@ jQuery(document).ready(function ($) {
     applyFilters(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- DA Range Filter ------------
+  daSlider.noUiSlider.on("slide.one", function () {
+    let minPrice = $(this)[0].getPositions()[0];
+    let maxPrice = $(this)[0].getPositions()[1];
+
+    // Set Price
+    $(".da-range-min").val(minPrice.toFixed());
+    $(".da-range-max").val(maxPrice.toFixed());
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Category Filter ------------
   let catFilter = () => {
     $('[name="category_filter[]"]').change(async function () {
@@ -153,8 +165,11 @@ jQuery(document).ready(function ($) {
 
   //---------------- Combined Filtering Function ------------
   let applyFilters = (searchTerm) => {
-    let minPrice = parseFloat($(".sf-range-min").val());
-    let maxPrice = parseFloat($(".sf-range-max").val());
+    let minPrice = parseFloat($(".price-range-min").val());
+    let maxPrice = parseFloat($(".price-range-max").val());
+
+    let minDa = parseFloat($(".da-range-min").val());
+    let maxDa = parseFloat($(".da-range-max").val());
 
     $(".domain-inventory-content .product-box").each(async function () {
       let domain = $(this);
@@ -167,9 +182,12 @@ jQuery(document).ready(function ($) {
       let price = Number(
         domain.find(".product-card h2").text().replace("$", "")
       );
+      let da = Number(domain.find(".da").text());
       let domainName = domain.data("domain-name");
 
       let priceFilter = price >= minPrice && price <= maxPrice;
+      let daFilter = da >= minDa && da <= maxDa;
+
       let catFilter =
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
