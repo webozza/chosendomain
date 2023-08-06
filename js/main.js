@@ -101,8 +101,8 @@ jQuery(document).ready(function ($) {
     let maxPrice = $(this)[0].getPositions()[1] * 100;
 
     // Set Price
-    $(".sf-range-min").val(minPrice.toFixed());
-    $(".sf-range-max").val(maxPrice.toFixed());
+    $(".price-range-min").val(minPrice.toFixed());
+    $(".price-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
   });

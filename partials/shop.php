@@ -123,12 +123,12 @@
 										class="sf-meta-range sf-meta-range-slider">
 										<div class="price-range-inputs">
 											<label>
-												<input class="sf-input-range-number sf-range-min sf-input-number" min="0"
+												<input class="sf-input-range-number sf-range-min price-range-min sf-input-number" min="0"
 													max="10000" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
 											</label>
 											<span class="sf-range-values-separator"></span>
 											<label>
-												<input class="sf-input-range-number sf-range-max sf-input-number" min="0"
+												<input class="sf-input-range-number sf-range-max price-range-max sf-input-number" min="0"
 													max="10000" step="1" name="_sfm__sale_price[]" type="number" value="10000"
 													title="">
 											</label>
@@ -174,12 +174,12 @@
 										class="sf-meta-range sf-meta-range-slider">
 										<div class="price-range-inputs">
 											<label>
-												<input class="sf-input-range-number sf-range-min sf-input-number" min="0"
+												<input class="sf-input-range-number sf-range-min da-range-min sf-input-number" min="0"
 													max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
 											</label>
 											<span class="sf-range-values-separator"></span>
 											<label>
-												<input class="sf-input-range-number sf-range-max sf-input-number" min="0"
+												<input class="sf-input-range-number sf-range-max da-range-max sf-input-number" min="0"
 													max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
 													title="">
 											</label>
