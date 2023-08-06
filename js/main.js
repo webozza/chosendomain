@@ -113,7 +113,6 @@ jQuery(document).ready(function ($) {
       .closest(".product-box")
       .data("domain-name");
 
-    console.log(unobscuredDomainName);
     $(this)
       .closest(".product-box")
       .find(".obscured-domain-name")
