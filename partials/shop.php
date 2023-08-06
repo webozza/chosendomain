@@ -180,12 +180,18 @@
 								<?php } ?>
 							</div>
 							<div class="product-title"> 
-								<label> <input type="checkbox" value="" id="title"> <span> <?= obscureDomain($product_title) ?> </span> <label> 
-									<br>
-									<div class="description">
-										<a href="#"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
-										<span><?= $product_description?></span>
-									</div>
+								<label> 
+                                    <input type="checkbox" value="" id="title"> 
+                                    <span> <?= obscureDomain($product_title) ?> </span> 
+                                <label> 
+                                <br>
+                                <div class="description">
+                                    <a href="#"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+                                    <span><?= $product_description?></span>
+                                </div>
+                                <div class="domain-name-revealer">
+                                    <i class="flaticon-eye"></i>
+                                </div>
 							</div>
 						</div>
 						<div class="product-body">

@@ -552,3 +552,8 @@ li.sf-field-post-meta-_sale_price.open {
   background: #eeefff;
   border: 1px solid #dce5ff;
 }
+
+/* Domain Loop */
+.domain-inventory-content .product-title {
+  position: relative;
+}
