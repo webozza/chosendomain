@@ -66,12 +66,18 @@ jQuery(document).ready(function ($) {
     let unobscuredDomainName = $(this)
       .closest(".product-box")
       .data("domain-name");
-    $(".obscured-domain-name").text(unobscuredDomainName);
+
+    console.log(unobscuredDomainName);
+    $(this)
+      .closest(".product-box")
+      .find(".obscured-domain-name")
+      .text(unobscuredDomainName);
   });
 
   //---------------- Initialize empty arrays ------------
   let selectedCats = [];
   let searchTerm = "";
+  let maxPriceFilter = -1;
 
   //---------------- Price Range Filter ------------
   rangeSlider.noUiSlider.on("slide.one", function () {
@@ -115,6 +121,20 @@ jQuery(document).ready(function ($) {
     applyFilters(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- Domain Type Filter ------------
+  $('[name="domain-type[]"]').change(function () {
+    let selection = $(this);
+    let selected = selection.is(":checked");
+
+    if (selected && selection.val() === "30") {
+      maxPriceFilter = 30;
+    } else {
+      maxPriceFilter = -1; // Reset filter if not selected
+    }
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Combined Filtering Function ------------
   let applyFilters = (searchTerm) => {
     let minPrice = parseFloat($(".sf-range-min").val());
@@ -137,11 +157,10 @@ jQuery(document).ready(function ($) {
       let catFilter =
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
-      console.log(domainName);
-      console.log(searchTerm);
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
+      let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
 
-      if (priceFilter && catFilter && searchFilter) {
+      if (priceFilter && catFilter && searchFilter && maxPriceTypeFilter) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");
       } else {

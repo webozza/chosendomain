@@ -564,3 +564,12 @@ li.sf-field-post-meta-_sale_price.open {
   top: 3px;
   cursor: pointer;
 }
+.domain-search-controls {
+  position: sticky;
+  top: 0;
+}
+.domain-inventory-sidebar {
+  position: sticky;
+  top: 60px;
+  height: fit-content;
+}
