@@ -1,15 +1,23 @@
 jQuery(document).ready(function ($) {
   // jQuery code to initialize the range slider
-  var rangeSlider = $(".meta-slider")[0];
-  var inputMin = $(".sf-range-min");
-  var inputMax = $(".sf-range-max");
+  var priceSlider = $(".price-slider")[0];
+  var daSlider = $(".da-slider")[0];
 
-  noUiSlider.create(rangeSlider, {
+  noUiSlider.create(priceSlider, {
     start: [0, 10000],
     connect: true,
     range: {
       min: 0,
       max: 10000,
+    },
+  });
+
+  noUiSlider.create(daSlider, {
+    start: [0, 100],
+    connect: true,
+    range: {
+      min: 0,
+      max: 100,
     },
   });
 
@@ -88,7 +96,7 @@ jQuery(document).ready(function ($) {
   let maxPriceFilter = -1;
 
   //---------------- Price Range Filter ------------
-  rangeSlider.noUiSlider.on("slide.one", function () {
+  priceSlider.noUiSlider.on("slide.one", function () {
     let minPrice = $(this)[0].getPositions()[0] * 100;
     let maxPrice = $(this)[0].getPositions()[1] * 100;
 
