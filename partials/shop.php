@@ -182,7 +182,7 @@
 							<div class="product-title"> 
 								<label> 
                                     <input type="checkbox" value="" id="title"> 
-                                    <span> <?= obscureDomain($product_title) ?> </span> 
+                                    <span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
                                 <label> 
                                 <br>
                                 <div class="description">
