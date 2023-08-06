@@ -14,8 +14,8 @@ jQuery(document).ready(function ($) {
   });
 
   //---------------- accordian slide-----------
-  $(".slide-accor .answer").hide();
   $(".slide-accor .filter-title").on("click", function () {
+    $(".slide-accor .answer").hide();
     $(this).next().slideToggle();
     $(this).toggleClass("active");
   });

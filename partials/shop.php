@@ -93,7 +93,7 @@
                         <div class="category-checkboxes" id="category_checkboxes">
 							<?php if(!empty($product_cats)) { 
 								foreach ($product_cats as $category) {?>
-								<a href="<?= get_term_link($category);?>"> 
+								<a href="javascript:void(0)"> 
 								<label>
 									<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
                                     <span><?= esc_html($category->name) ?></span> <br>
