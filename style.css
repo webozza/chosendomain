@@ -590,4 +590,17 @@ li.sf-field-post-meta-_sale_price.open {
 .slide-accor .filter-title {
   padding: 20px;
   cursor: pointer;
+  position: relative;
+}
+.slide-accor .filter-title:after {
+  content: "\f078";
+  font-family: "FontAwesome";
+  position: absolute;
+  right: 20px;
+  color: #08104d;
+  font-size: 16px;
+  transition: all 0.25s ease;
+}
+.slide-accor .filter-title.active:after {
+  transform: rotate(180deg);
 }
