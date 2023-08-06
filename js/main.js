@@ -54,6 +54,7 @@ jQuery(document).ready(function ($) {
   //---------------- Hide / Show filters ------------
   $(".di-hide-filters").click(async function () {
     $(".domain-inventory-sidebar").toggleClass("hide-it");
+    $(".domain-inventory-content").toggleClass("full-width");
     if ($(".domain-inventory-sidebar").hasClass("hide-it")) {
       $(this).text("Show filters");
     } else {

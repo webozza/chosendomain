@@ -576,3 +576,6 @@ li.sf-field-post-meta-_sale_price.open {
 .hide-it {
   display: none;
 }
+.domain-inventory-search-wrap .domain-inventory-content.full-width {
+  width: 100%;
+}
