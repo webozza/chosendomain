@@ -15,9 +15,16 @@ jQuery(document).ready(function ($) {
 
   //---------------- accordian slide-----------
   $(".slide-accor .filter-title").on("click", function () {
-    $(".slide-accor .answer").hide();
-    $(this).next().slideToggle();
-    $(this).toggleClass("active");
+    // Close all answers
+    $(".slide-accor .answer").slideUp();
+    $(".slide-accor .filter-title").removeClass("active");
+
+    // Toggle the clicked answer
+    let answer = $(this).next();
+    if (!answer.is(":visible")) {
+      answer.slideDown();
+      $(this).addClass("active");
+    }
   });
 
   //---------------- search category------------
