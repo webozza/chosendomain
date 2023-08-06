@@ -79,7 +79,9 @@
 
                     <!-- Category Filter -->
                     <div class="category-filter slide-accor">
-						<h3>Category </h3>
+                        <div class="filter-title">
+                            <h3>Category </h3>
+                        </div>
 						<div class="answer">
 							<div class="search-input-wrapper">
 								<input type="text" id="category_search" placeholder="Search Categories">
@@ -104,9 +106,10 @@
 
                     <!-- Price Range Filter -->
 					<div class="slide-accor"> 
-						<h3>Price</h3>
+                        <div class="filter-title">
+						    <h3>Price</h3>
+                        </div>
 						<div class="answer">
-
 							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
 									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
 									data-sf-meta-type="number">

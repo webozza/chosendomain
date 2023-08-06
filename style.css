@@ -585,7 +585,9 @@ li.sf-field-post-meta-_sale_price.open {
   color: #08104d;
 }
 .slide-accor {
-  padding: 20px;
   border-bottom: 1px solid #d3d3d3;
   background-color: #fff;
+}
+.slide-accor .filter-title {
+  padding: 20px;
 }
