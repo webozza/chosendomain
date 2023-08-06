@@ -398,7 +398,7 @@
                                 <label> 
                                 <br>
                                 <div class="description">
-                                    <a href="#"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+                                    <a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
                                     <span><?= $product_description?></span>
                                 </div>
                                 <div class="domain-name-revealer">

@@ -175,8 +175,8 @@ jQuery(document).ready(function ($) {
 
   //---------------- Age Range Filter ------------
   ageSlider.noUiSlider.on("slide.one", function () {
-    let minPrice = $(this)[0].getPositions()[0];
-    let maxPrice = $(this)[0].getPositions()[1];
+    let minPrice = $(this)[0].getPositions()[0] / 2;
+    let maxPrice = $(this)[0].getPositions()[1] / 2;
 
     // Set Price
     $(".age-range-min").val(minPrice.toFixed());
