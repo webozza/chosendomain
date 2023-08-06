@@ -194,7 +194,13 @@ jQuery(document).ready(function ($) {
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
 
-      if (priceFilter && catFilter && searchFilter && maxPriceTypeFilter) {
+      if (
+        priceFilter &&
+        catFilter &&
+        searchFilter &&
+        maxPriceTypeFilter &&
+        daFilter
+      ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");
       } else {
