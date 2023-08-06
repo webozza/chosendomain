@@ -51,6 +51,16 @@ jQuery(document).ready(function ($) {
     });
   });
 
+  //---------------- Hide / Show filters ------------
+  $(".di-hide-filters").click(async function () {
+    $(".domain-inventory-sidebar").toggleClass("hide-it");
+    if ($(".domain-inventory-sidebar").hasClass("hide-it")) {
+      $(this).text("Show filters");
+    } else {
+      $(this).text("Hide filters");
+    }
+  });
+
   //---------------- Handle for no results ------------
   let noResults = () => {
     let noVisible = $(".product-box.visible").length === 0;

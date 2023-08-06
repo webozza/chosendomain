@@ -573,3 +573,6 @@ li.sf-field-post-meta-_sale_price.open {
   top: 60px;
   height: fit-content;
 }
+.hide-it {
+  display: none;
+}
