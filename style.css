@@ -623,3 +623,6 @@ li.sf-field-post-meta-_sale_price.open {
 .cd-checkboxes input[type="checkbox"] {
   margin-right: 5px;
 }
+.hidden {
+  display: none;
+}

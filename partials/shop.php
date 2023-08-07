@@ -207,7 +207,7 @@
 					</div>
 
                     <!-- DR Range Filter -->
-					<div class="slide-accor"> 
+					<div style="display:none;" class="slide-accor"> 
 						<div class="filter-title">
                             <h3>DR</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -309,7 +309,7 @@
 					</div>
 
                     <!-- Age Range Filter -->
-					<div class="slide-accor"> 
+					<div class="slide-accor hidden"> 
 						<div class="filter-title">
                             <h3>Age</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -441,7 +441,7 @@
                                     <a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
                                     <span><?= $product_description?></span>
                                 </div>
-                                <div class="domain-name-revealer">
+                                <div class="domain-name-revealer" style="display:none;">
                                     <i class="flaticon-eye"></i>
                                 </div>
 							</div>
@@ -455,10 +455,10 @@
 							</div>
 							<ul>
 								<li> <span class="da"><?= $da ?></span> <br> DA </li>
-								<li> <span class="dr"><?= $dr ?></span> <br> DR </li>
+								<li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
 								<li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
 								<li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
-								<li> <span class="age"><?= $age ?></span> <br> Age </li>
+								<li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
 								<li> <span class="language"><?= $language ?></span> <br> Language</li>
 							</ul>
 						</div>
