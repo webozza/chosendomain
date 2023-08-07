@@ -420,8 +420,10 @@
 							foreach ($domain_extensions as $extension) {
 								$extension_names[] = $extension->name;
 							}
+							$domain_type = wp_get_post_terms($product_id, 'domain_type');
+							echo $domain_type;
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>"> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
@@ -434,14 +436,14 @@
 							<div class="product-title"> 
 								<label> 
                                     <input type="checkbox" value="" id="title"> 
-                                    <span class="obscured-domain-name"> <?= $product_title ?> </span> 
+                                    <span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
                                 <label> 
                                 <br>
-                                <div class="description">
+                                <div class="description hidden">
                                     <a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
                                     <span><?= $product_description?></span>
                                 </div>
-                                <div class="domain-name-revealer" style="display:none;">
+                                <div class="domain-name-revealer">
                                     <i class="flaticon-eye"></i>
                                 </div>
 							</div>
@@ -451,7 +453,7 @@
 								<?php foreach($product_categories as $catagory) { ?>
 									<span><?= $catagory?></span>
 								<?php }?>
-									 <a href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+									 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
 							</div>
 							<ul>
 								<li> <span class="da"><?= $da ?></span> <br> DA </li>
