@@ -624,5 +624,5 @@ li.sf-field-post-meta-_sale_price.open {
   margin-right: 5px;
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
