@@ -358,6 +358,41 @@
 								</div>
 						</div>
 					</div>
+
+					<!-- Get Extensions -->
+					<?php
+						$extensions = get_terms(array(
+							'taxonomy' => 'extension',
+							'hide_empty' => false,
+						));
+					?>
+
+					<!-- Extension Filter -->
+                    <div class="extension-filter slide-accor">
+                        <div class="filter-title">
+                            <h3>Extension </h3>
+                        </div>
+						<div class="answer">
+							<div class="search-input-wrapper">
+								<input type="text" id="extension_search" placeholder="Search extensions">
+								<span class="search-icon"></span>
+							</div>
+						
+                        <div class="extension-checkboxes cd-checkboxes" id="extension_checkboxes">
+							<?php if(!empty($extensions)) { 
+								foreach ($extensions as $extension) {?>
+								<a href="javascript:void(0)"> 
+								<label>
+									<input name="extension_filter[]" type="checkbox" value="<?= $extension->name ?>">	
+                                    <span><?= esc_html($extension->name) ?></span> <br>
+								</label>
+								</a>
+								<?php
+								}
+							 } ?>
+                        </div>
+						</div>
+                    </div>
                 </div>
             </div>
             <!-- DOMAINS -->
@@ -380,8 +415,9 @@
 							$language  = get_post_meta($product_id, 'language', true);
 							$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
 							$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+							$domain_extension = wp_get_post_terms($product_id, 'extension', array('fields' => 'names'));
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>"> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension="<?= $domain_extension ?>"> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
