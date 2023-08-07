@@ -269,12 +269,8 @@ jQuery(document).ready(function ($) {
           return $(this).text();
         })
         .get(); // Get an array of category texts
-      let domainExtensions = domain
-        .data("domain-extension")
-        .map(function () {
-          return $(this).text();
-        })
-        .get();
+      let domainExtensions = domain.data("domain-extension");
+
       let price = Number(
         domain.find(".product-card h2").text().replace("$", "")
       );

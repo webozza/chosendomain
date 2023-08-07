@@ -420,9 +420,8 @@
 							foreach ($domain_extensions as $extension) {
 								$extension_names[] = $extension->name;
 							}
-							$the_extension = implode(', ', $extension_names);
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension="<?= $the_extension ?>"> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension="<?= esc_attr(json_encode($extension_names)) ?>"> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
