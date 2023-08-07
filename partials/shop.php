@@ -439,6 +439,7 @@
 							$product_id = $product->get_id();
 							$product_id = $product->get_id();
 							$product_title = $product->get_name();
+							$product_slug = $product->get_slug();
 							$price = $product -> get_price();
 
 							$product_description = $product->get_description();
@@ -513,8 +514,7 @@
 							<li>
 								<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
 							</li>
-							<li> <a href="<?= the_permalink($post -> ID);?>"> More Data </a> </li>
-							<li> <a href=""> Add to <br>  Compare </a> </li>
+							<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
 						</ul>
 					</div>
 				</div>
