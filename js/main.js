@@ -65,26 +65,28 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  //---------------- search category------------
+  //---------------- search checkboxes ------------
+  function setupSearchFilter(searchInputSelector, itemListSelector) {
+    var searchInput = $(searchInputSelector);
+    var itemList = $(itemListSelector);
+    var items = itemList.find("label");
 
-  document.addEventListener("DOMContentLoaded", function () {
-    var searchInput = document.getElementById("category_search");
-    var itemList = document.getElementById("category_checkboxes");
-    var items = itemList.getElementsByTagName("label");
+    searchInput.on("keyup", function () {
+      var searchTerm = $(this).val().toLowerCase();
 
-    searchInput.addEventListener("keyup", function (e) {
-      var searchTerm = e.target.value.toLowerCase();
-
-      for (var i = 0; i < items.length; i++) {
-        var itemText = items[i].textContent.toLowerCase();
+      items.each(function () {
+        var itemText = $(this).text().toLowerCase();
         if (itemText.includes(searchTerm)) {
-          items[i].style.display = "block";
+          $(this).css("display", "block");
         } else {
-          items[i].style.display = "none";
+          $(this).css("display", "none");
         }
-      }
+      });
     });
-  });
+  }
+
+  setupSearchFilter("#category_search", "#category_checkboxes");
+  setupSearchFilter("#extension_search", "#extension_checkboxes");
 
   //---------------- Hide / Show filters ------------
   $(".di-hide-filters").click(async function () {
@@ -124,7 +126,7 @@ jQuery(document).ready(function ($) {
   let selectedExtensions = [];
   let searchTerm = "";
   let maxPriceFilter = -1;
-  let selectedDomainType;
+  let selectedDomainType = "";
 
   //---------------- Price Range Filter ------------
   priceSlider.noUiSlider.on("slide.one", function () {
@@ -242,10 +244,11 @@ jQuery(document).ready(function ($) {
       selectedDomainType = "Budget Domain";
     } else if (selected && selection.val() === "30") {
       selectedDomainType = "30";
+    } else if (!selected) {
+      selectedDomainType = "";
     }
 
-    console.log(maxPriceFilter);
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFilters(searchTerm);
   });
 
   //---------------- Combined Filtering Function ------------
@@ -306,8 +309,8 @@ jQuery(document).ready(function ($) {
         });
 
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
-      //let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
-      let domainTypeFilter = selectedDomainType === domainType;
+      let domainTypeFilter =
+        selectedDomainType === "" || selectedDomainType == domainType;
 
       if (
         priceFilter &&

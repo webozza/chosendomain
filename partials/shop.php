@@ -415,12 +415,21 @@
 							$language  = get_post_meta($product_id, 'language', true);
 							$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
 							$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+							// Domain Extensions
 							$domain_extensions = wp_get_post_terms($product_id, 'extension');
 							$extension_names = array();
 							foreach ($domain_extensions as $extension) {
 								$extension_names[] = $extension->name;
 							};
+							// Domain Type
 							$domain_type = get_field('domain_type', $product_id);
+							// Authority Backlinks
+							$authority_backlinks = wp_get_post_terms($product_id, 'authority_backlink');
+							$ab_names = array();
+							foreach ($authority_backlinks as $backlink) {
+								$ab_names[] = $backlink->name;
+							};
+							var_dump($ab_names);
 					?>
 				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>"> 
 					<div class="product-details">
