@@ -419,11 +419,10 @@
 							$extension_names = array();
 							foreach ($domain_extensions as $extension) {
 								$extension_names[] = $extension->name;
-							}
-							$domain_type = wp_get_post_terms($product_id, 'domain_type');
-							echo $domain_type;
+							};
+							$domain_type = get_field('domain_type', $product_id);
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>"> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">

@@ -124,6 +124,7 @@ jQuery(document).ready(function ($) {
   let selectedExtensions = [];
   let searchTerm = "";
   let maxPriceFilter = -1;
+  let selectedDomainType;
 
   //---------------- Price Range Filter ------------
   priceSlider.noUiSlider.on("slide.one", function () {
@@ -235,12 +236,19 @@ jQuery(document).ready(function ($) {
     let selection = $(this);
     let selected = selection.is(":checked");
 
-    if (selected && selection.val() === "30") {
+    if (selected && selection.val() === "Premium") {
+      selectedDomainType = "Premium Domain";
+    } else if (selected && selection.val() === "Budget") {
+      selectedDomainType = "Budget Domain";
+    } else if (selected && selection.val() === "30") {
+      selectedDomainType = ""; // Reset selectedDomainType for "30" domain type
       maxPriceFilter = 30;
     } else {
-      maxPriceFilter = -1; // Reset filter if not selected
+      maxPriceFilter = -1;
+      selectedDomainType = ""; // Reset selectedDomainType for other cases
     }
 
+    console.log(maxPriceFilter);
     applyFilters(searchTerm); // Call the combined filtering function
   });
 
@@ -279,6 +287,7 @@ jQuery(document).ready(function ($) {
       let liveRd = Number(domain.find(".live-rd").text());
       let age = Number(domain.find(".age").text());
       let domainName = domain.data("domain-name");
+      let domainType = domain.data("domain-type");
 
       let priceFilter = price >= minPrice && price <= maxPrice;
       let daFilter = da >= minDa && da <= maxDa;
@@ -302,6 +311,10 @@ jQuery(document).ready(function ($) {
 
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
+      let domainTypeFilter =
+        selectedDomainType === domainType ||
+        selectedDomainType === "" ||
+        selectedDomainType === "None";
 
       if (
         priceFilter &&
@@ -312,7 +325,8 @@ jQuery(document).ready(function ($) {
         drFilter &&
         liveRdFilter &&
         ageFilter &&
-        extensionFilter
+        extensionFilter &&
+        domainTypeFilter
       ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");
