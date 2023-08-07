@@ -289,11 +289,17 @@ jQuery(document).ready(function ($) {
       let catFilter =
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
+
       let extensionFilter =
         selectedExtensions.length === 0 ||
-        selectedExtensions.some((extension) =>
-          domainExtensions.includes(extension)
-        );
+        domainExtensions.some((extension) => {
+          let extensionIncluded = selectedExtensions.includes(extension);
+          console.log(
+            `Domain: ${domainExtensions}, Extension: ${extension}, Included: ${extensionIncluded}`
+          );
+          return extensionIncluded;
+        });
+
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
 
