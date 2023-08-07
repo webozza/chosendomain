@@ -415,9 +415,14 @@
 							$language  = get_post_meta($product_id, 'language', true);
 							$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
 							$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
-							$domain_extension = wp_get_post_terms($product_id, 'extension', array('fields' => 'names'));
+							$domain_extensions = wp_get_post_terms($product_id, 'extension');
+							$extension_names = array();
+							foreach ($domain_extensions as $extension) {
+								$extension_names[] = $extension->name;
+							}
+							$the_extension = implode(', ', $extension_names);
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension="<?= $domain_extension ?>"> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension="<?= $the_extension ?>"> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">

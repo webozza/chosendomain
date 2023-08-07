@@ -185,27 +185,43 @@ jQuery(document).ready(function ($) {
   });
 
   //---------------- Category Filter ------------
-  let catFilter = () => {
-    $('[name="category_filter[]"]').change(async function () {
-      let cat = $(this);
-      let selectedCat = cat.is(":checked");
+  $('[name="category_filter[]"]').change(async function () {
+    let cat = $(this);
+    let selectedCat = cat.is(":checked");
 
-      if (selectedCat) {
-        if (!selectedCats.includes(cat.val())) {
-          selectedCats.push(cat.val());
-        }
-      } else {
-        let index = selectedCats.indexOf(cat.val());
-        if (index !== -1) {
-          selectedCats.splice(index, 1);
-        }
+    if (selectedCat) {
+      if (!selectedCats.includes(cat.val())) {
+        selectedCats.push(cat.val());
       }
+    } else {
+      let index = selectedCats.indexOf(cat.val());
+      if (index !== -1) {
+        selectedCats.splice(index, 1);
+      }
+    }
 
-      applyFilters(searchTerm); // Call the combined filtering function
-    });
-  };
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
 
-  catFilter();
+  //---------------- Domain Extension Filter ------------
+  let selectedExtensions = [];
+  $('[name="extension_filter[]"]').change(async function () {
+    let cat = $(this);
+    let selectedExtension = cat.is(":checked");
+
+    if (selectedExtension) {
+      if (!selectedExtensions.includes(cat.val())) {
+        selectedExtensions.push(cat.val());
+      }
+    } else {
+      let index = selectedExtensions.indexOf(cat.val());
+      if (index !== -1) {
+        selectedExtensions.splice(index, 1);
+      }
+    }
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
 
   //---------------- Domain Name Search ------------
   $(".fire-domain-keyword-search").click(function () {
@@ -253,6 +269,12 @@ jQuery(document).ready(function ($) {
           return $(this).text();
         })
         .get(); // Get an array of category texts
+      let domainExtensions = domain
+        .data("domain-extension")
+        .map(function () {
+          return $(this).text();
+        })
+        .get();
       let price = Number(
         domain.find(".product-card h2").text().replace("$", "")
       );
@@ -271,6 +293,11 @@ jQuery(document).ready(function ($) {
       let catFilter =
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
+      let extensionFilter =
+        selectedExtensions.length === 0 ||
+        domainExtensions.some((extension) =>
+          selectedExtensions.includes(extension)
+        );
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
 
@@ -282,7 +309,8 @@ jQuery(document).ready(function ($) {
         daFilter &&
         drFilter &&
         liveRdFilter &&
-        ageFilter
+        ageFilter &&
+        extensionFilter
       ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");
