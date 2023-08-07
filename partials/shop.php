@@ -381,12 +381,12 @@
                         <div class="extension-checkboxes cd-checkboxes" id="extension_checkboxes">
 							<?php if(!empty($extensions)) { 
 								foreach ($extensions as $extension) {?>
-								<a href="javascript:void(0)"> 
-								<label>
-									<input name="extension_filter[]" type="checkbox" value="<?= $extension->name ?>">	
-                                    <span><?= esc_html($extension->name) ?></span> <br>
-								</label>
-								</a>
+									<a href="javascript:void(0)"> 
+										<label>
+											<input name="extension_filter[]" type="checkbox" value="<?= $extension->name ?>">	
+											<span><?= $extension->name ?></span> <br>
+										</label>
+									</a>
 								<?php
 								}
 							 } ?>
