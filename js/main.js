@@ -87,6 +87,10 @@ jQuery(document).ready(function ($) {
 
   setupSearchFilter("#category_search", "#category_checkboxes");
   setupSearchFilter("#extension_search", "#extension_checkboxes");
+  setupSearchFilter(
+    "#authority_backlinks_search",
+    "#authority_backlinks_checkboxes"
+  );
 
   //---------------- Hide / Show filters ------------
   $(".di-hide-filters").click(async function () {

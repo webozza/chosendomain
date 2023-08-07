@@ -393,6 +393,41 @@
                         </div>
 						</div>
                     </div>
+
+					<!-- Get Auth Backlinks -->
+					<?php
+						$backlinkos = get_terms(array(
+							'taxonomy' => 'authory_backlink',
+							'hide_empty' => false,
+						));
+					?>
+
+					<!-- Extension Filter -->
+                    <div class="extension-filter slide-accor">
+                        <div class="filter-title">
+                            <h3>Authority backlinks</h3>
+                        </div>
+						<div class="answer">
+							<div class="search-input-wrapper">
+								<input type="text" id="auhtority_backlinks_search" placeholder="Search authority sites. Eg. BBC">
+								<span class="search-icon"></span>
+							</div>
+						
+                        <div class="auhtority_backlinks-checkboxes cd-checkboxes" id="auhtority_backlinks_checkboxes">
+							<?php if(!empty($backlinkos)) { 
+								foreach ($backlinkos as $backlink) {?>
+									<a href="javascript:void(0)"> 
+										<label>
+											<input name="auhtority_backlinks_filter[]" type="checkbox" value="<?= $backlink->name ?>">	
+											<span><?= $backlink->name ?></span> <br>
+										</label>
+									</a>
+								<?php
+								}
+							 } ?>
+                        </div>
+						</div>
+                    </div>
                 </div>
             </div>
             <!-- DOMAINS -->
@@ -424,14 +459,13 @@
 							// Domain Type
 							$domain_type = get_field('domain_type', $product_id);
 							// Authority Backlinks
-							$authority_backlinks = wp_get_post_terms($product_id, 'authority_backlink');
+							$authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
 							$ab_names = array();
 							foreach ($authority_backlinks as $backlink) {
 								$ab_names[] = $backlink->name;
 							};
-							var_dump($ab_names);
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>"> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
