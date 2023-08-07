@@ -47,7 +47,7 @@
                 <input type="radio" id="domain-type-30" name="domain-type[]" value="30">
                 <label for="domain-type-30" class="show-tooltip">$30 Domains</label>
             </div>
-            <div class="domain-inventory-search-field">
+            <div style="display:none;" class="domain-inventory-search-field">
                 <input type="text" name="domain-search" id="domain-search"
                     placeholder="Search Domain Name" value="">
                 <button class="fire-domain-keyword-search">SEARCH</button>
@@ -434,7 +434,7 @@
 							<div class="product-title"> 
 								<label> 
                                     <input type="checkbox" value="" id="title"> 
-                                    <span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
+                                    <span class="obscured-domain-name"> <?= $product_title ?> </span> 
                                 <label> 
                                 <br>
                                 <div class="description">

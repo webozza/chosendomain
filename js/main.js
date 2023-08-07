@@ -108,16 +108,18 @@ jQuery(document).ready(function ($) {
   };
 
   //---------------- Reveal domain name ------------
-  $(".domain-name-revealer").click(function () {
-    let unobscuredDomainName = $(this)
-      .closest(".product-box")
-      .data("domain-name");
+  let revealDomainName = () => {
+    $(".domain-name-revealer").click(function () {
+      let unobscuredDomainName = $(this)
+        .closest(".product-box")
+        .data("domain-name");
 
-    $(this)
-      .closest(".product-box")
-      .find(".obscured-domain-name")
-      .text(unobscuredDomainName);
-  });
+      $(this)
+        .closest(".product-box")
+        .find(".obscured-domain-name")
+        .text(unobscuredDomainName);
+    });
+  };
 
   //---------------- Initialize empty arrays ------------
   let selectedCats = [];
