@@ -241,11 +241,7 @@ jQuery(document).ready(function ($) {
     } else if (selected && selection.val() === "Budget") {
       selectedDomainType = "Budget Domain";
     } else if (selected && selection.val() === "30") {
-      selectedDomainType = ""; // Reset selectedDomainType for "30" domain type
-      maxPriceFilter = 30;
-    } else {
-      maxPriceFilter = -1;
-      selectedDomainType = ""; // Reset selectedDomainType for other cases
+      selectedDomainType = "30";
     }
 
     console.log(maxPriceFilter);
@@ -310,17 +306,14 @@ jQuery(document).ready(function ($) {
         });
 
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
-      let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
-      let domainTypeFilter =
-        selectedDomainType === domainType ||
-        selectedDomainType === "" ||
-        selectedDomainType === "None";
+      //let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
+      let domainTypeFilter = selectedDomainType === domainType;
 
       if (
         priceFilter &&
         catFilter &&
         searchFilter &&
-        maxPriceTypeFilter &&
+        //maxPriceTypeFilter &&
         daFilter &&
         drFilter &&
         liveRdFilter &&
