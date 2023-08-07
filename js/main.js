@@ -128,6 +128,7 @@ jQuery(document).ready(function ($) {
   //---------------- Initialize empty arrays ------------
   let selectedCats = [];
   let selectedExtensions = [];
+  let selectedBacklinks = [];
   let searchTerm = "";
   let maxPriceFilter = -1;
   let selectedDomainType = "";
@@ -230,6 +231,25 @@ jQuery(document).ready(function ($) {
     applyFilters(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- Authority Backlinks Filter ------------
+  $('[name="auhtority_backlinks_filter[]"]').change(async function () {
+    let backlink = $(this);
+    let selectedBacklink = backlink.is(":checked");
+
+    if (selectedBacklink) {
+      if (!selectedBacklinks.includes(backlink.val())) {
+        selectedBacklinks.push(backlink.val());
+      }
+    } else {
+      let index = selectedBacklinks.indexOf(backlink.val());
+      if (index !== -1) {
+        selectedBacklinks.splice(index, 1);
+      }
+    }
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Domain Name Search ------------
   $(".fire-domain-keyword-search").click(function () {
     searchTerm = $('[name="domain-search"]').val().toLowerCase().trim();
@@ -281,6 +301,7 @@ jQuery(document).ready(function ($) {
         })
         .get(); // Get an array of category texts
       let domainExtensions = domain.data("domain-extension");
+      let authBacklinks = domain.data("auth-backlinks");
 
       let price = Number(
         domain.find(".product-card h2").text().replace("$", "")
@@ -306,11 +327,18 @@ jQuery(document).ready(function ($) {
         selectedExtensions.length === 0 ||
         domainExtensions.some((extension) => {
           let extensionIncluded = selectedExtensions.includes(extension);
-          console.log(
-            `Domain: ${domainExtensions}, Extension: ${extension}, Included: ${extensionIncluded}`
-          );
           return extensionIncluded;
         });
+
+      let authorityBacklinksFilter =
+        selectedBacklinks.length === 0 ||
+        authBacklinks.some((backlink) => {
+          let backlinksIncluded = selectedBacklinks.includes(backlink);
+          return backlinksIncluded;
+        });
+
+      console.log("authBacklinks:", authBacklinks);
+      console.log("selectedBacklinks:", selectedBacklinks);
 
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let domainTypeFilter =
@@ -326,7 +354,8 @@ jQuery(document).ready(function ($) {
         liveRdFilter &&
         ageFilter &&
         extensionFilter &&
-        domainTypeFilter
+        domainTypeFilter &&
+        authorityBacklinksFilter
       ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");

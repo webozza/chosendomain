@@ -626,3 +626,6 @@ li.sf-field-post-meta-_sale_price.open {
 .hidden {
   display: none !important;
 }
+.auhtority_backlinks-checkboxes label {
+  display: none;
+}
