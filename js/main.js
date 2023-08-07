@@ -121,6 +121,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- Initialize empty arrays ------------
   let selectedCats = [];
+  let selectedExtensions = [];
   let searchTerm = "";
   let maxPriceFilter = -1;
 
@@ -204,17 +205,16 @@ jQuery(document).ready(function ($) {
   });
 
   //---------------- Domain Extension Filter ------------
-  let selectedExtensions = [];
   $('[name="extension_filter[]"]').change(async function () {
-    let cat = $(this);
-    let selectedExtension = cat.is(":checked");
+    let extension = $(this);
+    let selectedExtension = extension.is(":checked");
 
     if (selectedExtension) {
-      if (!selectedExtensions.includes(cat.val())) {
-        selectedExtensions.push(cat.val());
+      if (!selectedExtensions.includes(extension.val())) {
+        selectedExtensions.push(extension.val());
       }
     } else {
-      let index = selectedExtensions.indexOf(cat.val());
+      let index = selectedExtensions.indexOf(extension.val());
       if (index !== -1) {
         selectedExtensions.splice(index, 1);
       }
@@ -291,8 +291,8 @@ jQuery(document).ready(function ($) {
         domainCats.some((cat) => selectedCats.includes(cat));
       let extensionFilter =
         selectedExtensions.length === 0 ||
-        domainExtensions.some((extension) =>
-          selectedExtensions.includes(extension)
+        selectedExtensions.some((extension) =>
+          domainExtensions.includes(extension)
         );
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let maxPriceTypeFilter = maxPriceFilter === -1 || price <= maxPriceFilter;
