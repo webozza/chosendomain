@@ -372,6 +372,9 @@ jQuery(document).ready(function ($) {
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
 
+      console.log("useCases:", selectedUses);
+      console.log("uses", uses);
+
       let useCaseFilter =
         selectedUses.length === 0 ||
         uses.some((use) => selectedUses.includes(use));
@@ -396,9 +399,6 @@ jQuery(document).ready(function ($) {
           let languagesIncluded = selectedLanguages.includes(lang);
           return languagesIncluded;
         });
-
-      console.log("authBacklinks:", authBacklinks);
-      console.log("selectedBacklinks:", selectedBacklinks);
 
       let searchFilter = domainName.indexOf(searchTerm) !== -1;
       let domainTypeFilter =
