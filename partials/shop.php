@@ -509,7 +509,7 @@
 								$langs[] = $lang->name;
 							};
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= $langs ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_decode($langs) ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
