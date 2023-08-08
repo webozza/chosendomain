@@ -196,6 +196,19 @@ jQuery(document).ready(function ($) {
     filterSpan.attr("data-cfa", combinedFiltersApplied);
   };
 
+  $('.domain-section input[type="checkbox"]').change(function () {
+    let combinedFilters = Number($(".reset-filters span").data("cfa"));
+
+    let checkbox = $(this);
+    if (checkbox.is(":checked")) {
+      combinedFilters = combinedFilters + 1;
+    } else {
+      combinedFilters = combinedFilters - 1;
+    }
+    console.log(combinedFilters);
+    $(".reset-filters span").text(`${combinedFilters} filter(s) applied`);
+  });
+
   //---------------- Price Range Filter ------------
   priceSlider.noUiSlider.on("slide.one", function () {
     let minPrice = $(this)[0].getPositions()[0] * 100;
