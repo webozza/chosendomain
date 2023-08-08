@@ -165,27 +165,9 @@ jQuery(document).ready(function ($) {
     },
   };
 
-  const updateCombinedFiltersAppliedUI = () => {
+  const updateFiltersApplied = (filter, minPrice, maxPrice, maximum) => {
     let combinedFiltersApplied = 0;
 
-    for (const filter in filtersState) {
-      const filterState = filtersState[filter];
-      combinedFiltersApplied += filterState.filtersApplied; // Summing up filtersApplied values
-    }
-
-    // Update UI for the combined filters
-    const filterSpan = $(".reset-filters span");
-
-    if (combinedFiltersApplied !== 0) {
-      filterSpan.removeAttr("disabled");
-      filterSpan.css("color", "#08104d");
-    }
-
-    filterSpan.text(`${combinedFiltersApplied} filter(s) applied`);
-    filterSpan.attr("data-cfa", combinedFiltersApplied);
-  };
-
-  const updateFiltersApplied = (filter, minPrice, maxPrice, maximum) => {
     const filterState = filtersState[filter];
 
     if (
@@ -194,12 +176,28 @@ jQuery(document).ready(function ($) {
     ) {
       filterState.filtersApplied++;
       filterState.hasBeenIncremented = true;
-      updateCombinedFiltersAppliedUI(); // Update the combined filters count in UI
     }
+
+    for (const filter in filtersState) {
+      const filterState = filtersState[filter];
+      combinedFiltersApplied += filterState.filtersApplied; // Summing up filtersApplied values
+    }
+
+    // Update UI for the combined filters
+    const filterButton = $(".reset-filters button");
+    const filterSpan = $(".reset-filters span");
+
+    if (combinedFiltersApplied !== 0) {
+      filterButton.removeAttr("disabled");
+      filterButton.css("color", "#08104d");
+    }
+
+    filterSpan.text(`${combinedFiltersApplied} filter(s) applied`);
+    filterSpan.attr("data-cfa", combinedFiltersApplied);
   };
 
   $('.domain-section input[type="checkbox"]').change(function () {
-    let combinedFilters = parseInt($(".reset-filters span").attr("data-cfa"));
+    let combinedFilters = $(".reset-filters span").data("cfa");
     let newCombinedFilters;
 
     let checkbox = $(this);
@@ -208,7 +206,7 @@ jQuery(document).ready(function ($) {
     } else {
       newCombinedFilters = combinedFilters - 1;
     }
-
+    console.log(newCombinedFilters);
     $(".reset-filters span").text(`${newCombinedFilters} filter(s) applied`);
     $(".reset-filters span").attr("data-cfa", newCombinedFilters);
   });
