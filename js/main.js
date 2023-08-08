@@ -141,16 +141,78 @@ jQuery(document).ready(function ($) {
   let searchTerm = "";
   let maxPriceFilter = -1;
   let selectedDomainType = "";
-  let filtersApplied = 0;
 
-  let updateFiltersApplied = (min_price, max_price, maximum) => {
-    if (min_price !== 0 || max_price !== maximum) {
-      filtersApplied + 1;
-    } else {
-      filtersApplied - 1;
-    }
-    $(".reset-filters span").text(filtersApplied);
+  const filtersState = {
+    price: {
+      filtersApplied: 0,
+      hasBeenIncremented: false,
+    },
+    da: {
+      filtersApplied: 0,
+      hasBeenIncremented: false,
+    },
+    dr: {
+      filtersApplied: 0,
+      hasBeenIncremented: false,
+    },
+    liveRd: {
+      filtersApplied: 0,
+      hasBeenIncremented: false,
+    },
+    age: {
+      filtersApplied: 0,
+      hasBeenIncremented: false,
+    },
   };
+
+  const updateFiltersApplied = (filter, minPrice, maxPrice, maximum) => {
+    let combinedFiltersApplied = 0;
+
+    const filterState = filtersState[filter];
+
+    if (
+      !filterState.hasBeenIncremented &&
+      (minPrice !== 0 || maxPrice !== maximum)
+    ) {
+      filterState.filtersApplied++;
+      filterState.hasBeenIncremented = true;
+    }
+
+    for (const filter in filtersState) {
+      const filterState = filtersState[filter];
+      combinedFiltersApplied += filterState.filtersApplied; // Summing up filtersApplied values
+    }
+
+    // Update UI for the combined filters
+    const filterButton = $(".reset-filters button");
+    const filterSpan = $(".reset-filters span");
+
+    if (combinedFiltersApplied !== 0) {
+      filterButton.removeAttr("disabled");
+      filterButton.css("color", "#08104d");
+    }
+
+    filterSpan.text(`${combinedFiltersApplied} filter(s) applied`);
+    filterSpan.attr("data-cfa", combinedFiltersApplied);
+  };
+
+  $('.domain-section input[type="checkbox"]').change(function () {
+    let cF = $(".reset-filters span").data("data-cfa");
+    if (cF == "") {
+      combinedFilters = 0;
+    } else {
+      combinedFilters = Number(cF);
+    }
+
+    let checkbox = $(this);
+    if (checkbox.is(":checked")) {
+      combinedFilters + 1;
+    } else {
+      combinedFilters - 1;
+    }
+    console.log(combinedFilters);
+    $(".reset-filters span").text(`${combinedFilters} filter(s) applied`);
+  });
 
   //---------------- Price Range Filter ------------
   priceSlider.noUiSlider.on("slide.one", function () {
@@ -162,7 +224,7 @@ jQuery(document).ready(function ($) {
     $(".price-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
-    updateFiltersApplied(minPrice, maxPrice, 10000);
+    updateFiltersApplied("price", minPrice, maxPrice, 10000);
   });
 
   //---------------- DA Range Filter ------------
@@ -175,6 +237,7 @@ jQuery(document).ready(function ($) {
     $(".da-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
+    updateFiltersApplied("da", minPrice, maxPrice, 100);
   });
 
   //---------------- DR Range Filter ------------
@@ -187,6 +250,7 @@ jQuery(document).ready(function ($) {
     $(".dr-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
+    updateFiltersApplied("dr", minPrice, maxPrice, 100);
   });
 
   //---------------- Live RD Range Filter ------------
@@ -199,6 +263,7 @@ jQuery(document).ready(function ($) {
     $(".live-rd-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
+    updateFiltersApplied("liveRd", minPrice, maxPrice, 10000);
   });
 
   //---------------- Age Range Filter ------------
@@ -211,6 +276,7 @@ jQuery(document).ready(function ($) {
     $(".age-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
+    updateFiltersApplied("age", minPrice, maxPrice, 50);
   });
 
   //---------------- Category Filter ------------
@@ -388,9 +454,6 @@ jQuery(document).ready(function ($) {
       let catFilter =
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
-
-      console.log("useCases:", selectedUses);
-      console.log("uses", uses);
 
       let useCaseFilter =
         selectedUses.length === 0 ||
