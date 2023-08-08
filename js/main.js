@@ -91,6 +91,7 @@ jQuery(document).ready(function ($) {
     "#auhtority_backlinks_search",
     "#auhtority_backlinks_checkboxes"
   );
+  setupSearchFilter("#languages_search", "#languages_checkboxes");
 
   //---------------- Hide / Show filters ------------
   $(".di-hide-filters").click(async function () {
@@ -135,6 +136,7 @@ jQuery(document).ready(function ($) {
   let selectedCats = [];
   let selectedExtensions = [];
   let selectedBacklinks = [];
+  let selectedLanguages = [];
   let searchTerm = "";
   let maxPriceFilter = -1;
   let selectedDomainType = "";
@@ -256,6 +258,25 @@ jQuery(document).ready(function ($) {
     applyFilters(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- Languages Filter ------------
+  $('[name="languages_filter[]"]').change(async function () {
+    let lang = $(this);
+    let selectedLanguage = lang.is(":checked");
+
+    if (selectedLanguage) {
+      if (!selectedLanguages.includes(lang.val())) {
+        selectedLanguages.push(lang.val());
+      }
+    } else {
+      let index = selectedLanguages.indexOf(lang.val());
+      if (index !== -1) {
+        selectedLanguages.splice(index, 1);
+      }
+    }
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Domain Name Search ------------
   $(".fire-domain-keyword-search").click(function () {
     searchTerm = $('[name="domain-search"]').val().toLowerCase().trim();
@@ -308,6 +329,7 @@ jQuery(document).ready(function ($) {
         .get(); // Get an array of category texts
       let domainExtensions = domain.data("domain-extension");
       let authBacklinks = domain.data("auth-backlinks");
+      let languages = domain.data("languages");
 
       let price = Number(
         domain.find(".product-card h2").text().replace("$", "")
@@ -343,6 +365,13 @@ jQuery(document).ready(function ($) {
           return backlinksIncluded;
         });
 
+      let languageFilter =
+        selectedLanguages.length === 0 ||
+        languages.some((lang) => {
+          let languagesIncluded = selectedLanguages.includes(lang);
+          return languagesIncluded;
+        });
+
       console.log("authBacklinks:", authBacklinks);
       console.log("selectedBacklinks:", selectedBacklinks);
 
@@ -361,7 +390,8 @@ jQuery(document).ready(function ($) {
         ageFilter &&
         extensionFilter &&
         domainTypeFilter &&
-        authorityBacklinksFilter
+        authorityBacklinksFilter &&
+        languageFilter
       ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");

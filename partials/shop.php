@@ -402,8 +402,8 @@
 						));
 					?>
 
-					<!-- Extension Filter -->
-                    <div class="extension-filter slide-accor">
+					<!-- Authority Backlinks Filter -->
+                    <div class="authority-backlinks-filter slide-accor">
                         <div class="filter-title">
                             <h3>Authority backlinks</h3>
                         </div>
@@ -420,6 +420,41 @@
 										<label>
 											<input name="auhtority_backlinks_filter[]" type="checkbox" value="<?= $backlink->name ?>">	
 											<span><?= $backlink->name ?></span> <br>
+										</label>
+									</a>
+								<?php
+								}
+							 } ?>
+                        </div>
+						</div>
+                    </div>
+
+					<!-- Get Languages -->
+					<?php
+						$languages = get_terms(array(
+							'taxonomy' => 'language',
+							'hide_empty' => false,
+						));
+					?>
+
+					<!-- Language Filter -->
+                    <div class="authority-backlinks-filter slide-accor">
+                        <div class="filter-title">
+                            <h3>Languages</h3>
+                        </div>
+						<div class="answer">
+							<div class="search-input-wrapper">
+								<input type="text" id="languages_search" placeholder="Search languages">
+								<span class="search-icon"></span>
+							</div>
+						
+                        <div class="languages-checkboxes cd-checkboxes" id="languages_checkboxes">
+							<?php if(!empty($languages)) { 
+								foreach ($languages as $language) {?>
+									<a href="javascript:void(0)"> 
+										<label>
+											<input name="languages_filter[]" type="checkbox" value="<?= $language->name ?>">	
+											<span><?= $language->name ?></span> <br>
 										</label>
 									</a>
 								<?php
@@ -474,7 +509,7 @@
 								$langs[] = $lang->name;
 							};
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= $langs ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
