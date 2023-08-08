@@ -127,7 +127,7 @@ jQuery(document).ready(function ($) {
         .find(".obscured-domain-name")
         .text(unobscuredDomainName);
     } else {
-      window.location.href = "/login";
+      $(".ast-account-action-login").click();
     }
   });
 
