@@ -175,10 +175,11 @@ jQuery(document).ready(function ($) {
 
     // Update UI for the combined filters
     const filterSpan = $(".reset-filters span");
+    const filterBtn = $(".reset-filters button");
 
     if (combinedFiltersApplied !== 0) {
-      filterSpan.removeAttr("disabled");
-      filterSpan.css("color", "#08104d");
+      filterBtn.removeAttr("disabled");
+      filterBtn.css("color", "#08104d");
     }
 
     let newCFA =
@@ -202,20 +203,29 @@ jQuery(document).ready(function ($) {
     }
   };
 
-  $('.domain-section input[type="checkbox"]').change(function () {
-    let combinedFilters = parseInt($(".reset-filters span").attr("data-cfa"));
-    let newCombinedFilters;
+  $('.domain-section input[type="checkbox"]:not(.script-ignore)').change(
+    function () {
+      let combinedFilters = parseInt($(".reset-filters span").attr("data-cfa"));
+      let newCombinedFilters;
 
-    let checkbox = $(this);
-    if (checkbox.is(":checked")) {
-      newCombinedFilters = combinedFilters + 1;
-    } else {
-      newCombinedFilters = combinedFilters - 1;
+      let checkbox = $(this);
+      if (checkbox.is(":checked")) {
+        newCombinedFilters = combinedFilters + 1;
+      } else {
+        newCombinedFilters = combinedFilters - 1;
+      }
+
+      $(".reset-filters span").text(`${newCombinedFilters} filter(s) applied`);
+      $(".reset-filters span").attr("data-cfa", newCombinedFilters);
+
+      const filterBtn = $(".reset-filters button");
+
+      if (newCombinedFilters !== 0) {
+        filterBtn.removeAttr("disabled");
+        filterBtn.css("color", "#08104d");
+      }
     }
-
-    $(".reset-filters span").text(`${newCombinedFilters} filter(s) applied`);
-    $(".reset-filters span").attr("data-cfa", newCombinedFilters);
-  });
+  );
 
   $(".reset-filters button").click(function () {
     window.location.reload();

@@ -561,7 +561,7 @@
 							</div>
 							<div class="product-title"> 
 								<label> 
-                                    <input type="checkbox" value="" id="title"> 
+                                    <input class="script-ignore" type="checkbox" value="" id="title"> 
                                     <span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
                                 <label> 
                                 <br>
