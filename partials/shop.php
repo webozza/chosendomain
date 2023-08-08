@@ -75,7 +75,7 @@
 						</div>
 					</div>
                     <div class="reset-filters">
-                        <span data-cfa="">No filters applied</span>
+                        <span data-cfa="0">No filters applied</span>
                         <button class="dc-btn dc-btn-primary-outline di-reset-selected-filters" disabled="disabled">Reset all</button>
                     </div>
 

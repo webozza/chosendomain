@@ -197,12 +197,7 @@ jQuery(document).ready(function ($) {
   };
 
   $('.domain-section input[type="checkbox"]').change(function () {
-    let cF = $(".reset-filters span").data("data-cfa");
-    if (cF == "") {
-      combinedFilters = 0;
-    } else {
-      combinedFilters = Number(cF);
-    }
+    let combinedFilters = Number($(".reset-filters span").data("data-cfa"));
 
     let checkbox = $(this);
     if (checkbox.is(":checked")) {
