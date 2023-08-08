@@ -181,8 +181,12 @@ jQuery(document).ready(function ($) {
       filterSpan.css("color", "#08104d");
     }
 
-    filterSpan.text(`${combinedFiltersApplied} filter(s) applied`);
-    filterSpan.attr("data-cfa", combinedFiltersApplied);
+    let newCFA =
+      combinedFiltersApplied + Number($(".reset-filters span").data("cfa"));
+    filterSpan.text(`${newCFA} filter(s) applied`);
+
+    filterSpan.attr("data-cfa", newCFA);
+    $(".reset-filters button").css("color", "#08104d");
   };
 
   const updateFiltersApplied = (filter, minPrice, maxPrice, maximum) => {
@@ -211,6 +215,10 @@ jQuery(document).ready(function ($) {
 
     $(".reset-filters span").text(`${newCombinedFilters} filter(s) applied`);
     $(".reset-filters span").attr("data-cfa", newCombinedFilters);
+  });
+
+  $(".reset-filters button").click(function () {
+    window.location.reload();
   });
 
   //---------------- Price Range Filter ------------
