@@ -463,6 +463,37 @@
                         </div>
 						</div>
                     </div>
+
+					<!-- Get Use Cases -->
+					<?php
+						$usecases = ["Affiliate","Adsense","PBN","301 redirection"];
+					?>
+
+					<!-- Use Case Filter -->
+                    <div class="use-case-filter slide-accor">
+                        <div class="filter-title">
+                            <h3>Use case</h3>
+                        </div>
+						<div class="answer">
+							<div class="search-input-wrapper hidden">
+								<input type="text" id="use_case_search" placeholder="Search use cases">
+								<span class="search-icon"></span>
+							</div>
+							<div class="use-case-checkboxes cd-checkboxes" id="use_case_checkboxes">
+								<?php if(!empty($usecases)) { 
+									foreach ($usecases as $use) {?>
+										<a href="javascript:void(0)"> 
+											<label>
+												<input name="use_case_filter[]" type="checkbox" value="<?= $use ?>">	
+												<span><?= $use ?></span> <br>
+											</label>
+										</a>
+									<?php
+									}
+								} ?>
+							</div>
+						</div>
+                    </div>
                 </div>
             </div>
             <!-- DOMAINS -->
@@ -504,12 +535,16 @@
 
 							// Language
 							$languages  = wp_get_post_terms($product_id, 'language');
+							//var_dump($languages);
 							$langs = array();
 							foreach ($languages as $lang) {
 								$langs[] = $lang->name;
 							};
+
+							// Use Cases
+							$use_cases = get_post_meta($product_id, 'usecase', false);
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_decode($langs) ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($use_cases[0]) ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">

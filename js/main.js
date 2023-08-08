@@ -137,6 +137,7 @@ jQuery(document).ready(function ($) {
   let selectedExtensions = [];
   let selectedBacklinks = [];
   let selectedLanguages = [];
+  let selectedUses = [];
   let searchTerm = "";
   let maxPriceFilter = -1;
   let selectedDomainType = "";
@@ -302,6 +303,25 @@ jQuery(document).ready(function ($) {
     applyFilters(searchTerm);
   });
 
+  //---------------- Use Case Filter ------------
+  $('[name="use_case_filter[]"]').change(async function () {
+    let use = $(this);
+    let selectedUse = use.is(":checked");
+
+    if (selectedUse) {
+      if (!selectedUses.includes(use.val())) {
+        selectedUses.push(use.val());
+      }
+    } else {
+      let index = selectedUses.indexOf(use.val());
+      if (index !== -1) {
+        selectedUses.splice(index, 1);
+      }
+    }
+
+    applyFilters(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Combined Filtering Function ------------
   let applyFilters = (searchTerm) => {
     let minPrice = parseFloat($(".price-range-min").val());
@@ -330,6 +350,7 @@ jQuery(document).ready(function ($) {
       let domainExtensions = domain.data("domain-extension");
       let authBacklinks = domain.data("auth-backlinks");
       let languages = domain.data("languages");
+      let uses = domain.data("use-cases");
 
       let price = Number(
         domain.find(".product-card h2").text().replace("$", "")
@@ -350,6 +371,10 @@ jQuery(document).ready(function ($) {
       let catFilter =
         selectedCats.length === 0 ||
         domainCats.some((cat) => selectedCats.includes(cat));
+
+      let useCaseFilter =
+        selectedUses.length === 0 ||
+        uses.some((use) => selectedUses.includes(use));
 
       let extensionFilter =
         selectedExtensions.length === 0 ||
@@ -391,7 +416,8 @@ jQuery(document).ready(function ($) {
         extensionFilter &&
         domainTypeFilter &&
         authorityBacklinksFilter &&
-        languageFilter
+        languageFilter &&
+        useCaseFilter
       ) {
         domain.fadeIn().css("display", "grid");
         domain.addClass("visible");
