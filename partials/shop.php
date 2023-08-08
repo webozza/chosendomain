@@ -90,7 +90,7 @@
 								<span class="search-icon"></span>
 							</div>
 						
-                        <div class="category-checkboxes" id="category_checkboxes">
+                        <div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
 							<?php if(!empty($product_cats)) { 
 								foreach ($product_cats as $category) {?>
 								<a href="javascript:void(0)"> 
@@ -543,8 +543,13 @@
 
 							// Use Cases
 							$use_cases = get_post_meta($product_id, 'usecase', false);
+							if(empty($use_cases)) {
+								$uses = [];
+							} else {
+								$uses = $use_cases[0];
+							}
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($use_cases[0]) ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">

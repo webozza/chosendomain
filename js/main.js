@@ -141,6 +141,16 @@ jQuery(document).ready(function ($) {
   let searchTerm = "";
   let maxPriceFilter = -1;
   let selectedDomainType = "";
+  let filtersApplied = 0;
+
+  let updateFiltersApplied = (min_price, max_price, maximum) => {
+    if (min_price !== 0 || max_price !== maximum) {
+      filtersApplied + 1;
+    } else {
+      filtersApplied - 1;
+    }
+    $(".reset-filters span").text(filtersApplied);
+  };
 
   //---------------- Price Range Filter ------------
   priceSlider.noUiSlider.on("slide.one", function () {
@@ -152,6 +162,7 @@ jQuery(document).ready(function ($) {
     $(".price-range-max").val(maxPrice.toFixed());
 
     applyFilters(searchTerm); // Call the combined filtering function
+    updateFiltersApplied(minPrice, maxPrice, 10000);
   });
 
   //---------------- DA Range Filter ------------
@@ -321,6 +332,12 @@ jQuery(document).ready(function ($) {
 
     applyFilters(searchTerm); // Call the combined filtering function
   });
+
+  //---------------- Use Case Filter ------------
+  let resetFilters = () => {
+    let checkboxContainers = $(".cd-checkboxes");
+    checkboxContainers.each(function () {});
+  };
 
   //---------------- Combined Filtering Function ------------
   let applyFilters = (searchTerm) => {
