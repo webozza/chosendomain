@@ -201,9 +201,9 @@ jQuery(document).ready(function ($) {
 
     let checkbox = $(this);
     if (checkbox.is(":checked")) {
-      combinedFilters + 1;
+      combinedFilters = combinedFilters + 1;
     } else {
-      combinedFilters - 1;
+      combinedFilters = combinedFilters - 1;
     }
     console.log(combinedFilters);
     $(".reset-filters span").text(`${combinedFilters} filter(s) applied`);
