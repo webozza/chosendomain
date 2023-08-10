@@ -35,7 +35,7 @@ add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts() {
-    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $page = $_POST['page'];
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 2,
@@ -66,56 +66,10 @@ function load_more_posts() {
 
     ob_start();
     
-	if ($products) {
-		foreach ($products as $product) {
-			
-			$product_id = $product->get_id();
-			$product_id = $product->get_id();
-			$product_title = $product->get_name();
-			$product_slug = $product->get_slug();
-			$price = $product -> get_price();
-			$product_description = $product->get_description();
-			$da = get_post_meta($product_id, 'da', true);
-			$dr = get_post_meta($product_id, 'dr', true);
-			$live_rd = get_post_meta($product_id, 'live_rd', true);
-			$hist_rd = get_post_meta($product_id, 'hist_rd', true);
-			$age = get_post_meta($product_id, 'age', true);
-			$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
-			$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
-
-			// Domain Extensions
-			$domain_extensions = wp_get_post_terms($product_id, 'extension');
-			$extension_names = array();
-			foreach ($domain_extensions as $extension) {
-				$extension_names[] = $extension->name;
-			};
-
-			// Domain Type
-			$domain_type = get_field('domain_type', $product_id);
-
-			// Authority Backlinks
-			$authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
-			$ab_names = array();
-			foreach ($authority_backlinks as $backlink) {
-				$ab_names[] = $backlink->name;
-			};
-
-			// Language
-			$languages  = wp_get_post_terms($product_id, 'language');
-			//var_dump($languages);
-			$langs = array();
-			foreach ($languages as $lang) {
-				$langs[] = $lang->name;
-			};
-
-			// Use Cases
-			$use_cases = get_post_meta($product_id, 'usecase', false);
-			if(empty($use_cases)) {
-				$uses = [];
-			} else {
-				$uses = $use_cases[0];
-			}
-		?>
+	if ($products->have_posts()) {
+        while ($products->have_posts()) {
+            $products->the_post();
+            ?>
 			<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 				<div class="product-details">
 					<div class="product-head">
@@ -169,9 +123,9 @@ function load_more_posts() {
 				</div>
 			</div>
 		<?php }
+		wp_reset_postdata();
 	}
-
-    $response = ob_get_clean();
-    echo $response;
-    wp_die();
+		$response = ob_get_clean();
+		echo $response;
+		wp_die();
 }

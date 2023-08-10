@@ -634,6 +634,7 @@
 								button.text('Loading...'); // Display loading text
 							},
 							success: function (response) {
+								console.log(response);
 								if (response) {
 									container.append(response); // Append the new posts
 									page++;
