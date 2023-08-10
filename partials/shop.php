@@ -611,11 +611,13 @@
                 <div class="no-results-found" style="display:none;">
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
+
+				<!-- LOAD MORE BUTTON -->
+				<div class="load-more-container">
+					<button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button>
+				</div>
             </div>
-			<!-- LOAD MORE BUTTON -->
-			<div class="load-more-container">
-				<button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button>
-			</div>
+			
 			<script>
 				jQuery(function ($) {
 					var page = 2; // Start from the second page since the first page is already loaded
