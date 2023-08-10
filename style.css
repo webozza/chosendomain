@@ -348,6 +348,13 @@ li.sf-field-post-meta-_sale_price.open {
   flex-wrap: wrap;
   column-gap: 1%;
   min-height: 100vh;
+  position: relative;
+}
+.load-more-container {
+  position: absolute;
+  bottom: -10px;
+  left: 29%;
+
 }
 .domain-inventory-search-wrap ul {
   list-style: none;
