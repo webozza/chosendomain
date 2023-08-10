@@ -31,6 +31,38 @@ add_action( 'wp_enqueue_scripts', 'custom_scripts');
 
 
 // -------------------- load more -------------
+add_action('wp_ajax_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
+
+function load_more_posts()
+{
+    $page = $_POST['page'];
+    $products_per_page = 12; // Number of products per page
+    $offset = ($page - 1) * $products_per_page;
+
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => $products_per_page,
+        'offset' => $offset,
+    );
+
+    $loop = new WP_Query($args);
+
+    ob_start();
+    if ($loop->have_posts()) {
+        while ($loop->have_posts()) {
+            $loop->the_post();
+            global $product; // Make the product available
+
+            // WooCommerce product markup
+            wc_get_template_part('content', 'product');
+        }
+        wp_reset_postdata();
+    }
+    $response = ob_get_clean();
+    echo $response;
+    wp_die();
+}
 
 
 

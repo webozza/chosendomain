@@ -618,34 +618,35 @@
 
 			<script>
 				jQuery(function ($) {
-				var page = 2; // Start from the second page since the first page is already loaded
-				var container = $('.post-container');
-				var button = $('#load-more-posts');
+    var page = 2; // Start from the second page since the first page is already loaded
+    var container = $('.domain-inventory-content'); // Change to your container class or ID
+    var button = $('#load-more-products'); // Change to your button ID
 
-				button.on('click', function () {
-				$.ajax({
-					url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-					type: 'post',
-					data: {
-						action: 'load_more_posts',
-						page: page,
-					},
-					beforeSend: function () {
-						button.text('Loading...'); // Display loading text
-					},
-					success: function (response) {
-						if (response) {
-							container.append(response); // Append the new posts
-							page++;
-							button.text('Load More'); // Restore the button text
-						} else {
-							button.text('No more posts'); // Display message when no more posts to load
-							button.prop('disabled', true); // Disable the button
-						}
-					}
-				});
-				});
-				});
+    button.on('click', function () {
+        $.ajax({
+            url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
+            type: 'post',
+            data: {
+                action: 'load_more_posts',
+                page: page,
+            },
+            beforeSend: function () {
+                button.text('Loading...'); // Display loading text
+            },
+            success: function (response) {
+                if (response) {
+                    container.append(response); // Append the new products
+                    page++;
+                    button.text('Load More'); // Restore the button text
+                } else {
+                    button.text('No more products'); // Display message when no more products to load
+                    button.prop('disabled', true); // Disable the button
+                }
+            }
+        });
+    });
+});
+
 			</script>
 
 
