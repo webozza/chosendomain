@@ -7,7 +7,7 @@
 <?php
     $args = array(
         'post_type' => 'product',
-        'post_per_page' => 2
+        'post_per_page' => "2",
     );
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();
