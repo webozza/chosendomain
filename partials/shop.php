@@ -611,7 +611,10 @@
                 <div class="no-results-found" style="display:none;">
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
-					
+				
+				<div class="load-more-container">
+					<button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button>
+				</div>	
             </div>
         </div>
 
