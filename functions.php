@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.78' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.79' );
 
 /**
  * Enqueue styles
@@ -37,48 +37,93 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 function load_more_posts()
 {
     $page = $_POST['page'];
-    // $destinations = array(
-    //     'post_type' => 'destination',
-    //     'posts_per_page' => 1,
-    //     'paged' => $page,
-    // );
-	$args = array(
+    $args = array(
         'post_type' => 'product',
-        // 'posts_per_page' => $products_per_page,
-        // 'offset' => $offset,
-		'posts_per_page' => 5,
-        'paged' => $page,
+        'post_per_page' => 1
     );
+    $product_query = new WC_Product_Query($args);
+    $products = $product_query->get_products();
 
+	$product_cats = get_terms(array(
+		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
+		'hide_empty' => false,       // Set to true if you want to hide empty categories
+	));
 
-    $loop = new WP_Query($args);
+    function obscureDomain($domain) {
+        $parts = explode('.', $domain);
+        
+        $obscured = [];
+        foreach ($parts as $part) {
+            if (strlen($part) <= 2) {
+                $obscured[] = $part;
+            } else {
+                $obscured[] = $part[0] . str_repeat('*', strlen($part) - 2) . $part[strlen($part) - 1];
+            }
+        }
+        
+        return implode('.', $obscured);
+    }
+
     ob_start();
-    if ($loop->have_posts()) {
-        while ($loop->have_posts()) {
-            $loop->the_post();
+    if ($product_query->have_posts()) {
+        while ($product_query->have_posts()) {
+            $product_query->the_post();
             ?>
 	<!-- Your post markup here -->
-	<div class="custom-single-post">
-		<a href="<?= get_permalink() ?>">
-			<?php $thumbnail_url =  get_the_post_thumbnail_url(get_the_ID(), 'full');
-						?>
-			<img src="<?php echo $thumbnail_url; ?>" alt="Featured Image">
-			<div class="content-box">
-				<div class="place-name">
-					<p><?php the_title(); ?></p>
+	<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+		<div class="product-details">
+			<div class="product-head">
+				<div class="product-img">
+					<?php if ($product_image_url) { ?>
+						<img src="<?= $product_image_url ?>" alt="product image">
+					<?php } else { ?>
+						<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
+					<?php } ?>
 				</div>
-				<!-- <div class="content">
-					<p><?php include(get_template_directory() . '/content-loop.php'); ?></p>
-				</div> -->
+				<div class="product-title"> 
+					<label> 
+						<input class="script-ignore" type="checkbox" value="" id="title"> 
+						<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
+					<label> 
+					<br>
+					<div class="description hidden">
+						<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+						<span><?= $product_description?></span>
+					</div>
+					<div class="domain-name-revealer">
+						<i class="flaticon-eye"></i>
+					</div>
+				</div>
 			</div>
-			<a class="post-link" href="<?= get_permalink()?>">
-				<div><img src="<?= get_template_directory_uri()?>/img/icons/botao.png " alt=""></div>
-			</a>
-		</a>
+			<div class="product-body">
+				<div class="catgories"> 
+					<?php foreach($product_categories as $catagory) { ?>
+						<span><?= $catagory?></span>
+					<?php }?>
+							<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+				</div>
+				<ul>
+					<li> <span class="da"><?= $da ?></span> <br> DA </li>
+					<li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
+					<li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
+					<li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
+					<li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
+					<li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
+				</ul>
+			</div>
+		</div>
+		<div class="product-card">
+			<h2>$<?= $price ?> </h2>
+			<ul>
+				<li>
+					<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+				</li>
+				<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+			</ul>
+		</div>
 	</div>
 
-<?php
-        }
+	<?php }
         wp_reset_postdata();
     }
     $response = ob_get_clean();
