@@ -36,28 +36,20 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts()
 {
-    $page = $_POST['page'];
-    // $destinations = array(
-    //     'post_type' => 'destination',
-    //     'posts_per_page' => 1,
-    //     'paged' => $page,
-    // );
-	$args = array(
+	$destinations = array(
         'post_type' => 'product',
-        // 'posts_per_page' => $products_per_page,
-        // 'offset' => $offset,
-		'posts_per_page' => 1,
-        'paged' => $page,
+		'posts_per_page' => 1
     );
 
 
-    $loop = new WP_Query($args);
+    $loop = new WP_Query($destinations);
     ob_start();
     if ($loop->have_posts()) {
         while ($loop->have_posts()) {
             $loop->the_post();
             ?>
 	<!-- Your post markup here -->
+
 	<div class="product-box">
 		<a href="<?= get_permalink() ?>">
 			<?php $thumbnail_url =  get_the_post_thumbnail_url(get_the_ID(), 'full');
