@@ -45,8 +45,9 @@ function load_more_posts()
 	$args = array(
         'post_type' => 'product',
         // 'posts_per_page' => $products_per_page,
-        'offset' => $offset,
-		'posts_per_page' => 1,
+        // 'offset' => $offset,
+		'posts_per_page' => 5,
+        'paged' => $page,
     );
 
 
