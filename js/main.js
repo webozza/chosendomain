@@ -6,50 +6,22 @@ jQuery(document).ready(function ($) {
   var liveRdSlider = $(".live-rd-slider")[0];
   var ageSlider = $(".age-slider")[0];
 
-  noUiSlider.create(priceSlider, {
-    start: [0, 10000],
-    connect: true,
-    range: {
-      min: 0,
-      max: 10000,
-    },
-  });
+  let runUiSlider = (id, max) => {
+    noUiSlider.create(id, {
+      start: [0, max],
+      connect: true,
+      range: {
+        min: 0,
+        max: max,
+      },
+    });
+  };
 
-  noUiSlider.create(daSlider, {
-    start: [0, 100],
-    connect: true,
-    range: {
-      min: 0,
-      max: 100,
-    },
-  });
-
-  noUiSlider.create(drSlider, {
-    start: [0, 100],
-    connect: true,
-    range: {
-      min: 0,
-      max: 100,
-    },
-  });
-
-  noUiSlider.create(liveRdSlider, {
-    start: [0, 10000],
-    connect: true,
-    range: {
-      min: 0,
-      max: 10000,
-    },
-  });
-
-  noUiSlider.create(ageSlider, {
-    start: [0, 50],
-    connect: true,
-    range: {
-      min: 0,
-      max: 50,
-    },
-  });
+  runUiSlider(ageSlider, 50);
+  runUiSlider(liveRdSlider, 10000);
+  runUiSlider(drSlider, 100);
+  runUiSlider(daSlider, 100);
+  runUiSlider(priceSlider, 10000);
 
   //---------------- accordian slide-----------
   $(".slide-accor .filter-title").on("click", function () {
