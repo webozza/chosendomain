@@ -46,7 +46,7 @@ function load_more_posts()
         'post_type' => 'product',
         // 'posts_per_page' => $products_per_page,
         // 'offset' => $offset,
-		'posts_per_page' => 5,
+		'posts_per_page' => 10,
         'paged' => $page,
     );
 
