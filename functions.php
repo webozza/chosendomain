@@ -36,9 +36,16 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts()
 {
+    $page = $_POST['page'];
+    // $destinations = array(
+    //     'post_type' => 'destination',
+    //     'posts_per_page' => 1,
+    //     'paged' => $page,
+    // );
 	$destinations = array(
         'post_type' => 'product',
-		'posts_per_page' => 1
+		'posts_per_page' => 1,
+		'paged' => $page,
     );
 
 
