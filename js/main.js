@@ -216,6 +216,25 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("price", minPrice, maxPrice, 10000);
   });
 
+  $(".price-range-min").on("keyup", function () {
+    let newMinPrice = parseFloat($(this).val());
+    let newMaxPrice = parseFloat($(".price-range-max").val());
+
+    // Update slider positions
+    priceSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFilters(searchTerm);
+    updateFiltersApplied("price", newMinPrice, newMaxPrice, 10000);
+  });
+
+  $(".price-range-max").on("keyup", function () {
+    let newMinPrice = parseFloat($(".price-range-min").val());
+    let newMaxPrice = parseFloat($(this).val());
+    // Update slider positions
+    priceSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFilters(searchTerm);
+    updateFiltersApplied("price", newMinPrice, newMaxPrice, 10000);
+  });
+
   //---------------- DA Range Filter ------------
   daSlider.noUiSlider.on("slide.one", function () {
     let minPrice = $(this)[0].getPositions()[0];
@@ -229,18 +248,37 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("da", minPrice, maxPrice, 100);
   });
 
-  //---------------- DR Range Filter ------------
-  drSlider.noUiSlider.on("slide.one", function () {
-    let minPrice = $(this)[0].getPositions()[0];
-    let maxPrice = $(this)[0].getPositions()[1];
+  $(".da-range-min").on("keyup", function () {
+    let newMinPrice = parseFloat($(this).val());
+    let newMaxPrice = parseFloat($(".da-range-max").val());
 
-    // Set Price
-    $(".dr-range-min").val(minPrice.toFixed());
-    $(".dr-range-max").val(maxPrice.toFixed());
-
-    applyFilters(searchTerm); // Call the combined filtering function
-    updateFiltersApplied("dr", minPrice, maxPrice, 100);
+    // Update slider positions
+    daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFilters(searchTerm);
+    updateFiltersApplied("da", newMinPrice, newMaxPrice, 100);
   });
+
+  $(".da-range-max").on("keyup", function () {
+    let newMinPrice = parseFloat($(".da-range-min").val());
+    let newMaxPrice = parseFloat($(this).val());
+    // Update slider positions
+    daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFilters(searchTerm);
+    updateFiltersApplied("da", newMinPrice, newMaxPrice, 100);
+  });
+
+  //---------------- DR Range Filter ------------
+  //   drSlider.noUiSlider.on("slide.one", function () {
+  //     let minPrice = $(this)[0].getPositions()[0];
+  //     let maxPrice = $(this)[0].getPositions()[1];
+
+  //     // Set Price
+  //     $(".dr-range-min").val(minPrice.toFixed());
+  //     $(".dr-range-max").val(maxPrice.toFixed());
+
+  //     applyFilters(searchTerm); // Call the combined filtering function
+  //     updateFiltersApplied("dr", minPrice, maxPrice, 100);
+  //   });
 
   //---------------- Live RD Range Filter ------------
   liveRdSlider.noUiSlider.on("slide.one", function () {
@@ -253,6 +291,25 @@ jQuery(document).ready(function ($) {
 
     applyFilters(searchTerm); // Call the combined filtering function
     updateFiltersApplied("liveRd", minPrice, maxPrice, 10000);
+  });
+
+  $(".live-rd-range-min").on("keyup", function () {
+    let newMinPrice = parseFloat($(this).val());
+    let newMaxPrice = parseFloat($(".live-rd-range-max").val());
+
+    // Update slider positions
+    liveRdSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFilters(searchTerm);
+    updateFiltersApplied("da", newMinPrice, newMaxPrice, 1000);
+  });
+
+  $(".live-rd-range-max").on("keyup", function () {
+    let newMinPrice = parseFloat($(".live-rd-range-min").val());
+    let newMaxPrice = parseFloat($(this).val());
+    // Update slider positions
+    liveRdSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFilters(searchTerm);
+    updateFiltersApplied("liveRd", newMinPrice, newMaxPrice, 1000);
   });
 
   //---------------- Age Range Filter ------------
