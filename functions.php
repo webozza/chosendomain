@@ -39,7 +39,7 @@ function load_more_posts()
     $page = $_POST['page'];
     $destinations = array(
         'post_type' => 'product',
-        'posts_per_page' => 5,
+        'posts_per_page' => 1,
         'paged' => $page,
     );
     $loop = new WP_Query($destinations);
