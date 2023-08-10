@@ -616,8 +616,8 @@
 				</div>
 				<script>
 					jQuery(function ($) {
-						var page = 2; // Start from the second page since the first page is already loaded
-						var container = $('.post-container');
+						var page = 1; // Start from the second page since the first page is already loaded
+						var container = $('.domain-inventory-content');
 						var button = $('#load-more-posts');
 
 						button.on('click', function () {
