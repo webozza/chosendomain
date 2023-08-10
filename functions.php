@@ -31,56 +31,27 @@ add_action( 'wp_enqueue_scripts', 'custom_scripts');
 
 
 // -------------------- load more -------------
-add_action('wp_ajax_load_more_posts', 'load_more_posts');
-add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_load_more_product_details', 'load_more_product_details');
+add_action('wp_ajax_nopriv_load_more_product_details', 'load_more_product_details');
 
-function load_more_posts()
+function load_more_product_details()
 {
-    $page = $_POST['page'];
-    // $destinations = array(
-    //     'post_type' => 'destination',
-    //     'posts_per_page' => 1,
-    //     'paged' => $page,
-    // );
-	$destinations = array(
-        'post_type' => 'product',
-		'posts_per_page' => 1,
-		'paged' => $page,
-    );
+    $product_id = $_POST['product_id'];
 
+    if ($product_id) {
+        $product = wc_get_product($product_id);
 
-    $loop = new WP_Query($destinations);
-    ob_start();
-    if ($loop->have_posts()) {
-        while ($loop->have_posts()) {
-            $loop->the_post();
-            ?>
-	<!-- Your post markup here -->
+        // Prepare and return the additional product details
+        $product_details = array(
+            'name' => $product->get_name(),
+            'price' => $product->get_price_html(),
+            'short_description' => $product->get_short_description(),
+            // Add more details as needed
+        );
 
-	<div class="product-box">
-		<a href="<?= get_permalink() ?>">
-			<?php $thumbnail_url =  get_the_post_thumbnail_url(get_the_ID(), 'full');
-						?>
-			<img src="<?php echo $thumbnail_url; ?>" alt="Featured Image">
-			<div class="content-box">
-				<div class="place-name">
-					<p><?php the_title(); ?></p>
-				</div>
-				<!-- <div class="content">
-					<p><?php include(get_template_directory() . '/content-loop.php'); ?></p>
-				</div> -->
-			</div>
-			<a class="post-link" href="<?= get_permalink()?>">
-				<div><img src="<?= get_template_directory_uri()?>/img/icons/botao.png " alt=""></div>
-			</a>
-		</a>
-	</div>
-
-<?php
-        }
-        wp_reset_postdata();
+        echo json_encode($product_details);
     }
-    $response = ob_get_clean();
-    echo $response;
+
     wp_die();
 }
+

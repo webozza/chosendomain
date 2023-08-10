@@ -613,35 +613,49 @@
                 </div>
 
 				<script>
-					jQuery(function ($) {
-						var page = 2; // Start from the second page since the first page is already loaded
-						var container = $('.domain-inventory-content');
-						var button = $('#load-more-posts');
+					
+ jQuery(function ($) {
+	var container = $('.domain-inventory-content');
+	var button = $('#load-more-posts');
 
-						button.on('click', function () {
-							$.ajax({
-								url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-								type: 'post',
-								data: {
-									action: 'load_more_posts',
-									page: page,
-								},
-								beforeSend: function () {
-									button.text('Loading...'); // Display loading text
-								},
-								success: function (response) {
-									if (response) {
-										container.append(response); // Append the new posts
-										page++;
-										button.text('Load More'); // Restore the button text
-									} else {
-										button.text('No more posts'); // Display message when no more posts to load
-										button.prop('disabled', true); // Disable the button
-									}
-								}
-							});
-						});
-					});
+    button.on('click', function () {
+        var products = container.find('.product'); // Adjust this selector
+
+        var product_ids = [];
+        products.each(function () {
+            product_ids.push($(this).data('product-id'));
+        });
+
+        $.ajax({
+            url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
+            type: 'post',
+            data: {
+                action: 'load_more_product_details',
+                product_id: product_ids,
+            },
+            success: function (response) {
+                if (response) {
+                    var productDetails = JSON.parse(response);
+
+                    // Update the product details in the DOM
+                    products.each(function () {
+                        var productId = $(this).data('product-id');
+                        if (productDetails[productId]) {
+                            var productDetail = productDetails[productId];
+                            // Update product details in the element
+                            $(this).find('.product-title').html(productDetail.name);
+                            $(this).find('.product-price').html(productDetail.price);
+                            $(this).find('.product-description').html(productDetail.short_description);
+                            // Update more details as needed
+                        }
+                    });
+                }
+            }
+        });
+    });
+});
+
+
     			</script>
 	
 				<div class="load-more-container">
