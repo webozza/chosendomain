@@ -624,6 +624,7 @@
 					const productsPerPage = 10;
 
 					function fetchAndAppendProducts() {
+						loadingText.style.display = 'block'; // Show the loading text
 					// Make an Ajax request to fetch more products
 					jQuery.ajax({
 						url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
