@@ -351,10 +351,9 @@ li.sf-field-post-meta-_sale_price.open {
   position: relative;
 }
 .load-more-container {
-  position: absolute;
-  bottom: -10px;
-  left: 29%;
-
+	position: absolute;
+	bottom: -110px;
+	left: 29%;
 }
 .domain-inventory-search-wrap ul {
   list-style: none;
