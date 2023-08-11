@@ -614,10 +614,12 @@
             </div>
 			<!-- LOAD MORE BUTTON -->
 			<div class="load-more-container">
-				<button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button>
+				<div id="loading-text" style="display: none;">Loading...</div>
+				<!-- <button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button> -->
 			</div>
 			<script>
 				const productContainer = document.getElementById('product-container');
+				const loadingText = document.getElementById('loading-text');
 					let page = 1; // Initial page number
 					const productsPerPage = 10;
 
@@ -634,9 +636,11 @@
 						success: function(response) {
 						productContainer.insertAdjacentHTML('beforeend', response);
 						page++; // Increment the page number for the next fetch
+						loadingText.style.display = 'none'; // Hide the loading text
 						},
 						error: function(error) {
 						console.error(error);
+						loadingText.style.display = 'none'; // Hide the loading text in case of an error
 						}
 					});
 					}
