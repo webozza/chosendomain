@@ -612,10 +612,11 @@
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
             </div>
-			<!-- LOAD MORE BUTTON -->
+			<!-- LOAD MORE SECTION -->
 			<div class="load-more-container">
-				<div id="loading-text" style="display: none;">Loading...</div>
-				<!-- <button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button> -->
+				<div id="loading-text" style="display: none;">
+					<img src="<?= get_site_url() . '/wp-content/uploads/2023/08/imgpsh_fullsize_anim.gif'?>" alt="">
+				</div>
 			</div>
 			<script>
 				const productContainer = document.getElementById('product-container');
@@ -624,8 +625,7 @@
 					const productsPerPage = 10;
 
 					function fetchAndAppendProducts() {
-						loadingText.style.display = 'block'; // Show the loading text
-					// Make an Ajax request to fetch more products
+						loadingText.style.display = 'block'; // Show the loading images
 					jQuery.ajax({
 						url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
 						type: 'POST',
@@ -637,7 +637,7 @@
 						success: function(response) {
 						productContainer.insertAdjacentHTML('beforeend', response);
 						page++; // Increment the page number for the next fetch
-						loadingText.style.display = 'none'; // Hide the loading text
+						loadingText.style.display = 'none'; // Hide the loading images
 						},
 						error: function(error) {
 						console.error(error);
