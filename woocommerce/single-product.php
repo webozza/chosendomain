@@ -5,32 +5,34 @@
 <?php get_header() ?>
 
 <?php
-    $args = array(
-        'post_type' => 'product',
-        'posts_per_page' => 1,
-        // 'id' => get_the_ID(),
-    );
+    // $args = array(
+    //     'post_type' => 'product',
+    //     'posts_per_page' => 1,
+    //     'id' => get_the_ID(),
+    // );
 
     $product_id = get_the_ID(); // Get the current product ID
+    
+    echo $product_id;
 
-    $product = wc_get_product($product_id);
+//     $product = wc_get_product($product_id);
 
-    if ($product) {
-    // Display product title
-    echo '<h1>' . $product->get_name() . '</h1>';
+//     if ($product) {
+//     // Display product title
+//     echo '<h1>' . $product->get_name() . '</h1>';
 
-    // Display product price
-    echo '<p>' . $product->get_price_html() . '</p>';
+//     // Display product price
+//     echo '<p>' . $product->get_price_html() . '</p>';
 
-    // Display product description
-    echo '<div>' . $product->get_description() . '</div>';
+//     // Display product description
+//     echo '<div>' . $product->get_description() . '</div>';
 
-    // Display product image
-    echo '<div>' . $product->get_image() . '</div>';
+//     // Display product image
+//     echo '<div>' . $product->get_image() . '</div>';
 
-    // Display other product attributes as needed
-    echo '<div>' . $product->get_post_meta() . '</div>';
-}
+//     // Display other product attributes as needed
+//     echo '<div>' . $product->get_post_meta() . '</div>';
+// }
 
 
 
