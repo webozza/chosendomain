@@ -56,8 +56,10 @@
 
         <!-- Domain Search Controls -->
         <div class="domain-search-controls">
-            <button class="di-hide-filters dc-btn dc-btn-primary-muted dc-btn-big"><span class="hide-on-mobile">Hide
-                    filters</span> <i class="far fa-eye-slash"></i></button>
+            <button class="di-hide-filters dc-btn dc-btn-primary-muted dc-btn-big">
+				<span class="hide-on-mobile">Hide filters</span> 
+				<i class="far fa-eye-slash"></i>
+			</button>
         </div>
 
         <!-- Domain Loop with Filters -->
@@ -661,4 +663,7 @@
 			</script>
         </div>
 
-        <?php get_footer() ?>
+	</div>
+</div>
+
+<?php get_footer() ?>
