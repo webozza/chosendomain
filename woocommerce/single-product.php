@@ -4,115 +4,57 @@
 
 <?php get_header() ?>
 
-<?php
-    // $args = array(
-    //     'post_type' => 'product',
-    //     'posts_per_page' => 1,
-    //     'id' => get_the_ID(),
-    // );
-
-    $product_id = get_the_ID(); // Get the current product ID
-    
-    echo $product_id;
-
-//     $product = wc_get_product($product_id);
-
-//     if ($product) {
-//     // Display product title
-//     echo '<h1>' . $product->get_name() . '</h1>';
-
-//     // Display product price
-//     echo '<p>' . $product->get_price_html() . '</p>';
-
-//     // Display product description
-//     echo '<div>' . $product->get_description() . '</div>';
-
-//     // Display product image
-//     echo '<div>' . $product->get_image() . '</div>';
-
-//     // Display other product attributes as needed
-//     echo '<div>' . $product->get_post_meta() . '</div>';
-// }
-
-
-
-
-    $product_query = new WC_Product_Query($args);
-    $products = $product_query->get_products();
-
-    $product_cats = get_terms(array(
-        'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
-        'hide_empty' => false,       // Set to true if you want to hide empty categories
-    ));
-
-    function obscureDomain($domain) {
-        $parts = explode('.', $domain);
-        
-        $obscured = [];
-        foreach ($parts as $part) {
-            if (strlen($part) <= 2) {
-                $obscured[] = $part;
-            } else {
-                $obscured[] = $part[0] . str_repeat('*', strlen($part) - 2) . $part[strlen($part) - 1];
-            }
-        }
-        
-        return implode('.', $obscured);
-    }
-?>
-
 <!-- Product Details Info -->
 <div class="domain-inventory-content product-details-page" id="product-container">
     <?php
-        if ($products) {
-            foreach ($products as $product) {
                 
-                $product_id = $product->get_id();
-                $product_title = $product->get_name();
-                $product_slug = $product->get_slug();
-                $price = $product -> get_price();
-                //$product_description = $product->get_description();
-                $da = get_post_meta($product_id, 'da', true);
-                $dr = get_post_meta($product_id, 'dr', true);
-                $live_rd = get_post_meta($product_id, 'live_rd', true);
-                $hist_rd = get_post_meta($product_id, 'hist_rd', true);
-                $age = get_post_meta($product_id, 'age', true);
-                $product_image_url = get_the_post_thumbnail_url($product_id, 'full');
-                $product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+        $product_id = get_the_ID();
+        $product_title = get_the_title($product_id);
+        $product_slug = get_post_field('post_name', $product_id);
+        $product = wc_get_product($product_id);
+        $product_price = $product->get_price();
+        $product_description = $product->get_description();
+        $da = get_post_meta($product_id, 'da', true);
+        $dr = get_post_meta($product_id, 'dr', true);
+        $live_rd = get_post_meta($product_id, 'live_rd', true);
+        $hist_rd = get_post_meta($product_id, 'hist_rd', true);
+        $age = get_post_meta($product_id, 'age', true);
+        $product_image_url = get_the_post_thumbnail_url($product_id, 'full');
+        $product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
 
-                // Domain Extensions
-                $domain_extensions = wp_get_post_terms($product_id, 'extension');
-                $extension_names = array();
-                foreach ($domain_extensions as $extension) {
-                    $extension_names[] = $extension->name;
-                };
+        // Domain Extensions
+        $domain_extensions = wp_get_post_terms($product_id, 'extension');
+        $extension_names = array();
+        foreach ($domain_extensions as $extension) {
+            $extension_names[] = $extension->name;
+        };
 
-                // Domain Type
-                $domain_type = get_field('domain_type', $product_id);
+        // Domain Type
+        $domain_type = get_field('domain_type', $product_id);
 
-                // Authority Backlinks
-                $authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
-                $ab_names = array();
-                foreach ($authority_backlinks as $backlink) {
-                    $ab_names[] = $backlink->name;
-                };
+        // Authority Backlinks
+        $authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
+        $ab_names = array();
+        foreach ($authority_backlinks as $backlink) {
+            $ab_names[] = $backlink->name;
+        };
 
-                // Language
-                $languages  = wp_get_post_terms($product_id, 'language');
-                //var_dump($languages);
-                $langs = array();
-                foreach ($languages as $lang) {
-                    $langs[] = $lang->name;
-                };
+        // Language
+        $languages  = wp_get_post_terms($product_id, 'language');
+        //var_dump($languages);
+        $langs = array();
+        foreach ($languages as $lang) {
+            $langs[] = $lang->name;
+        };
 
-                // Use Cases
-                $use_cases = get_post_meta($product_id, 'usecase', false);
-                if(empty($use_cases)) {
-                    $uses = [];
-                } else {
-                    $uses = $use_cases[0];
-                }
-        ?>
+        // Use Cases
+        $use_cases = get_post_meta($product_id, 'usecase', false);
+        if(empty($use_cases)) {
+            $uses = [];
+        } else {
+            $uses = $use_cases[0];
+        }
+    ?>
     <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
         <div class="product-details">
 
@@ -173,12 +115,6 @@
             </ul>
         </div>
     </div>
-    <?php
-            }
-        } else {
-            echo 'No products found.';
-        }
-        ?>
 
     <div class="no-results-found" style="display:none;">
         No results found to the selected filters. Please change/remove filters to show domains.
