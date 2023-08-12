@@ -497,7 +497,7 @@
                 </div>
             </div>
             <!-- DOMAINS -->
-            <div class="domain-inventory-content">
+            <div class="domain-inventory-content" id="product-container">
                 <?php
 					if ($products) {
 						foreach ($products as $product) {
@@ -612,41 +612,52 @@
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
             </div>
-			<!-- LOAD MORE BUTTON -->
+			<!-- LOAD MORE SECTION -->
 			<div class="load-more-container">
-				<button id="load-more-posts" class="load-more-button">Mais cidades<span class='loading hide'><img  src="<?= get_template_directory_uri()?>/img/loading.gif" alt="" srcset=""></span></button>
+				<div id="loading-text" style="display: none;">
+					<img src="<?= get_site_url() . '/wp-content/uploads/2023/08/imgpsh_fullsize_anim.gif'?>" alt="">
+				</div>
 			</div>
 			<script>
-				jQuery(function ($) {
-					var page = 2; // Start from the second page since the first page is already loaded
-					var container = $('.domain-inventory-content');
-					var button = $('#load-more-posts');
+				const productContainer = document.getElementById('product-container');
+				const loadingText = document.getElementById('loading-text');
+					let page = 1; // Initial page number
+					const productsPerPage = 10;
 
-					button.on('click', function () {
-						$.ajax({
-							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-							type: 'post',
-							data: {
-								action: 'load_more_posts',
-								page: page,
-							},
-							beforeSend: function () {
-								button.text('Loading...'); // Display loading text
-							},
-							success: function (response) {
-								console.log(response);
-								if (response) {
-									container.append(response); // Append the new posts
-									page++;
-									button.text('Load More'); // Restore the button text
-								} else {
-									button.text('No more posts'); // Display message when no more posts to load
-									button.prop('disabled', true); // Disable the button
-								}
-							}
-						});
+					function fetchAndAppendProducts() {
+						loadingText.style.display = 'block'; // Show the loading images
+					jQuery.ajax({
+						url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
+						type: 'POST',
+						data: {
+						action: 'load_more_posts', // Custom AJAX action
+						page: page,
+						products_per_page: productsPerPage,
+						},
+						success: function(response) {
+						productContainer.insertAdjacentHTML('beforeend', response);
+						page++; // Increment the page number for the next fetch
+						loadingText.style.display = 'none'; // Hide the loading images
+						},
+						error: function(error) {
+						console.error(error);
+						loadingText.style.display = 'none'; // Hide the loading text in case of an error
+						}
 					});
-				});
+					}
+
+					// Detect when the user has scrolled to the bottom
+					window.addEventListener('scroll', () => {
+					const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+					if (scrollTop + clientHeight >= scrollHeight - 10) {
+						fetchAndAppendProducts();
+					}
+					});
+
+					// Initial fetch
+					fetchAndAppendProducts();
+
 			</script>
         </div>
 

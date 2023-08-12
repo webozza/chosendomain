@@ -348,6 +348,12 @@ li.sf-field-post-meta-_sale_price.open {
   flex-wrap: wrap;
   column-gap: 1%;
   min-height: 100vh;
+  position: relative;
+}
+.load-more-container {
+  position: absolute;
+  bottom: -110px;
+  left: 29%;
 }
 .domain-inventory-search-wrap ul {
   list-style: none;
@@ -383,6 +389,7 @@ li.sf-field-post-meta-_sale_price.open {
   .product-img {
   width: 78px;
   height: 78px;
+  overflow: hidden;
 }
 .domain-inventory-search-wrap
   .domain-inventory-content
@@ -546,6 +553,16 @@ li.sf-field-post-meta-_sale_price.open {
   margin-bottom: 30px;
   background: #eeefff;
   border: 1px solid #dce5ff;
+}
+
+.no-results-found {
+  font-size: 20px;
+  color: #08104d;
+  max-width: 551px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px 0;
+  box-shadow: 0 0 3px #08104d;
 }
 
 /* Domain Loop */
