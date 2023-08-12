@@ -68,7 +68,7 @@
                 </div> -->
                 <div class="product-title"> 
                     <div>
-                        <h2 class="obscured-domain-name"> <?= obscureDomain($product_title) ?> 
+                        <h2 class="obscured-domain-name"> <?= $product_title ?> 
                         <span class="domain-name-revealer">
                             <i class="flaticon-eye"></i>
                         </span></h2>
