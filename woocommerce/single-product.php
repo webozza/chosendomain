@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="priceSection">
-                    <h4>$<?= $price ?> </h4>
+                    <h4>$<?= $product_price ?> </h4>
                 </div>
                 <div class="catsection">
                     <div class="catgories"> 
