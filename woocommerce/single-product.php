@@ -149,6 +149,10 @@ text-align: right;
     margin-right: 25px;
 }
 .product-details-page .catsection ul{list-style:none;text-align: right;}
+.product-details-page .product-details .product-body ul{
+    list-style: none;
+    display: flex;
+}
 .product-details-page .product-details .product-body ul li {
     text-align: center;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
