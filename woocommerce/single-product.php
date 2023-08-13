@@ -96,11 +96,11 @@
             <div class="product-body">
                 <ul>
                     <li> <span class="da"><?= $da ?></span> <br> DA </li>
-                    <li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
+                    <li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
                     <li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
-                    <li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist RD </li>
-                    <li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
-                    <li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
+                    <li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
+                    <li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
+                    <li> <span class="language"><?= $langs[0] ?></span> Language</li>
                 </ul>
             </div>
         </div>
@@ -117,6 +117,19 @@
     <div class="no-results-found" style="display:none;">
         No results found to the selected filters. Please change/remove filters to show domains.
     </div>
+<?php
+global $product;
+
+if( ! is_a( $product, 'WC_Product' ) ){
+    $product = wc_get_product(get_the_id());
+}
+
+woocommerce_related_products( array(
+    'posts_per_page' => 4,
+    'columns'        => 4,
+    'orderby'        => 'rand'
+) );
+?>
 </div>
 
 
