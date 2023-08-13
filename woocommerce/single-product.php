@@ -97,21 +97,21 @@
                 <ul>
                     <li> <span class="da"><?= $da ?></span> <br> DA </li>
                     <li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
-                    <li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
-                    <li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
+                    <li> <span class="live-rd"><?= $live_rd ?></span> <br> Live RD </li>
+                    <li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist RD </li>
                     <li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
                     <li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
                 </ul>
             </div>
         </div>
-        <div class="product-card">
+        <!-- <div class="product-card">
             <ul>
                 <li>
-                    <!-- <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a> -->
+                    <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
                 </li>
-                <!-- <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>">More Data </a> </li> -->
+                <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>">More Data </a> </li>
             </ul>
-        </div>
+        </div> -->
     </div>
 
     <div class="no-results-found" style="display:none;">
