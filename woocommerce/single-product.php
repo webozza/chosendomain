@@ -95,7 +95,7 @@
 
             <div class="product-body">
                 <ul>
-                    <li> <span class="da"><?= $da ?></span> <br> DA </li>
+                    <li> <span class="da"><?= $da ?></span> DA </li>
                     <li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
                     <li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
                     <li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
