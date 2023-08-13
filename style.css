@@ -646,3 +646,16 @@ li.sf-field-post-meta-_sale_price.open {
 .auhtority_backlinks-checkboxes label {
   display: none;
 }
+
+/*product details page*/
+
+.product-details-page .product-title{
+  text-align: center;
+}
+.product-details-page .product-title .obscured-domain-name{
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+.product-details-page .priceSection h4{
+text-align: right;
+}
