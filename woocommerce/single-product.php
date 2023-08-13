@@ -125,3 +125,18 @@
 
 
 <?php get_footer() ?>
+
+
+<style>
+.product-details-page .product-title{
+  text-align: center;
+}
+.product-details-page .product-title .obscured-domain-name{
+  font-size: 2.625rem;
+  font-weight: 700;
+  color:#000;
+}
+.product-details-page .priceSection h4{
+text-align: right;
+}
+</style>
