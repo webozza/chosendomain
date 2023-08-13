@@ -80,7 +80,7 @@
                 <div class="catsection">
                     <div class="catgories">
                         <?php foreach($product_categories as $catagory) { ?>
-                            <span><?= $catagory?></span>
+                           <b> Category: </b> <span><?= $catagory?></span>
                         <?php }?>
                                 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
                     </div>
@@ -135,5 +135,15 @@
 }
 .product-details-page .priceSection h4{
 text-align: right;
+}
+.product-details-page .catsection .catgories span {
+    display: inline-block;
+    background: #beebe7;
+    border-radius: 35px;
+    padding: 8px 31px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #155c5e;
+    margin-right: 25px;
 }
 </style>
