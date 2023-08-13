@@ -97,7 +97,7 @@
                 <ul>
                     <li> <span class="da"><?= $da ?></span> <br> DA </li>
                     <li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
-                    <li> <span class="live-rd"><?= $live_rd ?></span> <br> Live RD </li>
+                    <li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
                     <li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist RD </li>
                     <li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
                     <li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
