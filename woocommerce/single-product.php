@@ -79,8 +79,9 @@
                 </div>
                 <div class="catsection">
                     <div class="catgories">
+                    <b> Category: </b>
                         <?php foreach($product_categories as $catagory) { ?>
-                           <b> Category: </b> <span><?= $catagory?></span>
+                           <span><?= $catagory?></span>
                         <?php }?>
                                 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
                     </div>
@@ -146,4 +147,6 @@ text-align: right;
     color: #155c5e;
     margin-right: 25px;
 }
+.product-details-page .catsection ul{list-style:none;}
+.product-details-page .catsection .add_to_cart_button {}
 </style>
