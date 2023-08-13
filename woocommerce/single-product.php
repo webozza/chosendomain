@@ -78,20 +78,17 @@
                     <h4>$<?= $product_price ?> </h4>
                 </div>
                 <div class="catsection">
-                    <div class="catgories"> 
-                        <ul>
-                            <li>
-                                <p>Category
+                    <div class="catgories">
                         <?php foreach($product_categories as $catagory) { ?>
                             <span><?= $catagory?></span>
                         <?php }?>
-                                </p>
-                            </li>
-                            <li>
-                                <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
-                            </li>
-                        </ul>
+                                <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
                     </div>
+                    <ul>
+                        <li>
+                            <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
