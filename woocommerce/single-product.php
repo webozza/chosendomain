@@ -126,6 +126,7 @@
 
 
 <style>
+.product-details-page{margin-top:50px;}
 .product-details-page .product-title{
   text-align: center;
 }
@@ -147,6 +148,14 @@ text-align: right;
     color: #155c5e;
     margin-right: 25px;
 }
-.product-details-page .catsection ul{list-style:none;}
-.product-details-page .catsection .add_to_cart_button {}
+.product-details-page .catsection ul{list-style:none;text-align: right;}
+.product-details-page .product-details .product-body ul li {
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 </style>
