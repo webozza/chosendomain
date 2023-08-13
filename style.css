@@ -121,9 +121,9 @@ Template: astra
   -webkit-appearance: none !important;
   margin: 0;
 }
-.price-range-inputs input[type="number"] {
+/* .price-range-inputs input[type="number"] {
   -moz-appearance: textfield !important;
-}
+} */
 .noUi-horizontal {
   height: 8px !important;
   max-width: 278px;
@@ -653,8 +653,9 @@ li.sf-field-post-meta-_sale_price.open {
   text-align: center;
 }
 .product-details-page .product-title .obscured-domain-name{
-  font-size: 1.625rem;
+  font-size: 2.625rem;
   font-weight: 700;
+  color:#000;
 }
 .product-details-page .priceSection h4{
 text-align: right;
