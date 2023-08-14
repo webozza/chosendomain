@@ -53,7 +53,7 @@
                <div class="domain-inventory-search-filters">
 			   		<?php if(!empty($product_cats)) { 
 						foreach ($product_cats as $category) {?>
-							<a href="<?= the_permalink()?>"> <?= $category->name ?> </a>
+							<a href="<?= get_permalink()?>"> <?= $category->name ?> </a>
 							<?php
 						}
 					} ?>
