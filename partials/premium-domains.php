@@ -582,8 +582,8 @@
 							// Domain Type
 							// $domain_type = get_field('domain_type', $product_id);
                             $domain_type = get_field('domain_type', $product_id);
-                            var_dump($domain_type);
-                            if($domain_type == "Premium Domain") {
+                            // var_dump($domain_type);
+                            if($domain_type == "[Premium Domain]") {
                                  $premiumDomain = get_field('domain_type', $product_id);
                                  var_dump($premiumDomain);
                             }
