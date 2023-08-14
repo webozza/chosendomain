@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.01' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.02' );
 
 /**
  * Enqueue styles
