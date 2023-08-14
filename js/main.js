@@ -86,24 +86,6 @@ jQuery(document).ready(function ($) {
     }
   };
 
-  //---------------- Reveal domain name ------------
-  $(".domain-name-revealer").click(function () {
-    let isLoggedIn = $("body").hasClass("logged-in");
-
-    let unobscuredDomainName = $(this)
-      .closest(".product-box")
-      .data("domain-name");
-
-    if (isLoggedIn) {
-      $(this)
-        .closest(".product-box")
-        .find(".obscured-domain-name")
-        .text(unobscuredDomainName);
-    } else {
-      $(".ast-account-action-login").click();
-    }
-  });
-
   //---------------- Initialize empty arrays ------------
   let selectedCats = [];
   let selectedExtensions = [];
@@ -557,4 +539,22 @@ jQuery(document).ready(function ($) {
       noResults();
     }, 600);
   };
+
+  //---------------- Reveal domain name ------------
+  $(".domain-name-revealer").click(function () {
+    let isLoggedIn = $("body").hasClass("logged-in");
+
+    let unobscuredDomainName = $(this)
+      .closest(".product-box")
+      .data("domain-name");
+
+    if (isLoggedIn) {
+      $(this)
+        .closest(".product-box")
+        .find(".obscured-domain-name")
+        .text(unobscuredDomainName);
+    } else {
+      $(".ast-account-action-login").click();
+    }
+  });
 });

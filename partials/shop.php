@@ -7,7 +7,7 @@
 <?php
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => 1,
+        'posts_per_page' => 9,
     );
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();
@@ -56,8 +56,10 @@
 
         <!-- Domain Search Controls -->
         <div class="domain-search-controls">
-            <button class="di-hide-filters dc-btn dc-btn-primary-muted dc-btn-big"><span class="hide-on-mobile">Hide
-                    filters</span> <i class="far fa-eye-slash"></i></button>
+            <button class="di-hide-filters dc-btn dc-btn-primary-muted dc-btn-big">
+				<span class="hide-on-mobile">Hide filters</span> 
+				<i class="far fa-eye-slash"></i>
+			</button>
         </div>
 
         <!-- Domain Loop with Filters -->
@@ -256,6 +258,112 @@
 								</div>
 						</div>
 					</div>
+					
+					
+					<!-- -----------------------
+							 PA 
+					------------------------ -->
+						                    <!-- DA Range Filter -->
+					<div class="slide-accor"> 
+						<div class="filter-title">
+                            <h3>PA</h3>
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+						<div class="answer">
+
+							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
+									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
+									data-sf-meta-type="number">
+
+									<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+										data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+										data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+										data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+										class="sf-meta-range sf-meta-range-slider">
+										<div class="price-range-inputs">
+											<label>
+												<input class="sf-input-range-number sf-range-min da-range-min sf-input-number" min="0"
+													max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+											</label>
+											<span class="sf-range-values-separator"></span>
+											<label>
+												<input class="sf-input-range-number sf-range-max da-range-max sf-input-number" min="0"
+													max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
+													title="">
+											</label>
+										</div>
+										<div class="meta-slider noUi-target noUi-ltr noUi-horizontal pa-slider">
+											<div class="noUi-base">
+												<div class="noUi-connects">
+													<div class="noUi-connect"></div>
+												</div>
+												<div class="noUi-origin">
+													<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+														aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+												</div>
+												<div class="noUi-origin">
+													<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+														aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+
+					<!-- PA Range Filter -->
+					<!-- <div class="slide-accor"> 
+						<div class="filter-title">
+                            <h3>PA</h3>
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+						<div class="answer">
+
+							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
+									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
+									data-sf-meta-type="number">
+
+									<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+										data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+										data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+										data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+										class="sf-meta-range sf-meta-range-slider">
+										<div class="price-range-inputs">
+											<label>
+												<input class="sf-input-range-number sf-range-min da-range-min sf-input-number" min="0"
+													max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+											</label>
+											<span class="sf-range-values-separator"></span>
+											<label>
+												<input class="sf-input-range-number sf-range-max da-range-max sf-input-number" min="0"
+													max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
+													title="">
+											</label>
+										</div>
+										<div class="meta-slider noUi-target noUi-ltr noUi-horizontal da-slider">
+											<div class="noUi-base">
+												<div class="noUi-connects">
+													<div class="noUi-connect"></div>
+												</div>
+												<div class="noUi-origin">
+													<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+														aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+												</div>
+												<div class="noUi-origin">
+													<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+														aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div> -->
 
                     <!-- Live RD Range Filter -->
 					<div class="slide-accor"> 
@@ -438,7 +546,7 @@
 					?>
 
 					<!-- Language Filter -->
-                    <div class="authority-backlinks-filter slide-accor">
+                    <!--<div class="authority-backlinks-filter slide-accor">
                         <div class="filter-title">
                             <h3>Languages</h3>
                         </div>
@@ -462,7 +570,7 @@
 							 } ?>
                         </div>
 						</div>
-                    </div>
+                    </div>-->
 
 					<!-- Get Use Cases -->
 					<?php
@@ -470,7 +578,7 @@
 					?>
 
 					<!-- Use Case Filter -->
-                    <div class="use-case-filter slide-accor">
+                    <!--<div class="use-case-filter slide-accor">
                         <div class="filter-title">
                             <h3>Use case</h3>
                         </div>
@@ -493,7 +601,7 @@
 								} ?>
 							</div>
 						</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- DOMAINS -->
@@ -510,6 +618,7 @@
 							$product_description = $product->get_description();
 							$da = get_post_meta($product_id, 'da', true);
 							$dr = get_post_meta($product_id, 'dr', true);
+							$pa = get_post_meta($product_id, 'pa', true);
 							$live_rd = get_post_meta($product_id, 'live_rd', true);
 							$hist_rd = get_post_meta($product_id, 'hist_rd', true);
 							$age = get_post_meta($product_id, 'age', true);
@@ -582,12 +691,13 @@
 									 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
 							</div>
 							<ul>
-								<li> <span class="da"><?= $da ?></span> <br> DA </li>
-								<li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
-								<li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
-								<li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
-								<li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
-								<li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
+								<li> <span class="da"><?= $da ?></span> DA </li>
+								<li> <span class="pa"><?= $pa ?></span> PA </li>
+								<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
+								<li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
+								<li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
+								<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
+								<li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
 							</ul>
 						</div>
 					</div>
@@ -661,4 +771,7 @@
 			</script>
         </div>
 
-        <?php get_footer() ?>
+	</div>
+</div>
+
+<?php get_footer() ?>

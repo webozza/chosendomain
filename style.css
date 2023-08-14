@@ -121,9 +121,9 @@ Template: astra
   -webkit-appearance: none !important;
   margin: 0;
 }
-.price-range-inputs input[type="number"] {
+/* .price-range-inputs input[type="number"] {
   -moz-appearance: textfield !important;
-}
+} */
 .noUi-horizontal {
   height: 8px !important;
   max-width: 278px;
@@ -351,9 +351,15 @@ li.sf-field-post-meta-_sale_price.open {
   position: relative;
 }
 .load-more-container {
+<<<<<<< HEAD
 	position: absolute;
 	bottom: -110px;
 	left: 29%;
+=======
+  position: absolute;
+  bottom: -110px;
+  left: 29%;
+>>>>>>> f7487fd1b057fdc93e106817e1b375f32a196b3c
 }
 .domain-inventory-search-wrap ul {
   list-style: none;
@@ -646,3 +652,5 @@ li.sf-field-post-meta-_sale_price.open {
 .auhtority_backlinks-checkboxes label {
   display: none;
 }
+
+/*product details page*/
