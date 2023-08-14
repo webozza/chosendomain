@@ -313,7 +313,7 @@
 
 
 
-					<!-- <div class="slide-accor"> 
+					<div class="slide-accor"> 
 						<div class="filter-title">
                             <h3>PA</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -361,7 +361,7 @@
 									</div>
 								</div>
 						</div>
-					</div> -->
+					</div>
 
 
                     <!-- Live RD Range Filter -->
