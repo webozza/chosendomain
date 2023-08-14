@@ -45,8 +45,8 @@
                 <label for="domain-type-budget" class="show-tooltip">Budget Domains</label> -->
                 <input type="radio" id="domain-type-premium" name="domain-type[]" value="Premium">
                 <label for="domain-type-premium" class="show-tooltip">Premium Domains</label>
-                <input type="radio" id="domain-type-30" name="domain-type[]" value="30">
-                <label for="domain-type-30" class="show-tooltip">$30 Domains</label>
+                <!-- <input type="radio" id="domain-type-30" name="domain-type[]" value="30">
+                <label for="domain-type-30" class="show-tooltip">$30 Domains</label> -->
             </div>
             <!-- <div style="display:none;" class="domain-inventory-search-field">
                 <input type="text" name="domain-search" id="domain-search"
