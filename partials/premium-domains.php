@@ -49,8 +49,9 @@
         <div class="domain-inventory-search-wrap">
             <!-- FILTERS -->
             <div class="domain-inventory-sidebar">
-				<h3>Product Category</h3>
+				
                <div class="domain-inventory-search-filters">
+			   <h3> Products Categories </h3>
 				<?php 
 					if(!empty($product_cats)) { ?>
 					<?php 
