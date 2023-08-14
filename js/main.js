@@ -303,6 +303,29 @@ jQuery(document).ready(function ($) {
       updateFiltersApplied("dr", minPrice, maxPrice, 100);
     });
 
+
+    $(".dr-range-min").on("keyup", function () {
+      let newMinPrice = parseFloat($(this).val());
+      let newMaxPrice = parseFloat($(".dr-range-max").val());
+  
+      // Update slider positions
+      daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+      applyFilters(searchTerm);
+      updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
+    });
+  
+    $(".dr-range-max").on("keyup", function () {
+      let newMinPrice = parseFloat($(".dr-range-min").val());
+      let newMaxPrice = parseFloat($(this).val());
+      // Update slider positions
+      daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+      applyFilters(searchTerm);
+      updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
+    });
+
+
+
+
   //---------------- Live RD Range Filter ------------
   liveRdSlider.noUiSlider.on("slide.one", function () {
     let minPrice = $(this)[0].getPositions()[0] * 100;
