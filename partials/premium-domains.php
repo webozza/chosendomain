@@ -53,18 +53,16 @@
                <div class="domain-inventory-search-filters">
 				<?php 
 					if(!empty($product_cats)) { ?>
-
 					<?php 
 						foreach ($product_cats as $category) {
 							$category_link = get_term_link($category, 'product_cat');
 						?>
+							<p>
+								<a href="<?= esc_url($category_link)?>"> <?= $category->name ?> </a>
+							</p>
 
-							<a href="<?= esc_url($category_link)?>"> <?= $category->name ?> </a>
-						
 					<?php } ?>
-				<?php } ?>
-				
-			   		
+				<?php } ?>	
 			   </div>
             </div>
             <!-- DOMAINS -->
