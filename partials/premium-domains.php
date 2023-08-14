@@ -51,12 +51,20 @@
             <div class="domain-inventory-sidebar">
 				<h3>Product Category</h3>
                <div class="domain-inventory-search-filters">
-			   		<?php if(!empty($product_cats)) { 
-						foreach ($product_cats as $category) {?>
-							<a href="<?= get_permalink($post -> ID);?>"> <?= $category->name ?> </a>
-							<?php
-						}
-					} ?>
+				<?php 
+					if(!empty($product_cats)) { ?>
+
+					<?php 
+						foreach ($product_cats as $category) {
+							$category_link = get_term_link($category, 'product_cat');
+						?>
+
+							<a href="<?= esc_url($category_link)?>"> <?= $category->name ?> </a>
+						
+					<?php } ?>
+				<?php } ?>
+				
+			   		
 			   </div>
             </div>
             <!-- DOMAINS -->
