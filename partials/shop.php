@@ -208,7 +208,7 @@
 						</div>
 					</div>
 
-                    <!-- DR Range Filter -->
+                    <!-- PA Range Filter -->
 					<div style="" class="slide-accor"> 
 						<div class="filter-title">
                             <h3>PA</h3>

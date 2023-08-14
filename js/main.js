@@ -290,7 +290,7 @@ jQuery(document).ready(function ($) {
 
 
 
-  //---------------- DR Range Filter ------------
+  //---------------- PA Range Filter ------------
     drSlider.noUiSlider.on("slide.one", function () {
       let minPrice = $(this)[0].getPositions()[0];
       let maxPrice = $(this)[0].getPositions()[1];
@@ -309,7 +309,7 @@ jQuery(document).ready(function ($) {
       let newMaxPrice = parseFloat($(".dr-range-max").val());
   
       // Update slider positions
-      daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+      drSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
       applyFilters(searchTerm);
       updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
     });
@@ -318,7 +318,7 @@ jQuery(document).ready(function ($) {
       let newMinPrice = parseFloat($(".dr-range-min").val());
       let newMaxPrice = parseFloat($(this).val());
       // Update slider positions
-      daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+      drSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
       applyFilters(searchTerm);
       updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
     });
