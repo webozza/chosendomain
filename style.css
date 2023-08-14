@@ -663,7 +663,7 @@ li.sf-field-post-meta-_sale_price.open {
 
 /* -------------------------- premium domain page ----------------- */
 .page-id-535 .ast-container {
-  max-width: 1201px;
+  max-width: 1201px !important;
   width: 100%;
   margin: 0 auto;
 }
