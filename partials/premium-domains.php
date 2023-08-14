@@ -205,7 +205,7 @@
 					</div>
 
                     <!-- DR Range Filter -->
-					<div style="display:none;" class="slide-accor"> 
+					<!-- <div style="display:none;" class="slide-accor"> 
 						<div class="filter-title">
                             <h3>DR</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -253,11 +253,11 @@
 									</div>
 								</div>
 						</div>
-					</div>
+					</div> -->
 					
 					
 					<!-- PA Range Filter -->
-					<div class="slide-accor"> 
+					<!-- <div class="slide-accor"> 
 						<div class="filter-title">
                             <h3>PA</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -305,10 +305,10 @@
 									</div>
 								</div>
 						</div>
-					</div>
+					</div> -->
 
                     <!-- Live RD Range Filter -->
-					<div class="slide-accor"> 
+					<!-- <div class="slide-accor"> 
 						<div class="filter-title">
                             <h3>Live RD</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -356,10 +356,10 @@
 									</div>
 								</div>
 						</div>
-					</div>
+					</div> -->
 
                     <!-- Age Range Filter -->
-					<div class="slide-accor hidden"> 
+					<!-- <div class="slide-accor hidden"> 
 						<div class="filter-title">
                             <h3>Age</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -407,7 +407,7 @@
 									</div>
 								</div>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- Get Extensions -->
 					<?php
@@ -418,7 +418,7 @@
 					?>
 
 					<!-- Extension Filter -->
-                    <div class="extension-filter slide-accor">
+                    <!-- <div class="extension-filter slide-accor">
                         <div class="filter-title">
                             <h3>Extension </h3>
                         </div>
@@ -442,7 +442,7 @@
 							 } ?>
                         </div>
 						</div>
-                    </div>
+                    </div> -->
 
 					<!-- Get Auth Backlinks -->
 					<?php
@@ -453,7 +453,7 @@
 					?>
 
 					<!-- Authority Backlinks Filter -->
-                    <div class="authority-backlinks-filter slide-accor">
+                    <!-- <div class="authority-backlinks-filter slide-accor">
                         <div class="filter-title">
                             <h3>Authority backlinks</h3>
                         </div>
@@ -477,7 +477,7 @@
 							 } ?>
                         </div>
 						</div>
-                    </div>
+                    </div> -->
 
 					<!-- Get Languages -->
 					<?php
