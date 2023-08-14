@@ -5,7 +5,7 @@ jQuery(document).ready(function ($) {
   var drSlider = $(".dr-slider")[0];
   var liveRdSlider = $(".live-rd-slider")[0];
   var ageSlider = $(".age-slider")[0];
-  var paSlider = $(".pa-slider")[0];
+  // var paSlider = $(".pa-slider")[0];
 
   let runUiSlider = (id, max) => {
     noUiSlider.create(id, {
@@ -256,36 +256,36 @@ jQuery(document).ready(function ($) {
 
 // ------------------ Pa Range Filter --------------------
 
-paSlider.noUiSlider.on("slide.one", function () {
-  let minPrice = $(this)[0].getPositions()[0];
-  let maxPrice = $(this)[0].getPositions()[1];
+// paSlider.noUiSlider.on("slide.one", function () {
+//   let minPrice = $(this)[0].getPositions()[0];
+//   let maxPrice = $(this)[0].getPositions()[1];
 
-  // Set Price
-  $(".pa-range-min").val(minPrice.toFixed());
-  $(".pa-range-max").val(maxPrice.toFixed());
+//   // Set Price
+//   $(".pa-range-min").val(minPrice.toFixed());
+//   $(".pa-range-max").val(maxPrice.toFixed());
 
-  applyFilters(searchTerm); // Call the combined filtering function
-  updateFiltersApplied("pa", minPrice, maxPrice, 100);
-});
+//   applyFilters(searchTerm); // Call the combined filtering function
+//   updateFiltersApplied("pa", minPrice, maxPrice, 100);
+// });
 
-$(".da-range-min").on("keyup", function () {
-  let newMinPrice = parseFloat($(this).val());
-  let newMaxPrice = parseFloat($(".pa-range-max").val());
+// $(".da-range-min").on("keyup", function () {
+//   let newMinPrice = parseFloat($(this).val());
+//   let newMaxPrice = parseFloat($(".pa-range-max").val());
 
-  // Update slider positions
-  daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-  applyFilters(searchTerm);
-  updateFiltersApplied("pa", newMinPrice, newMaxPrice, 100);
-});
+//   // Update slider positions
+//   daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+//   applyFilters(searchTerm);
+//   updateFiltersApplied("pa", newMinPrice, newMaxPrice, 100);
+// });
 
-$(".pa-range-max").on("keyup", function () {
-  let newMinPrice = parseFloat($(".pa-range-min").val());
-  let newMaxPrice = parseFloat($(this).val());
-  // Update slider positions
-  daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-  applyFilters(searchTerm);
-  updateFiltersApplied("pa", newMinPrice, newMaxPrice, 100);
-});
+// $(".pa-range-max").on("keyup", function () {
+//   let newMinPrice = parseFloat($(".pa-range-min").val());
+//   let newMaxPrice = parseFloat($(this).val());
+//   // Update slider positions
+//   daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+//   applyFilters(searchTerm);
+//   updateFiltersApplied("pa", newMinPrice, newMaxPrice, 100);
+// });
 
 
 
