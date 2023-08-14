@@ -45,8 +45,8 @@
                 <label for="domain-type-budget" class="show-tooltip">Budget Domains</label> -->
                 <input type="radio" id="domain-type-premium" name="domain-type[]" value="Premium">
                 <label for="domain-type-premium" class="show-tooltip">Premium Domains</label>
-                <!-- <input type="radio" id="domain-type-30" name="domain-type[]" value="30">
-                <label for="domain-type-30" class="show-tooltip">$30 Domains</label> -->
+                <input type="radio" id="domain-type-30" name="domain-type[]" value="30">
+                <label for="domain-type-30" class="show-tooltip">$30 Domains</label>
             </div>
             <!-- <div style="display:none;" class="domain-inventory-search-field">
                 <input type="text" name="domain-search" id="domain-search"
@@ -580,7 +580,11 @@
 							};
 
 							// Domain Type
-							$domain_type = get_field('domain_type', $product_id);
+							// $domain_type = get_field('domain_type', $product_id);
+                            $domain_type = get_field('domain_type', $product_id);
+                            if($domain_type == "[Premium Domain]") {
+                                 $premiumDomain = get_field('domain_type', $product_id);
+                            }
 
 							// Authority Backlinks
 							$authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
@@ -605,7 +609,7 @@
 								$uses = $use_cases[0];
 							}
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?=  $premiumDomain?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
