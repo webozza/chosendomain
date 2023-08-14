@@ -12,6 +12,11 @@ Template: astra
 
 /* Domain Search Box
 ================================================================================*/
+.page-id-354 section.ast-archive-entry-banner {
+	display:none !important;
+}
+
+
 
 .domain-inventory-search-filters {
   border: 1px solid #ccc;
