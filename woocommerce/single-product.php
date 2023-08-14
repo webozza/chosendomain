@@ -15,6 +15,7 @@
         $product_price = $product->get_price();
         $product_description = $product->get_description();
         $da = get_post_meta($product_id, 'da', true);
+		$pa = get_post_meta($product_id, 'pa', true);
         $dr = get_post_meta($product_id, 'dr', true);
         $live_rd = get_post_meta($product_id, 'live_rd', true);
         $hist_rd = get_post_meta($product_id, 'hist_rd', true);
@@ -40,7 +41,7 @@
         };
 
         // Language
-        $languages  = wp_get_post_terms($product_id, 'language');
+        //$languages  = wp_get_post_terms($product_id, 'language');
         //var_dump($languages);
         $langs = array();
         foreach ($languages as $lang) {
@@ -67,12 +68,8 @@
                     <?php } ?>
                 </div> -->
                 <div class="product-title"> 
-                    <div>
-                        <span class="obscured-domain-name"> <?= $product_title ?> </span>
-                        <span class="domain-name-revealer">
-                            <i class="flaticon-eye"></i>
-                        </span>
-                    </div>
+					<span class="obscured-domain-name"> <?= $product_title ?> </span>
+					<span class="domain-name-revealer"><i class="flaticon-eye"></i></span>
                 </div>
                 <div class="priceSection">
                     <h4>$<?= $product_price ?> </h4>
@@ -85,24 +82,27 @@
                         <?php }?>
                                 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
                     </div>
-                    <ul>
-                        <li>
-                            <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
-                        </li>
-                    </ul>
+					<div>
+						<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
+					</div>
                 </div>
             </div>
 
             <div class="product-body">
                 <ul>
                     <li> <span class="da"><?= $da ?></span> DA </li>
+					<li> <span class="pa"><?= $pa ?></span> PA </li>
                     <li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
                     <li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
                     <li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
                     <li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
-                    <li> <span class="language"><?= $langs[0] ?></span> Language</li>
+                    <li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
                 </ul>
             </div>
+			<div class="product-description">
+				<h4>Domain Details:</h4>
+				<p><?= $product_description ?></p>
+			</div>
         </div>
         <!-- <div class="product-card">
             <ul>
@@ -127,7 +127,8 @@ if( ! is_a( $product, 'WC_Product' ) ){
 woocommerce_related_products( array(
     'posts_per_page' => 4,
     'columns'        => 4,
-    'orderby'        => 'rand'
+    'orderby'        => 'rand',
+	'da' => $da,
 ) );
 ?>
 </div>
@@ -140,16 +141,54 @@ woocommerce_related_products( array(
 
 <style>
 .product-details-page{margin-top:50px;}
+.product-details-page .product-box{
+	border: 1px solid #f45a2a4d;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 6px #f45a2a4d;
+	margin-bottom: 50px;
+}
 .product-details-page .product-title{
-  text-align: center;
+	text-align: center;
+}
+.product-details-page .product-title .domain-name-revealer {
+    position: relative;
+    right: 0px;
+    top: 0px;
 }
 .product-details-page .product-title .obscured-domain-name{
-  font-size: 2.625rem;
-  font-weight: 700;
-  color:#000;
+	font-size: 2.625rem;
+	font-weight: 700;
+	color:#000;
+}
+.product-details-page .product-description h4{text-decoration:underline;}
+.product-details-page .product-description p{
+	color: #000;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.product-details-page .catsection{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	margin-bottom: 30px;
+}
+.product-details-page .catsection a{
+	font-size: 15px;
+    font-weight: 400;
+	padding-top: 15px;
+    padding-right: 25px;
+    padding-bottom: 15px;
+    padding-left: 25px;
 }
 .product-details-page .priceSection h4{
-text-align: right;
+	text-align: right;
+	margin-bottom: 20px;
+}
+.product-details-page .catsection .catgories b{
+	margin-top: 10px;
+    margin-right: 25px;
+	color: #000;
 }
 .product-details-page .catsection .catgories span {
     display: inline-block;
@@ -157,7 +196,7 @@ text-align: right;
     border-radius: 35px;
     padding: 8px 31px;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 33px;
     color: #155c5e;
     margin-right: 25px;
 }
@@ -165,6 +204,7 @@ text-align: right;
 .product-details-page .product-details .product-body ul{
     list-style: none;
     display: flex;
+	margin-left: 0px;
 }
 .product-details-page .product-details .product-body ul li {
     text-align: center;
@@ -174,5 +214,11 @@ text-align: right;
     display: flex;
     align-items: center;
     flex-direction: column;
+	color: #000;
+    font-size: 15px;
+}
+.product-details-page .product-details .product-body ul li span{
+	font-weight: 600;
+    font-size: 18px;
 }
 </style>
