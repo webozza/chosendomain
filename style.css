@@ -659,3 +659,28 @@ li.sf-field-post-meta-_sale_price.open {
 }
 
 /*product details page*/
+
+
+/* -------------------------- premium domain page ----------------- */
+.page-id-535 .ast-container {
+  max-width: 1201px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
