@@ -10,7 +10,7 @@
         'posts_per_page' => 9,
     );
     $product_query = new WC_Product_Query($args);
-    $products = $product_query->get_products();
+    $pre_products = $product_query->get_products();
 
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
@@ -554,8 +554,8 @@
             <!-- DOMAINS -->
             <div class="domain-inventory-content" id="product-container">
                 <?php
-					if ($products) {
-						foreach ($products as $product) {
+					if ($pre_products) {
+						foreach ($pre_products as $product) {
 							
 							$product_id = $product->get_id();
 							$product_id = $product->get_id();
@@ -580,10 +580,10 @@
 							};
 
 							// Domain Type
-							// $domain_type = get_field('domain_type', $product_id);
-                            $domain_type = get_field('domain_type', $product_id);
-                            // var_dump($domain_type);
-                            if($domain_type == "[Premium Domain]") {
+							$domain_type = get_field('domain_type', $product_id);
+                            
+                            var_dump($domain_type);
+                            if($domain_type == "PremiumDomain") {
                                  $premiumDomain = get_field('domain_type', $product_id);
                                  var_dump($premiumDomain);
                             }
@@ -611,7 +611,7 @@
 								$uses = $use_cases[0];
 							}
 					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?=  $premiumDomain?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?=  $premiumDomain ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 					<div class="product-details">
 						<div class="product-head">
 							<div class="product-img">
