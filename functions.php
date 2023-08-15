@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.13' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.14' );
 
 /**
  * Enqueue styles
@@ -35,9 +35,10 @@ add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts() {
-	$baseURL = home_url(add_query_arg(array(), $wp->request));
-	$baseURL = basename($baseURL);
+	$currentPageID = get_queried_object_id();
+    $baseURL = get_permalink($currentPageID);
 	echo $baseURL;
+
     $page = $_POST['page'];
     $posts_per_page = 10; // Number of products per page
     $offset = ($page - 1) * $posts_per_page; // Calculate offset based on page number
