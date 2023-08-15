@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.15' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.17' );
 
 /**
  * Enqueue styles
@@ -120,60 +120,98 @@ function load_more_posts() {
 			$uses = $use_cases[0];
 		}
 
-		?>
-			<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
-				<div class="product-details">
-					<div class="product-head">
-						<div class="product-img">
-							<?php if ($product_image_url) { ?>
-								<img src="<?= $product_image_url ?>" alt="product image">
-							<?php } else { ?>
-								<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
-							<?php } ?>
+		if($_POST['base_url'] == "/domains/") {
+			?>
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+					<div class="product-details">
+						<div class="product-head">
+							<div class="product-img">
+								<?php if ($product_image_url) { ?>
+									<img src="<?= $product_image_url ?>" alt="product image">
+								<?php } else { ?>
+									<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
+								<?php } ?>
+							</div>
+							<div class="product-title"> 
+								<label> 
+									<input class="script-ignore" type="checkbox" value="" id="title"> 
+									<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
+								<label> 
+								<br>
+								<div class="description hidden">
+									<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+									<span><?= $product_description?></span>
+								</div>
+								<div class="domain-name-revealer">
+									<i class="flaticon-eye"></i>
+								</div>
+							</div>
 						</div>
-						<div class="product-title"> 
-							<label> 
-								<input class="script-ignore" type="checkbox" value="" id="title"> 
-								<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
-							<label> 
-							<br>
-							<div class="description hidden">
-								<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
-								<span><?= $product_description?></span>
+						<div class="product-body">
+							<div class="catgories"> 
+								<?php foreach($product_categories as $catagory) { ?>
+									<span><?= $catagory?></span>
+								<?php }?>
+									<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
 							</div>
-							<div class="domain-name-revealer">
-								<i class="flaticon-eye"></i>
-							</div>
+							<ul>
+								<li> <span class="da"><?= $da ?></span> <br> DA </li>
+								<li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
+								<li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
+								<li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
+								<li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
+								<li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
+							</ul>
 						</div>
 					</div>
-					<div class="product-body">
-						<div class="catgories"> 
-							<?php foreach($product_categories as $catagory) { ?>
-								<span><?= $catagory?></span>
-							<?php }?>
-								<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
-						</div>
+					<div class="product-card">
+						<h2>$<?= $price ?> </h2>
 						<ul>
-							<li> <span class="da"><?= $da ?></span> <br> DA </li>
-							<li class="hidden"> <span class="dr"><?= $dr ?></span> <br> DR </li>
-							<li> <span class="live-rd"><?= $live_rd ?></span> <br> Live <br> RD </li>
-							<li> <span class="hist-rd"><?= $hist_rd ?></span><br> Hist <br> RD </li>
-							<li class="hidden"> <span class="age"><?= $age ?></span> <br> Age </li>
-							<li> <span class="language"><?= $langs[0] ?></span> <br> Language</li>
+							<li>
+								<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+							</li>
+							<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
 						</ul>
 					</div>
 				</div>
-				<div class="product-card">
-					<h2>$<?= $price ?> </h2>
-					<ul>
-						<li>
-							<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
-						</li>
-						<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
-					</ul>
+			<?php
+		} else { ?>
+				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+					<div class="product-details">
+						<div class="product-head">
+							<div class="product-img">
+								<?php if ($product_image_url) { ?>
+									<img src="<?= $product_image_url ?>" alt="product image">
+								<?php } else { ?>
+									<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
+								<?php } ?>
+							</div>
+							<div class="product-title"> 
+								<label>
+									<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
+								</label> 
+								<br>
+								<div class="description hidden">
+									<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+								</div>
+								<!--<div class="domain-name-revealer">
+									<i class="flaticon-eye"></i>
+								</div>-->
+							</div>
+							<h6>$<?= $price ?></h6>
+							<div class="product-card">
+								<ul>
+									<li>
+										<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+									</li>
+									<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-	<?php }
+		<?php }
+	}
 	
 	$response = ob_get_clean();
 	echo $response;

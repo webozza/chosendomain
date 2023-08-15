@@ -181,27 +181,29 @@
 				const loadingText = document.getElementById('loading-text');
 					let page = 1; // Initial page number
 					const productsPerPage = 10;
+					const curLoc = window.loca
 
 					function fetchAndAppendProducts() {
 						loadingText.style.display = 'block'; // Show the loading images
-					jQuery.ajax({
-						url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
-						type: 'POST',
-						data: {
-						action: 'load_more_posts', // Custom AJAX action
-						page: page,
-						products_per_page: productsPerPage,
-						},
-						success: function(response) {
-						productContainer.insertAdjacentHTML('beforeend', response);
-						page++; // Increment the page number for the next fetch
-						loadingText.style.display = 'none'; // Hide the loading images
-						},
-						error: function(error) {
-						console.error(error);
-						loadingText.style.display = 'none'; // Hide the loading text in case of an error
-						}
-					});
+						jQuery.ajax({
+							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
+							type: 'POST',
+							data: {
+								action: 'load_more_posts', // Custom AJAX action
+								page: page,
+								base_url: window.location.pathname,
+								products_per_page: productsPerPage,
+							},
+							success: function(response) {
+							productContainer.insertAdjacentHTML('beforeend', response);
+							page++; // Increment the page number for the next fetch
+							loadingText.style.display = 'none'; // Hide the loading images
+							},
+							error: function(error) {
+							console.error(error);
+							loadingText.style.display = 'none'; // Hide the loading text in case of an error
+							}
+						});
 					}
 
 					// Detect when the user has scrolled to the bottom
