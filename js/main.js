@@ -18,15 +18,11 @@ jQuery(document).ready(function ($) {
     });
   };
 
-  let curLoc = window.location.href;
-
-  if (curLoc.indexOf("/domains") == -1) {
-    runUiSlider(ageSlider, 50);
-    runUiSlider(liveRdSlider, 10000);
-    runUiSlider(drSlider, 100);
-    runUiSlider(daSlider, 100);
-    runUiSlider(priceSlider, 10000);
-  }
+  runUiSlider(ageSlider, 50);
+  runUiSlider(liveRdSlider, 10000);
+  runUiSlider(drSlider, 100);
+  runUiSlider(daSlider, 100);
+  runUiSlider(priceSlider, 10000);
 
   //---------------- accordian slide-----------
   $(".slide-accor .filter-title").on("click", function () {
