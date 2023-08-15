@@ -136,7 +136,7 @@
 								</div>
 								<div class="product-title"> 
 									<label>
-										<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
+										<span class="obscured-domain-name"> <?= $product_title ?> </span> 
 									</label> 
 									<br>
 									<div class="description hidden">
