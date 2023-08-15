@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.08' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.09' );
 
 /**
  * Enqueue styles
@@ -35,7 +35,6 @@ add_action( 'wp_enqueue_scripts', 'custom_scripts');
 //add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts() {
-
 	$baseURL = basename(home_url(add_query_arg(array(), $wp->request)));
     $page = $_POST['page'];
     $posts_per_page = 10; // Number of products per page
@@ -117,7 +116,7 @@ function load_more_posts() {
 			$uses = $use_cases[0];
 		}
 		
-		if (!is_page('premium-domain')) { ?>
+		if ($baseURL != "premium-domain") { ?>
 			<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 				<div class="product-details">
 					<div class="product-head">
