@@ -68,12 +68,14 @@
 											$catObj = get_term_by('name', $category->name, 'product_cat');
 											$productCount = $catObj->count;
 										?>
-										<a href="javascript:void(0)"> 
-											<label>
-												<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
-												<span><?= esc_html($category->name) ?> (<?= $productCount ?>)</span> <br>
-											</label>
-										</a>
+										<?php if($productCount != 0) { ?>
+											<a href="javascript:void(0)"> 
+												<label>
+													<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
+													<span><?= esc_html($category->name) ?> (<?= $productCount ?>)</span> <br>
+												</label>
+											</a>
+										<?php } ?>
 									<?php
 									}
 								} ?>
