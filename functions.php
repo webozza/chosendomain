@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.30' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.31' );
 
 /**
  * Enqueue styles
@@ -37,7 +37,7 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 function load_more_posts() {
     $page = $_POST['page'];
     $posts_per_page = 10; // Number of products per page
-    $offset = ($page - 1) * $posts_per_page; // Calculate offset based on page number
+    $offset = $page * $posts_per_page; // Calculate offset based on page number
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => $posts_per_page,
