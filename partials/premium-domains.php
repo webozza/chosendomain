@@ -14,9 +14,6 @@
     );
     $product_query = new WC_Product_Query($args);
     $premium_products = $product_query->get_products();
-   
-
-
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
 		'hide_empty' => false,       // Set to true if you want to hide empty categories
