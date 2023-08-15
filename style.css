@@ -13,10 +13,8 @@ Template: astra
 /* Domain Search Box
 ================================================================================*/
 .page-id-354 section.ast-archive-entry-banner {
-	display:none !important;
+  display: none !important;
 }
-
-
 
 .domain-inventory-search-filters {
   border: 1px solid #ccc;
@@ -356,15 +354,9 @@ li.sf-field-post-meta-_sale_price.open {
   position: relative;
 }
 .load-more-container {
-<<<<<<< HEAD
-	position: absolute;
-	bottom: -110px;
-	left: 29%;
-=======
   position: absolute;
   bottom: -110px;
   left: 29%;
->>>>>>> f7487fd1b057fdc93e106817e1b375f32a196b3c
 }
 .domain-inventory-search-wrap ul {
   list-style: none;
@@ -660,7 +652,6 @@ li.sf-field-post-meta-_sale_price.open {
 
 /*product details page*/
 
-
 /* -------------------------- premium domain page ----------------- */
 .page-id-535 .ast-container {
   max-width: 1201px !important;
@@ -675,7 +666,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield !important;
 }
 
@@ -683,4 +674,101 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none !important;
   margin: 0 !important;
+} /*Atiq*/
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-box {
+  width: 31%;
+  display: flex;
+  float: left;
+}
+.domain-inventory-sidebar,
+.domain-inventory-search-filters {
+  background: #fff;
+}
+.premium-domain .domain-inventory-search-box {
+  border: 0 solid #d3d3d3;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.12);
+  margin: 50px auto;
+}
+.domain-section .premium-domain h2 {
+  margin-bottom: 0px;
+}
+.premium-domain h3 {
+  text-align: center;
+  margin: 20px auto !important;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-details
+  .product-head {
+  display: block !important;
+  padding-bottom: 0px;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-head
+  .product-img {
+  width: 100%;
+  height: 100%;
+}
+.premium-domain .domain-inventory-content .product-title {
+  text-align: center;
+  margin: 10px auto;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-head
+  h6 {
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  letter-spacing: 0px;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-box {
+  border-bottom: 0px solid #c7c7c7;
+  padding: 15px;
+  border: 1px solid;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-right: 2%;
+}
+.premium-domain .domain-name-revealer {
+  right: 8px;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-card {
+  border-left: 0px solid #d3d3d3;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-card
+  ul
+  li:nth-child(1)
+  a {
+  border: 0px solid #f45a2a;
+  box-shadow: 0px 0px #f45a2abd;
+  display: block;
+  border-radius: 30px;
+}
+.premium-domain
+  .domain-inventory-search-wrap
+  .domain-inventory-content
+  .product-card
+  ul
+  li
+  a {
+  display: block;
+  border-radius: 30px;
+  margin-bottom: 15px;
 }

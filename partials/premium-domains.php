@@ -39,7 +39,7 @@
 ?>
 
 <div class="domain-section">
-    <div class="domain-inventory-wrap">
+    <div class="domain-inventory-wrap premium-domain">
 
         <!-- Domain Inventory Search Box -->
         <div class="domain-inventory-search-box">
@@ -52,27 +52,30 @@
 				
                <div class="domain-inventory-search-filters">
 			   <h3> Products Categories </h3>
-				<?php 
-					if(!empty($product_cats)) { ?>
-					<?php 
-						foreach ($product_cats as $category) {
-							$category_link = get_term_link($category, 'product_cat');
-						?>
-							<p>
-								<a href="<?= esc_url($category_link)?>"> <?= $category->name ?> </a>
-							</p>
+				   <div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
+						<?php 
+							if(!empty($product_cats)) { ?>
+							<?php 
+								foreach ($product_cats as $category) {
+									$category_link = get_term_link($category, 'product_cat');
+								?>
+									<p>
+										<a href="<?= esc_url($category_link)?>"> <?= $category->name ?> </a>
+									</p>
 
-					<?php } ?>
-				<?php } ?>	
+							<?php } ?>
+						<?php } ?>
+				   </div>
 			   </div>
             </div>
+					
             <!-- DOMAINS -->
             <div class="domain-inventory-content" id="product-container">
                 <?php
 					if ($premium_products) {
 						foreach ($premium_products as $product) {
 							
-							$product_id = $product->get_id();
+							//$product_id = $product->get_id();
 							$product_id = $product->get_id();
 							$product_title = $product->get_name();
 							$product_slug = $product->get_slug();
@@ -132,46 +135,27 @@
 									<?php } ?>
 								</div>
 								<div class="product-title"> 
-									<label> 
-										<input class="script-ignore" type="checkbox" value="" id="title"> 
+									<label>
 										<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
-									<label> 
+									</label> 
 									<br>
 									<div class="description hidden">
 										<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
-										<span><?= $product_description?></span>
 									</div>
-									<div class="domain-name-revealer">
+									<!--<div class="domain-name-revealer">
 										<i class="flaticon-eye"></i>
-									</div>
+									</div>-->
+								</div>
+								<h6>$<?= $price ?></h6>
+								<div class="product-card">
+									<ul>
+										<li>
+											<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+										</li>
+										<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+									</ul>
 								</div>
 							</div>
-							<div class="product-body">
-								<div class="catgories"> 
-									<?php foreach($product_categories as $catagory) { ?>
-										<span><?= $catagory?></span>
-									<?php }?>
-										<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
-								</div>
-								<ul>
-									<li> <span class="da"><?= $da ?></span> DA </li>
-									<li> <span class="pa"><?= $pa ?></span> PA </li>
-									<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
-									<li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
-									<li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
-									<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
-									<li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
-								</ul>
-							</div>
-						</div>
-						<div class="product-card">
-							<h2>$<?= $price ?> </h2>
-							<ul>
-								<li>
-									<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
-								</li>
-								<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
-							</ul>
 						</div>
 					</div>
 				<?php } ?>
@@ -231,7 +215,6 @@
 
 					// Initial fetch
 					fetchAndAppendProducts();
-
 			</script>
         </div>
 
