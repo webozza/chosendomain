@@ -7,22 +7,26 @@ jQuery(document).ready(function ($) {
   var ageSlider = $(".age-slider")[0];
   var paSlider = $(".pa-slider")[0];
 
-  let runUiSlider = (id, max) => {
-    noUiSlider.create(id, {
-      start: [0, max],
-      connect: true,
-      range: {
-        min: 0,
-        max: max,
-      },
-    });
-  };
+  const curPath = window.location.pathname;
 
-  runUiSlider(ageSlider, 50);
-  runUiSlider(liveRdSlider, 10000);
-  runUiSlider(drSlider, 100);
-  runUiSlider(daSlider, 100);
-  runUiSlider(priceSlider, 10000);
+  if (curPath !== "/premium-domain/") {
+    let runUiSlider = (id, max) => {
+      noUiSlider.create(id, {
+        start: [0, max],
+        connect: true,
+        range: {
+          min: 0,
+          max: max,
+        },
+      });
+    };
+
+    runUiSlider(ageSlider, 50);
+    runUiSlider(liveRdSlider, 10000);
+    runUiSlider(drSlider, 100);
+    runUiSlider(daSlider, 100);
+    runUiSlider(priceSlider, 10000);
+  }
 
   //---------------- accordian slide-----------
   $(".slide-accor .filter-title").on("click", function () {
