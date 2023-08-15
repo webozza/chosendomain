@@ -51,21 +51,32 @@
             <div class="domain-inventory-sidebar">
 				
                <div class="domain-inventory-search-filters">
-			   <h3> Products Categories </h3>
-				   <div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
-						<?php 
-							if(!empty($product_cats)) { ?>
-							<?php 
-								foreach ($product_cats as $category) {
-									$category_link = get_term_link($category, 'product_cat');
-								?>
-									<p>
-										<a href="<?= esc_url($category_link)?>"> <?= $category->name ?> </a>
-									</p>
-
-							<?php } ?>
-						<?php } ?>
-				   </div>
+				   <!-- Category Filter -->
+				   <div class="category-filter slide-accor">
+                        <div class="filter-title">
+                            <h3>Product Categories</h3>
+                        </div>
+						<div class="answer">
+							<div class="search-input-wrapper">
+								<input type="text" id="category_search" placeholder="Search Categories">
+								<span class="search-icon"></span>
+							</div>
+						
+                        <div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
+							<?php if(!empty($product_cats)) { 
+								foreach ($product_cats as $category) {?>
+								<a href="javascript:void(0)"> 
+								<label>
+									<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
+                                    <span><?= esc_html($category->name) ?></span> <br>
+								</label>
+								</a>
+								<?php
+								}
+							 } ?>
+                        </div>
+						</div>
+                    </div>
 			   </div>
             </div>
 					
