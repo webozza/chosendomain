@@ -172,6 +172,14 @@
 									</ul>
 								</div>
 							</div>
+							<div class="product-body" style="display:none;">
+								<div class="catgories"> 
+									<?php foreach($product_categories as $catagory) { ?>
+										<span><?= $catagory?></span>
+									<?php }?>
+										<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+								</div>
+							</div>
 						</div>
 					</div>
 				<?php } ?>

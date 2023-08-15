@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.27' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.28' );
 
 /**
  * Enqueue styles
@@ -202,6 +202,14 @@ function load_more_posts() {
 									</li>
 									<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
 								</ul>
+							</div>
+						</div>
+						<div class="product-body" style="display:none;">
+							<div class="catgories"> 
+								<?php foreach($product_categories as $catagory) { ?>
+									<span><?= $catagory?></span>
+								<?php }?>
+									<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
 							</div>
 						</div>
 					</div>
