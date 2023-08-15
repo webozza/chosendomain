@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
 
   let curLoc = window.location.href;
 
-  if (curLoc.indexOf("premium-domain") == -1) {
+  if (curLoc.indexOf("/domains") == -1) {
     runUiSlider(ageSlider, 50);
     runUiSlider(liveRdSlider, 10000);
     runUiSlider(drSlider, 100);

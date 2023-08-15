@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.06' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.07' );
 
 /**
  * Enqueue styles
@@ -117,7 +117,7 @@ function load_more_posts() {
 			$uses = $use_cases[0];
 		}
 		
-		if (is_page('premium-domain')) { ?>
+		if (!is_page('premium-domain')) { ?>
 			<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 				<div class="product-details">
 					<div class="product-head">
