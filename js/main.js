@@ -583,26 +583,36 @@ jQuery(document).ready(function ($) {
       let domainTypeFilter =
         selectedDomainType === "" || selectedDomainType == domainType;
 
-      if (
-        priceFilter &&
-        catFilter &&
-        searchFilter &&
-        //maxPriceTypeFilter &&
-        daFilter &&
-        drFilter &&
-        liveRdFilter &&
-        ageFilter &&
-        extensionFilter &&
-        domainTypeFilter &&
-        authorityBacklinksFilter &&
-        languageFilter &&
-        useCaseFilter
-      ) {
-        domain.fadeIn().css("display", "grid");
-        domain.addClass("visible");
+      if (curPath !== "/premium-domain/") {
+        if (
+          priceFilter &&
+          catFilter &&
+          searchFilter &&
+          //maxPriceTypeFilter &&
+          daFilter &&
+          drFilter &&
+          liveRdFilter &&
+          ageFilter &&
+          extensionFilter &&
+          domainTypeFilter &&
+          authorityBacklinksFilter &&
+          languageFilter &&
+          useCaseFilter
+        ) {
+          domain.fadeIn().css("display", "grid");
+          domain.addClass("visible");
+        } else {
+          domain.hide();
+          domain.removeClass("visible");
+        }
       } else {
-        domain.hide();
-        domain.removeClass("visible");
+        if (catFilter) {
+          domain.fadeIn().css("display", "grid");
+          domain.addClass("visible");
+        } else {
+          domain.hide();
+          domain.removeClass("visible");
+        }
       }
     });
 
