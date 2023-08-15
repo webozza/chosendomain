@@ -51,30 +51,33 @@
             <div class="domain-inventory-sidebar">
 				
                <div class="domain-inventory-search-filters">
-				   <!-- Category Filter -->
-				   <div class="category-filter slide-accor">
+			   		<!-- Category Filter -->
+				   <div class="category-filter">
                         <div class="filter-title">
                             <h3>Product Categories</h3>
                         </div>
-						<div class="answer">
+						<div class="answer" style="display:block">
 							<div class="search-input-wrapper">
 								<input type="text" id="category_search" placeholder="Search Categories">
 								<span class="search-icon"></span>
 							</div>
-						
-                        <div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
-							<?php if(!empty($product_cats)) { 
-								foreach ($product_cats as $category) {?>
-								<a href="javascript:void(0)"> 
-								<label>
-									<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
-                                    <span><?= esc_html($category->name) ?></span> <br>
-								</label>
-								</a>
-								<?php
-								}
-							 } ?>
-                        </div>
+							<div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
+								<?php if(!empty($product_cats)) { 
+									foreach ($product_cats as $category) { ?>
+										<?php
+											$catObj = get_term_by('name', $category->name, 'product_cat');
+											$productCount = $catObj->count;
+										?>
+										<a href="javascript:void(0)"> 
+											<label>
+												<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
+												<span><?= esc_html($category->name) ?> (<?= $productCount ?>)</span> <br>
+											</label>
+										</a>
+									<?php
+									}
+								} ?>
+							</div>
 						</div>
                     </div>
 			   </div>
