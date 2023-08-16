@@ -730,16 +730,31 @@
 					// }
 
 					// Detect when the user has scrolled to the bottom
-					$(window).scroll(async function() {
-						const scrollTop = $(this).scrollTop();
+					const productsPerPage = 10; // Number of products to show per page
+					let currentPage = 1; // Initial page number
 
-						let lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
-						console.log(scrollTop, lastProductOffset);
+					// Function to show the specified page of products
+					const showProductsPage = (page) => {
+						const startIndex = (page - 1) * productsPerPage;
+						const endIndex = startIndex + productsPerPage;
+
+						$('.product-box').hide(); // Hide all product boxes
+						$('.product-box').slice(startIndex, endIndex).show(); // Show the products for the current page
+					};
+
+					// Initial page load: show the first page of products
+					showProductsPage(currentPage);
+
+					// Fetch and append products when user scrolls to the bottom
+					$(window).scroll(async function () {
+						const scrollTop = $(this).scrollTop();
+						const lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
 
 						if (scrollTop >= lastProductOffset) {
-							lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
-							fetchAndAppendProducts();
-							console.log('fishie....');
+						currentPage++; // Move to the next page
+						showProductsPage(currentPage); // Show the products for the next page
+						//fetchAndAppendProducts(); // Fetch and append more products if needed
+						console.log('Fetching more products...');
 						}
 					});
 				})
