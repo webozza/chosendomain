@@ -680,8 +680,28 @@
 				</div>
 			</div>
 			<script>
-				const productContainer = document.getElementById('product-container');
-				const loadingText = document.getElementById('loading-text');
+				jQuery(document).ready(function($) {
+					let revealDomain = () => {
+						$(".domain-name-revealer").click(function () {
+							let isLoggedIn = $("body").hasClass("logged-in");
+
+							let unobscuredDomainName = $(this)
+							.closest(".product-box")
+							.data("domain-name");
+
+							if (isLoggedIn) {
+							$(this)
+								.closest(".product-box")
+								.find(".obscured-domain-name")
+								.text(unobscuredDomainName);
+							} else {
+							$(".ast-account-action-login").click();
+							}
+						});
+					}
+
+					const productContainer = document.getElementById('product-container');
+					const loadingText = document.getElementById('loading-text');
 					let page = 1; // Initial page number
 					const productsPerPage = 10;
 
@@ -697,13 +717,13 @@
 								products_per_page: productsPerPage,
 							},
 							success: function(response) {
-							productContainer.insertAdjacentHTML('beforeend', response);
-							page++; // Increment the page number for the next fetch
-							loadingText.style.display = 'none'; // Hide the loading images
+								productContainer.insertAdjacentHTML('beforeend', response);
+								page++; // Increment the page number for the next fetch
+								loadingText.style.display = 'none'; // Hide the loading images
 							},
 							error: function(error) {
-							console.error(error);
-							loadingText.style.display = 'none'; // Hide the loading text in case of an error
+								console.error(error);
+								loadingText.style.display = 'none'; // Hide the loading text in case of an error
 							}
 						});
 						revealDomain();
@@ -712,15 +732,14 @@
 					// Detect when the user has scrolled to the bottom
 					window.addEventListener('scroll', () => {
 					const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-					if (scrollTop + clientHeight >= scrollHeight - 10) {
-						fetchAndAppendProducts();
-					}
+						if (scrollTop + clientHeight >= scrollHeight - 10) {
+							fetchAndAppendProducts();
+						}
 					});
 
 					// Initial fetch
 					fetchAndAppendProducts();
-
+				})
 			</script>
         </div>
 

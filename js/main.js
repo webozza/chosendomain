@@ -622,23 +622,20 @@ jQuery(document).ready(function ($) {
   };
 
   //---------------- Reveal domain name ------------
-  let revealDomain = () => {
-    $(".domain-name-revealer").click(function () {
-      let isLoggedIn = $("body").hasClass("logged-in");
+  $(".domain-name-revealer").click(function () {
+    let isLoggedIn = $("body").hasClass("logged-in");
 
-      let unobscuredDomainName = $(this)
+    let unobscuredDomainName = $(this)
+      .closest(".product-box")
+      .data("domain-name");
+
+    if (isLoggedIn) {
+      $(this)
         .closest(".product-box")
-        .data("domain-name");
-
-      if (isLoggedIn) {
-        $(this)
-          .closest(".product-box")
-          .find(".obscured-domain-name")
-          .text(unobscuredDomainName);
-      } else {
-        $(".ast-account-action-login").click();
-      }
-    });
-  };
-  revealDomain();
+        .find(".obscured-domain-name")
+        .text(unobscuredDomainName);
+    } else {
+      $(".ast-account-action-login").click();
+    }
+  });
 });
