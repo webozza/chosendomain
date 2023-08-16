@@ -7,7 +7,7 @@
 <?php
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => 10,
+        'posts_per_page' => 9,
     );
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();
@@ -706,6 +706,7 @@
 							loadingText.style.display = 'none'; // Hide the loading text in case of an error
 							}
 						});
+						revealDomain();
 					}
 
 					// Detect when the user has scrolled to the bottom
