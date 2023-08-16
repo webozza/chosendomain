@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.42' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.44' );
 
 /**
  * Enqueue styles
@@ -31,8 +31,8 @@ add_action( 'wp_enqueue_scripts', 'custom_scripts');
 // Change WooCommerce "Related products" textadd_filter('gettext', 'change_rp_text', 10, 3);add_filter('ngettext', 'change_rp_text', 10, 3);function change_rp_text($translated, $text, $domain){     if ($text === 'Related product' && $domain === 'woocommerce') {         $translated = esc_html__('Similar Domains', $domain);     }     return $translated;}
 
 // -------------------- load more -------------
-//add_action('wp_ajax_load_more_posts', 'load_more_posts');
-//add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_load_more_posts', 'load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts() {
     $page = $_POST['page'];
