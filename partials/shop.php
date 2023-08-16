@@ -681,80 +681,65 @@
 			</div>
 			<script>
 				jQuery(document).ready(function($) {
-					// let revealDomain = () => {
-					// 	$(".domain-name-revealer").click(function () {
-					// 		let isLoggedIn = $("body").hasClass("logged-in");
+					let revealDomain = () => {
+						$(".domain-name-revealer").click(function () {
+							let isLoggedIn = $("body").hasClass("logged-in");
 
-					// 		let unobscuredDomainName = $(this)
-					// 		.closest(".product-box")
-					// 		.data("domain-name");
+							let unobscuredDomainName = $(this)
+							.closest(".product-box")
+							.data("domain-name");
 
-					// 		if (isLoggedIn) {
-					// 		$(this)
-					// 			.closest(".product-box")
-					// 			.find(".obscured-domain-name")
-					// 			.text(unobscuredDomainName);
-					// 		} else {
-					// 		$(".ast-account-action-login").click();
-					// 		}
-					// 	});
-					// }
+							if (isLoggedIn) {
+							$(this)
+								.closest(".product-box")
+								.find(".obscured-domain-name")
+								.text(unobscuredDomainName);
+							} else {
+							$(".ast-account-action-login").click();
+							}
+						});
+					}
 
-					// const productContainer = document.getElementById('product-container');
-					// const loadingText = document.getElementById('loading-text');
-					// let page = 1; // Initial page number
+					const productContainer = document.getElementById('product-container');
+					const loadingText = document.getElementById('loading-text');
+					let page = 2; // Initial page number
 
-					// async function fetchAndAppendProducts() {
-					// 	loadingText.style.display = 'block'; // Show the loading images
-					// 	jQuery.ajax({
-					// 		url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-					// 		type: 'POST',
-					// 		data: {
-					// 			action: 'load_more_posts',
-					// 			page: page,
-					// 			base_url: window.location.pathname,
-					// 		},
-					// 		success: function(response) {
-					// 			productContainer.innerHTML = ''; // Clear existing content
-					// 			productContainer.insertAdjacentHTML('beforeend', response);
-					// 			page++;
-					// 			loadingText.style.display = 'none';
-					// 			revealDomain(); // Move this line here
-					// 		},
-					// 		error: function(error) {
-					// 			console.error(error);
-					// 			loadingText.style.display = 'none';
-					// 		}
-					// 	});
-					// 	revealDomain();
-					// }
+					async function fetchAndAppendProducts() {
+						loadingText.style.display = 'block'; // Show the loading images
+						jQuery.ajax({
+							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
+							type: 'POST',
+							data: {
+								action: 'load_more_posts',
+								page: page,
+								base_url: window.location.pathname,
+							},
+							success: function(response) {
+								productContainer.innerHTML = ''; // Clear existing content
+								productContainer.insertAdjacentHTML('beforeend', response);
+								page++;
+								loadingText.style.display = 'none';
+								revealDomain(); // Move this line here
+							},
+							error: function(error) {
+								console.error(error);
+								loadingText.style.display = 'none';
+							}
+						});
+						revealDomain();
+					}
 
 					// Detect when the user has scrolled to the bottom
-					const productsPerPage = 10; // Number of products to show per page
-					let currentPage = 1; // Initial page number
-
-					// Function to show the specified page of products
-					const showProductsPage = (page) => {
-						const startIndex = (page - 1) * productsPerPage;
-						const endIndex = startIndex + productsPerPage;
-
-						$('.product-box').hide(); // Hide all product boxes
-						$('.product-box').slice(startIndex, endIndex).show(); // Show the products for the current page
-					};
-
-					// Initial page load: show the first page of products
-					showProductsPage(currentPage);
-
-					// Fetch and append products when user scrolls to the bottom
-					$(window).scroll(async function () {
+					$(window).scroll(async function() {
 						const scrollTop = $(this).scrollTop();
-						const lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
+
+						let lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
+						console.log(scrollTop, lastProductOffset);
 
 						if (scrollTop >= lastProductOffset) {
-						currentPage++; // Move to the next page
-						showProductsPage(currentPage); // Show the products for the next page
-						//fetchAndAppendProducts(); // Fetch and append more products if needed
-						console.log('Fetching more products...');
+							lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
+							fetchAndAppendProducts();
+							console.log('fishie....');
 						}
 					});
 				})
