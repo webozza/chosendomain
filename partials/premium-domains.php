@@ -35,7 +35,7 @@
     }
 ?>
 
-<div class="domain-section">
+<div class="domain-section premium-domain-section">
     <div class="domain-inventory-wrap premium-domain">
 
         <!-- Domain Inventory Search Box -->
