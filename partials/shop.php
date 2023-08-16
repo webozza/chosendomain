@@ -702,7 +702,7 @@
 
 					const productContainer = document.getElementById('product-container');
 					const loadingText = document.getElementById('loading-text');
-					let page = 2; // Initial page number
+					let page = 1; // Initial page number
 					const productsPerPage = 10;
 
 					function fetchAndAppendProducts() {
@@ -730,9 +730,13 @@
 					}
 
 					// Detect when the user has scrolled to the bottom
-					window.addEventListener('scroll', () => {
-					const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-						if (scrollTop + clientHeight >= scrollHeight - 10) {
+					$(window).scroll(function() {
+						const scrollTop = $(window).scrollTop();
+						const scrollHeight = $(document).height();
+						const windowHeight = $(window).height();
+						console.log(scrollTop, scrollHeight, windowHeight);
+
+						if (scrollTop + windowHeight >= scrollHeight - 10) {
 							fetchAndAppendProducts();
 						}
 					});
