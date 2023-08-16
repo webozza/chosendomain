@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.38' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.39' );
 
 /**
  * Enqueue styles
@@ -36,12 +36,14 @@ add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 function load_more_posts() {
     $page = $_POST['page'];
-    $posts_per_page = 10; // Number of products per page
-    $offset = $page * $posts_per_page; // Calculate offset based on page number
+	$posts_per_page = 10; // Number of products per page
+	$total_fetched_posts = $posts_per_page * $page;
+	$offset = $total_fetched_posts + $posts_per_page;
+	
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => $posts_per_page,
-        'offset' => $offset, // Set the offset
+        //'offset' => $offset, // Set the offset
     );
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();

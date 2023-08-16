@@ -702,47 +702,46 @@
 
 					const productContainer = document.getElementById('product-container');
 					const loadingText = document.getElementById('loading-text');
-					let page = 1; // Initial page number
-					const productsPerPage = 10;
+					let page = 2; // Initial page number
 
-					function fetchAndAppendProducts() {
+					async function fetchAndAppendProducts() {
 						loadingText.style.display = 'block'; // Show the loading images
 						jQuery.ajax({
-							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
+							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
 							type: 'POST',
 							data: {
-								action: 'load_more_posts', // Custom AJAX action
+								action: 'load_more_posts',
 								page: page,
 								base_url: window.location.pathname,
-								products_per_page: productsPerPage,
 							},
 							success: function(response) {
+								productContainer.innerHTML = ''; // Clear existing content
 								productContainer.insertAdjacentHTML('beforeend', response);
-								page++; // Increment the page number for the next fetch
-								loadingText.style.display = 'none'; // Hide the loading images
+								page++;
+								loadingText.style.display = 'none';
+								revealDomain(); // Move this line here
 							},
 							error: function(error) {
 								console.error(error);
-								loadingText.style.display = 'none'; // Hide the loading text in case of an error
+								loadingText.style.display = 'none';
 							}
 						});
 						revealDomain();
 					}
 
 					// Detect when the user has scrolled to the bottom
-					$(window).scroll(function() {
-						const scrollTop = $(window).scrollTop();
-						const scrollHeight = $(document).height();
-						const windowHeight = $(window).height();
-						console.log(scrollTop, scrollHeight, windowHeight);
+					$(window).scroll(async function() {
+						const scrollTop = $(this).scrollTop();
 
-						if (scrollTop + windowHeight >= scrollHeight - 10) {
-							//fetchAndAppendProducts();
+						let lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
+						console.log(scrollTop, lastProductOffset);
+
+						if (scrollTop >= lastProductOffset) {
+							lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
+							fetchAndAppendProducts();
+							console.log('fishie....');
 						}
 					});
-
-					// Initial fetch
-					fetchAndAppendProducts();
 				})
 			</script>
         </div>
