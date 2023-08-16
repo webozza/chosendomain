@@ -702,7 +702,7 @@
 
 					const productContainer = document.getElementById('product-container');
 					const loadingText = document.getElementById('loading-text');
-					let page = 1; // Initial page number
+					let page = 2; // Initial page number
 					const productsPerPage = 10;
 
 					function fetchAndAppendProducts() {
