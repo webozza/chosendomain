@@ -737,7 +737,7 @@
 						console.log(scrollTop, scrollHeight, windowHeight);
 
 						if (scrollTop + windowHeight >= scrollHeight - 10) {
-							fetchAndAppendProducts();
+							//fetchAndAppendProducts();
 						}
 					});
 
