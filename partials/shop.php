@@ -10,8 +10,8 @@
         'posts_per_page' => 10,
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
     );
-    $product_query = new WC_Product_Query($args);
-    $products = $product_query->get_products();
+    $product_query = new WP_Query($args); // Use WP_Query for standard pagination
+	$products = $product_query->posts;
 
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
