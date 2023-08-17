@@ -588,7 +588,7 @@ jQuery(document).ready(function ($) {
     }, 600);
   };
 
-  let applyFiltersWithAjaxWithAjax = (searchTerm) => {
+  let applyFiltersWithAjax = (searchTerm) => {
     // Gather your filter data here, e.g., minPrice, maxPrice, selectedCats, etc.
     let filterData = {
       minPrice: parseFloat($(".price-range-min").val()),
