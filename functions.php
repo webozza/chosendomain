@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.56' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.57' );
 
 /**
  * Enqueue styles
@@ -215,7 +215,7 @@ function load_more_products() {
 		}
 	} else {
 		// no more products to load
-		echo 'no more products to load...';
+		// echo 'no more products to load...';
 	}
 	wp_reset_postdata();
     die();
