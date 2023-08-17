@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.69' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.70' );
 
 /**
  * Enqueue styles
@@ -26,15 +26,15 @@ add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 function custom_scripts() {
 	wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 	wp_enqueue_script( 'nouislider', get_stylesheet_directory_uri() . '/js/nouislider.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION );
+	wp_localize_script('main', 'my_ajax_obj', array(
+		'ajax_url' => admin_url('admin-ajax.php'),
+		'nonce' => $nonce,
+	));
 }
 add_action( 'wp_enqueue_scripts', 'custom_scripts');
 
 function ajax_nonce() {
 	$nonce = wp_create_nonce('my_nonce_action');
-	wp_localize_script('main', 'my_ajax_obj', array(
-		'ajax_url' => admin_url('admin-ajax.php'),
-		'nonce' => $nonce,
-	));
 }
 add_action('init', 'ajax_nonce');
 
