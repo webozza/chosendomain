@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.67' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.68' );
 
 /**
  * Enqueue styles
@@ -31,7 +31,7 @@ add_action( 'wp_enqueue_scripts', 'custom_scripts');
 
 function ajax_nonce() {
 	$nonce = wp_create_nonce('my_nonce_action');
-	wp_localize_script('your-script-handle', 'my_ajax_obj', array(
+	wp_localize_script('main', 'my_ajax_obj', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
 		'nonce' => $nonce,
 	));
