@@ -31,6 +31,8 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
 <?php wp_head(); ?>
 <?php astra_head_bottom(); ?>
 <script src="https://kit.fontawesome.com/cbc1e52f7c.js" crossorigin="anonymous"></script>
+
+<script>let cd_nonce = "<?= wp_create_nonce('my_nonce_action'); ?>";</script>
 </head>
 
 <body <?php astra_schema_body(); ?> <?php body_class(); ?>>
