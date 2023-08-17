@@ -685,7 +685,7 @@
 				jQuery(document).ready(function($) {
 					let loading = false;
 					let page = 2; // Initial page number
-					let hasMorePosts = true; // Flag to track if there are more posts to load
+					let hasMoreProducts = true; // Flag to track if there are more products to load
 
 					let revealDomain = () => {
 						$(".domain-name-revealer").click(function () {
@@ -718,7 +718,7 @@
 					const loadingText = document.getElementById('loading-text');
 
 					$('.load--more').click(function() {
-						if (loading || !hasMorePosts) return;
+						if (loading || !hasMoreProducts) return;
 						loading = true;
 						loadingText.style.display = 'block';
 
@@ -727,7 +727,7 @@
 								url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
 								type: 'POST',
 								data: {
-									action: 'load_more_posts',
+									action: 'load_more_products',
 									page: page,
 									base_url: window.location.pathname,
 								},
@@ -746,7 +746,7 @@
 
 						ajaxPromise.then(response => {
 							if (response.trim() === '') {
-								hasMorePosts = false; // No more posts to load
+								hasMoreProducts = false; // No more products to load
 								disableButton();
 								return;
 							}
@@ -761,9 +761,9 @@
 					});
 
 					// Detect when the user has scrolled to the bottom
-					let loadingMore = false; // Track if loading more posts
+					let loadingMore = false; // Track if loading more products
 					$(window).scroll(async function() {
-						if (loadingMore || !hasMorePosts) return;
+						if (loadingMore || !hasMoreProducts) return;
 
 						const scrollTop = $(this).scrollTop();
 						const lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
