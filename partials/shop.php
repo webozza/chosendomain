@@ -683,6 +683,8 @@
 			</div>
 			<script>
 				jQuery(document).ready(function($) {
+					let loading = false;
+
 					let revealDomain = () => {
 						$(".domain-name-revealer").click(function () {
 							let isLoggedIn = $("body").hasClass("logged-in");
@@ -712,30 +714,43 @@
 
 					const productContainer = document.getElementById('product-container');
 					const loadingText = document.getElementById('loading-text');
-					let page = 1; // Initial page number
+					let page = 2;
 
 					$('.load--more').click(function() {
-						loadingText.style.display = 'block'; // Show the loading images
-						jQuery.ajax({
-							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-							type: 'POST',
-							data: {
-								action: 'load_more_posts',
-								page: page,
-								base_url: window.location.pathname,
-							},
-							success: function(response) {
-								productContainer.innerHTML = ''; // Clear existing content
-								productContainer.insertAdjacentHTML('beforeend', response);
-								page++;
-								loadingText.style.display = 'none';
-								revealDomain(); // Move this line here
-								enableButton();
-							},
-							error: function(error) {
-								console.error(error);
-								loadingText.style.display = 'none';
-							}
+						if (loading) return;
+        				loading = true;
+						loadingText.style.display = 'block';
+
+						const ajaxPromise = new Promise((resolve, reject) => {
+							jQuery.ajax({
+								url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
+								type: 'POST',
+								data: {
+									action: 'load_more_posts',
+									page: page,
+									base_url: window.location.pathname,
+								},
+								success: function(response) {
+									resolve(response);
+								},
+								error: function(error) {
+									reject(error);
+								},
+								complete: function() {
+									loadingText.style.display = 'none';
+									loading = false; // Set loading to false after request completes
+								}
+							});
+						});
+
+						ajaxPromise.then(response => {
+							productContainer.innerHTML = ''; // Clear existing content
+							productContainer.insertAdjacentHTML('beforeend', response);
+							page++;
+							revealDomain();
+							//enableButton(); // You can enable the button here if needed
+						}).catch(error => {
+							console.error(error);
 						});
 					});
 
