@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.65' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.66' );
 
 /**
  * Enqueue styles
@@ -28,6 +28,15 @@ function custom_scripts() {
 	wp_enqueue_script( 'nouislider', get_stylesheet_directory_uri() . '/js/nouislider.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'custom_scripts');
+
+function ajax_nonce() {
+	$nonce = wp_create_nonce('my_nonce_action');
+	wp_localize_script('your-script-handle', 'my_ajax_obj', array(
+		'ajax_url' => admin_url('admin-ajax.php'),
+		'nonce' => $nonce,
+	));
+}
+add_action('init', 'ajax_nonce');
 
 /**
  * Ajax filter
