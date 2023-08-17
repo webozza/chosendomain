@@ -8,6 +8,7 @@
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 10,
+		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
     );
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();
@@ -215,107 +216,47 @@
                             <i class="fa-solid fa-circle-info"></i>
                         </div>
 						<div class="answer">
-
 							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
-									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
-									data-sf-meta-type="number">
-
-									<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
-										data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
-										data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
-										data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
-										class="sf-meta-range sf-meta-range-slider">
-										<div class="price-range-inputs">
-											<label>
-												<input class="sf-input-range-number sf-range-min dr-range-min sf-input-number" min="0"
-													max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
-											</label>
-											<span class="sf-range-values-separator"></span>
-											<label>
-												<input class="sf-input-range-number sf-range-max dr-range-max sf-input-number" min="0"
-													max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
-													title="">
-											</label>
-										</div>
-										<div class="meta-slider noUi-target noUi-ltr noUi-horizontal dr-slider">
-											<div class="noUi-base">
-												<div class="noUi-connects">
-													<div class="noUi-connect"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
-												</div>
+								data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
+								data-sf-meta-type="number">
+								<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+									data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+									data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+									data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+									class="sf-meta-range sf-meta-range-slider">
+									<div class="price-range-inputs">
+										<label>
+											<input class="sf-input-range-number sf-range-min dr-range-min sf-input-number" min="0"
+												max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+										</label>
+										<span class="sf-range-values-separator"></span>
+										<label>
+											<input class="sf-input-range-number sf-range-max dr-range-max sf-input-number" min="0"
+												max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
+												title="">
+										</label>
+									</div>
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal dr-slider">
+										<div class="noUi-base">
+											<div class="noUi-connects">
+												<div class="noUi-connect"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 						</div>
 					</div>
-					
-					
-					<!-- PA Range Filter -->
-					<!-- <div class="slide-accor"> 
-						<div class="filter-title">
-                            <h3>PA</h3>
-                            <i class="fa-solid fa-circle-info"></i>
-                        </div>
-						<div class="answer">
-
-							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
-									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
-									data-sf-meta-type="number">
-
-									<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
-										data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
-										data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
-										data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
-										class="sf-meta-range sf-meta-range-slider">
-										<div class="price-range-inputs">
-											<label>
-												<input class="sf-input-range-number sf-range-min da-range-min sf-input-number" min="0"
-													max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
-											</label>
-											<span class="sf-range-values-separator"></span>
-											<label>
-												<input class="sf-input-range-number sf-range-max da-range-max sf-input-number" min="0"
-													max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
-													title="">
-											</label>
-										</div>
-										<div class="meta-slider noUi-target noUi-ltr noUi-horizontal da-slider">
-											<div class="noUi-base">
-												<div class="noUi-connects">
-													<div class="noUi-connect"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-						</div>
-					</div> -->
-
-
-
-					
-
-
                     <!-- Live RD Range Filter -->
 					<div class="slide-accor"> 
 						<div class="filter-title">
@@ -608,175 +549,91 @@
 							} else {
 								$uses = $use_cases[0];
 							}
-					?>
-				<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
-					<div class="product-details">
-						<div class="product-head">
-							<div class="product-img">
-								<?php if ($product_image_url) { ?>
-									<img src="<?= $product_image_url ?>" alt="product image">
-								<?php } else { ?>
-									<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
-								<?php } ?>
-							</div>
-							<div class="product-title"> 
-								<label> 
-                                    <input class="script-ignore" type="checkbox" value="" id="title"> 
-                                    <span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
-                                <label> 
-                                <br>
-                                <div class="description hidden">
-                                    <a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
-                                    <span><?= $product_description?></span>
-                                </div>
-                                <div class="domain-name-revealer">
-                                    <i class="flaticon-eye"></i>
-                                </div>
-							</div>
-						</div>
-						<div class="product-body">
-							<div class="catgories"> 
-								<?php foreach($product_categories as $catagory) { ?>
-									<span><?= $catagory?></span>
-								<?php }?>
-									 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
-							</div>
-							<ul>
-								<li> <span class="da"><?= $da ?></span> DA </li>
-								<li> <span class="pa"><?= $pa ?></span> PA </li>
-								<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
-								<li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
-								<li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
-								<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
-								<li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
-							</ul>
-						</div>
-					</div>
-					<div class="product-card">
-						<h2>$<?= $price ?> </h2>
-						<ul>
-							<li>
-								<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
-							</li>
-							<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
-						</ul>
-					</div>
-				</div>
-                <?php
+
+							?>
+								<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+									<div class="product-details">
+										<div class="product-head">
+											<div class="product-img">
+												<?php if ($product_image_url) { ?>
+													<img src="<?= $product_image_url ?>" alt="product image">
+												<?php } else { ?>
+													<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
+												<?php } ?>
+											</div>
+											<div class="product-title"> 
+												<label> 
+													<input class="script-ignore" type="checkbox" value="" id="title"> 
+													<span class="obscured-domain-name"> <?= obscureDomain($product_title) ?> </span> 
+												<label> 
+												<br>
+												<div class="description hidden">
+													<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+													<span><?= $product_description?></span>
+												</div>
+												<div class="domain-name-revealer">
+													<i class="flaticon-eye"></i>
+												</div>
+											</div>
+										</div>
+										<div class="product-body">
+											<div class="catgories"> 
+												<?php foreach($product_categories as $catagory) { ?>
+													<span><?= $catagory?></span>
+												<?php }?>
+													<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+											</div>
+											<ul>
+												<li> <span class="da"><?= $da ?></span> DA </li>
+												<li> <span class="pa"><?= $pa ?></span> PA </li>
+												<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
+												<li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
+												<li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
+												<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
+												<li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
+											</ul>
+										</div>
+									</div>
+									<div class="product-card">
+										<h2>$<?= $price ?> </h2>
+										<ul>
+											<li>
+												<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+											</li>
+											<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+										</ul>
+									</div>
+								</div>
+							<?php
 						}
+
+						// Pagination
+						$pagination_args = array(
+							'base' => add_query_arg('paged', '%#%'),
+							'format' => '',
+							'total' => $product_query->max_num_pages,
+							'current' => max(1, get_query_var('paged')),
+							'show_all' => false,
+							'end_size' => 1,
+							'mid_size' => 2,
+							'prev_next' => true,
+							'prev_text' => __('&laquo; Previous'),
+							'next_text' => __('Next &raquo;'),
+						);
+
+						echo '<div class="pagination">' . paginate_links($pagination_args) . '</div>';
 					} else {
 						echo 'No products found.';
 					}
 					?>
-
                 <div class="no-results-found" style="display:none;">
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
             </div>
-			<!-- LOAD MORE BUTTON -->
-			<button style="display:none;" class="load--more">LOAD MORE</button>
-			<!-- LOAD MORE SECTION -->
-			<div class="load-more-container">
-				<div id="loading-text" style="display: none;">
-					<img src="<?= get_site_url() . '/wp-content/uploads/2023/08/imgpsh_fullsize_anim.gif'?>" alt="">
-				</div>
-			</div>
+			
 			<script>
 				jQuery(document).ready(function($) {
-					let loading = false;
-					let page = 2; // Initial page number
-					let hasMoreProducts = true; // Flag to track if there are more products to load
-
-					let revealDomain = () => {
-						$(".domain-name-revealer").click(function () {
-							let isLoggedIn = $("body").hasClass("logged-in");
-
-							let unobscuredDomainName = $(this)
-							.closest(".product-box")
-							.data("domain-name");
-
-							if (isLoggedIn) {
-							$(this)
-								.closest(".product-box")
-								.find(".obscured-domain-name")
-								.text(unobscuredDomainName);
-							} else {
-							$(".ast-account-action-login").click();
-							}
-						});
-					}
-
-					let disableButton = () => {
-						$('.load--more').attr("disabled", true);
-					}
-
-					let enableButton = () => {
-						$('.load--more').attr("disabled", false);
-					}
-
-					const productContainer = document.getElementById('product-container');
-					const loadingText = document.getElementById('loading-text');
-
-					$('.load--more').click(function() {
-						if (loading || !hasMoreProducts) return;
-						loading = true;
-						loadingText.style.display = 'block';
-
-						const ajaxPromise = new Promise((resolve, reject) => {
-							jQuery.ajax({
-								url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-								type: 'POST',
-								data: {
-									action: 'load_more_products',
-									page: page,
-									base_url: window.location.pathname,
-								},
-								success: function(response) {
-									resolve(response);
-								},
-								error: function(error) {
-									reject(error);
-								},
-								complete: function() {
-									loadingText.style.display = 'none';
-									loading = false;
-								}
-							});
-						});
-
-						ajaxPromise.then(response => {
-							if (response.trim() === '') {
-								hasMoreProducts = false; // No more products to load
-								disableButton();
-								return;
-							}
-
-							// Append new content to the container
-							productContainer.insertAdjacentHTML('beforeend', response);
-							page++;
-							revealDomain();
-						}).catch(error => {
-							console.error(error);
-						});
-					});
-
-					// Detect when the user has scrolled to the bottom
-					let loadingMore = false; // Track if loading more products
-					$(window).scroll(async function() {
-						if (loadingMore || !hasMoreProducts) return;
-
-						const scrollTop = $(this).scrollTop();
-						const lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
-
-						if (scrollTop >= lastProductOffset) {
-							loadingMore = true;
-							$('.load--more').click();
-							disableButton();
-							setTimeout(() => {
-								loadingMore = false; // Reset loadingMore after a short delay
-							}, 1000);
-						}
-					});
+					// will do something.....
 				});
 			</script>
         </div>
