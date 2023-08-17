@@ -703,16 +703,16 @@
 					}
 
 					let disableButton = () => {
-						$('.load--more').setAttribute("disabled", true);
+						$('.load--more').attr("disabled", true);
 					}
 
 					let enableButton = () => {
-						$('.load--more').setAttribute("disabled", false);
+						$('.load--more').attr("disabled", false);
 					}
 
 					const productContainer = document.getElementById('product-container');
 					const loadingText = document.getElementById('loading-text');
-					let page = 2; // Initial page number
+					let page = 1; // Initial page number
 
 					$('.load--more').click(function() {
 						loadingText.style.display = 'block'; // Show the loading images
@@ -730,15 +730,14 @@
 								page++;
 								loadingText.style.display = 'none';
 								revealDomain(); // Move this line here
+								enableButton();
 							},
 							error: function(error) {
 								console.error(error);
 								loadingText.style.display = 'none';
 							}
 						});
-						revealDomain();
-						enableButton();
-					})
+					});
 
 					// Detect when the user has scrolled to the bottom
 					$(window).scroll(async function() {
