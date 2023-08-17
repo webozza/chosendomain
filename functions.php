@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.49' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.51' );
 
 /**
  * Enqueue styles
@@ -43,7 +43,7 @@ function load_more_posts() {
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => $posts_per_page,
-        //'offset' => $offset, // Set the offset
+        'offset' => $offset, // Set the offset
     );
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();
