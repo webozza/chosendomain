@@ -673,6 +673,8 @@
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
             </div>
+			<!-- LOAD MORE BUTTON -->
+			<button class="load--more">LOAD MORE</button>
 			<!-- LOAD MORE SECTION -->
 			<div class="load-more-container">
 				<div id="loading-text" style="display: none;">
@@ -700,11 +702,19 @@
 						});
 					}
 
+					let disableButton = () => {
+						$('.load--more').setAttribute("disabled", true);
+					}
+
+					let enableButton = () => {
+						$('.load--more').setAttribute("disabled", false);
+					}
+
 					const productContainer = document.getElementById('product-container');
 					const loadingText = document.getElementById('loading-text');
 					let page = 2; // Initial page number
 
-					async function fetchAndAppendProducts() {
+					$('.load--more').click(function() {
 						loadingText.style.display = 'block'; // Show the loading images
 						jQuery.ajax({
 							url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
@@ -727,7 +737,8 @@
 							}
 						});
 						revealDomain();
-					}
+						enableButton();
+					})
 
 					// Detect when the user has scrolled to the bottom
 					$(window).scroll(async function() {
@@ -738,8 +749,8 @@
 
 						if (scrollTop >= lastProductOffset) {
 							lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
-							fetchAndAppendProducts();
-							console.log('fishie....');
+							$('.load--more').click();
+							disableButton();
 						}
 					});
 				})
