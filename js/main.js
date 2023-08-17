@@ -600,7 +600,7 @@ jQuery(document).ready(function ($) {
 
     $.ajax({
       type: "POST",
-      url: '<?php echo esc_url(admin_url("admin-ajax.php", "https")); ?>',
+      url: "/wp-admin/admin-ajax.php",
       data: {
         action: "apply_filters_ajax", // The action name for your server-side function
         filterData: filterData,
