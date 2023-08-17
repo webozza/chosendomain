@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.53' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.54' );
 
 /**
  * Enqueue styles
@@ -46,6 +46,11 @@ function load_more_posts() {
 
     $product_query = new WC_Product_Query($args);
     $products = $product_query->get_products();
+
+    if (empty($products)) {
+        echo ''; // No more posts to load
+        die();
+    }
 
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy

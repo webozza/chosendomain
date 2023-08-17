@@ -682,96 +682,102 @@
 				</div>
 			</div>
 			<script>
-					jQuery(document).ready(function($) {
-						let loading = false;
-						let page = 2; // Initial page number
+				jQuery(document).ready(function($) {
+					let loading = false;
+					let page = 2; // Initial page number
+					let hasMorePosts = true; // Flag to track if there are more posts to load
 
-						let revealDomain = () => {
-							$(".domain-name-revealer").click(function () {
-								let isLoggedIn = $("body").hasClass("logged-in");
+					let revealDomain = () => {
+						$(".domain-name-revealer").click(function () {
+							let isLoggedIn = $("body").hasClass("logged-in");
 
-								let unobscuredDomainName = $(this)
+							let unobscuredDomainName = $(this)
+							.closest(".product-box")
+							.data("domain-name");
+
+							if (isLoggedIn) {
+							$(this)
 								.closest(".product-box")
-								.data("domain-name");
-
-								if (isLoggedIn) {
-								$(this)
-									.closest(".product-box")
-									.find(".obscured-domain-name")
-									.text(unobscuredDomainName);
-								} else {
-								$(".ast-account-action-login").click();
-								}
-							});
-						}
-
-						let disableButton = () => {
-							$('.load--more').attr("disabled", true);
-						}
-
-						let enableButton = () => {
-							$('.load--more').attr("disabled", false);
-						}
-
-						const productContainer = document.getElementById('product-container');
-						const loadingText = document.getElementById('loading-text');
-
-						$('.load--more').click(function() {
-							if (loading) return;
-							loading = true;
-							loadingText.style.display = 'block';
-
-							const ajaxPromise = new Promise((resolve, reject) => {
-								jQuery.ajax({
-									url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-									type: 'POST',
-									data: {
-										action: 'load_more_posts',
-										page: page,
-										base_url: window.location.pathname,
-									},
-									success: function(response) {
-										resolve(response);
-									},
-									error: function(error) {
-										reject(error);
-									},
-									complete: function() {
-										loadingText.style.display = 'none';
-										loading = false;
-										enableButton(); // Re-enable the button after request completes
-									}
-								});
-							});
-
-							ajaxPromise.then(response => {
-								// Append new content to the container
-								productContainer.insertAdjacentHTML('beforeend', response);
-								page++;
-								revealDomain();
-							}).catch(error => {
-								console.error(error);
-							});
-						});
-
-						// Detect when the user has scrolled to the bottom
-						let loadingMore = false; // Track if loading more posts
-						$(window).scroll(async function() {
-							if (loadingMore) return;
-
-							const scrollTop = $(this).scrollTop();
-							const lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
-
-							if (scrollTop >= lastProductOffset) {
-								loadingMore = true;
-								$('.load--more').click();
-								disableButton();
-								setTimeout(() => {
-									loadingMore = false; // Reset loadingMore after a short delay
-								}, 1000);
+								.find(".obscured-domain-name")
+								.text(unobscuredDomainName);
+							} else {
+							$(".ast-account-action-login").click();
 							}
 						});
+					}
+
+					let disableButton = () => {
+						$('.load--more').attr("disabled", true);
+					}
+
+					let enableButton = () => {
+						$('.load--more').attr("disabled", false);
+					}
+
+					const productContainer = document.getElementById('product-container');
+					const loadingText = document.getElementById('loading-text');
+
+					$('.load--more').click(function() {
+						if (loading || !hasMorePosts) return;
+						loading = true;
+						loadingText.style.display = 'block';
+
+						const ajaxPromise = new Promise((resolve, reject) => {
+							jQuery.ajax({
+								url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
+								type: 'POST',
+								data: {
+									action: 'load_more_posts',
+									page: page,
+									base_url: window.location.pathname,
+								},
+								success: function(response) {
+									resolve(response);
+								},
+								error: function(error) {
+									reject(error);
+								},
+								complete: function() {
+									loadingText.style.display = 'none';
+									loading = false;
+								}
+							});
+						});
+
+						ajaxPromise.then(response => {
+							if (response.trim() === '') {
+								hasMorePosts = false; // No more posts to load
+								disableButton();
+								return;
+							}
+
+							// Append new content to the container
+							productContainer.insertAdjacentHTML('beforeend', response);
+							page++;
+							revealDomain();
+						}).catch(error => {
+							console.error(error);
+						});
 					});
+
+					// Detect when the user has scrolled to the bottom
+					let loadingMore = false; // Track if loading more posts
+					$(window).scroll(async function() {
+						if (loadingMore || !hasMorePosts) return;
+
+						const scrollTop = $(this).scrollTop();
+						const lastProductOffset = $('.product-box').eq(-1).offset().top - 150;
+
+						if (scrollTop >= lastProductOffset) {
+							loadingMore = true;
+							$('.load--more').click();
+							disableButton();
+							setTimeout(() => {
+								loadingMore = false; // Reset loadingMore after a short delay
+							}, 1000);
+						}
+					});
+				});
 			</script>
         </div>
 
