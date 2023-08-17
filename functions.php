@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.55' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.56' );
 
 /**
  * Enqueue styles
@@ -34,7 +34,7 @@ add_action( 'wp_enqueue_scripts', 'custom_scripts');
 add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
-function load_more_products() {
+function load_more_posts() {
     $page = $_POST['page'];
     $posts_per_page = 10; // Number of products per page
 
