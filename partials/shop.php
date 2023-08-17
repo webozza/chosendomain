@@ -674,7 +674,7 @@
                 </div>
             </div>
 			<!-- LOAD MORE BUTTON -->
-			<button class="load--more">LOAD MORE</button>
+			<button style="display:none;" class="load--more">LOAD MORE</button>
 			<!-- LOAD MORE SECTION -->
 			<div class="load-more-container">
 				<div id="loading-text" style="display: none;">
