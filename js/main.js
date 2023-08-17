@@ -204,7 +204,7 @@ jQuery(document).ready(function ($) {
       $(".price-range-min").val(minPrice.toFixed());
       $(".price-range-max").val(maxPrice.toFixed());
 
-      applyFilters(searchTerm); // Call the combined filtering function
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
       updateFiltersApplied("price", minPrice, maxPrice, 10000);
     });
   }
@@ -215,7 +215,7 @@ jQuery(document).ready(function ($) {
 
     // Update slider positions
     priceSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("price", newMinPrice, newMaxPrice, 10000);
   });
 
@@ -224,7 +224,7 @@ jQuery(document).ready(function ($) {
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
     priceSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("price", newMinPrice, newMaxPrice, 10000);
   });
 
@@ -238,7 +238,7 @@ jQuery(document).ready(function ($) {
       $(".da-range-min").val(minPrice.toFixed());
       $(".da-range-max").val(maxPrice.toFixed());
 
-      applyFilters(searchTerm); // Call the combined filtering function
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
       updateFiltersApplied("da", minPrice, maxPrice, 100);
     });
   }
@@ -249,7 +249,7 @@ jQuery(document).ready(function ($) {
 
     // Update slider positions
     daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("da", newMinPrice, newMaxPrice, 100);
   });
 
@@ -258,42 +258,9 @@ jQuery(document).ready(function ($) {
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
     daSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("da", newMinPrice, newMaxPrice, 100);
   });
-
-  // ------------------ Pa Range Filter --------------------
-
-  // paSlider.noUiSlider.on("slide.one", function () {
-  //   let minPrice = $(this)[0].getPositions()[0];
-  //   let maxPrice = $(this)[0].getPositions()[1];
-
-  //   // Set Price
-  //   $(".pa-range-min").val(minPrice.toFixed());
-  //   $(".pa-range-max").val(maxPrice.toFixed());
-
-  //   applyFilters(searchTerm); // Call the combined filtering function
-  //   updateFiltersApplied("pa", minPrice, maxPrice, 100);
-  // });
-
-  // $(".pa-range-min").on("keyup", function () {
-  //   let newMinPrice = parseFloat($(this).val());
-  //   let newMaxPrice = parseFloat($(".pa-range-max").val());
-
-  //   // Update slider positions
-  //   paSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-  //   applyFilters(searchTerm);
-  //   updateFiltersApplied("pa", newMinPrice, newMaxPrice, 100);
-  // });
-
-  // $(".pa-range-max").on("keyup", function () {
-  //   let newMinPrice = parseFloat($(".pa-range-min").val());
-  //   let newMaxPrice = parseFloat($(this).val());
-  //   // Update slider positions
-  //   paSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-  //   applyFilters(searchTerm);
-  //   updateFiltersApplied("pa", newMinPrice, newMaxPrice, 100);
-  // });
 
   //---------------- PA Range Filter ------------
   if (curPath !== "/premium-domain/") {
@@ -305,7 +272,7 @@ jQuery(document).ready(function ($) {
       $(".dr-range-min").val(minPrice.toFixed());
       $(".dr-range-max").val(maxPrice.toFixed());
 
-      applyFilters(searchTerm); // Call the combined filtering function
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
       updateFiltersApplied("dr", minPrice, maxPrice, 100);
     });
   }
@@ -316,7 +283,7 @@ jQuery(document).ready(function ($) {
 
     // Update slider positions
     drSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
   });
 
@@ -325,7 +292,7 @@ jQuery(document).ready(function ($) {
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
     drSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
   });
 
@@ -339,7 +306,7 @@ jQuery(document).ready(function ($) {
       $(".live-rd-range-min").val(minPrice.toFixed());
       $(".live-rd-range-max").val(maxPrice.toFixed());
 
-      applyFilters(searchTerm); // Call the combined filtering function
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
       updateFiltersApplied("liveRd", minPrice, maxPrice, 10000);
     });
   }
@@ -350,7 +317,7 @@ jQuery(document).ready(function ($) {
 
     // Update slider positions
     liveRdSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("da", newMinPrice, newMaxPrice, 1000);
   });
 
@@ -359,7 +326,7 @@ jQuery(document).ready(function ($) {
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
     liveRdSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
     updateFiltersApplied("liveRd", newMinPrice, newMaxPrice, 1000);
   });
 
@@ -373,7 +340,7 @@ jQuery(document).ready(function ($) {
       $(".age-range-min").val(minPrice.toFixed());
       $(".age-range-max").val(maxPrice.toFixed());
 
-      applyFilters(searchTerm); // Call the combined filtering function
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
       updateFiltersApplied("age", minPrice, maxPrice, 50);
     });
   }
@@ -394,7 +361,7 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
   //---------------- Domain Extension Filter ------------
@@ -413,7 +380,7 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
   //---------------- Authority Backlinks Filter ------------
@@ -432,7 +399,7 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
   //---------------- Languages Filter ------------
@@ -451,14 +418,14 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
   //---------------- Domain Name Search ------------
   $(".fire-domain-keyword-search").click(function () {
     searchTerm = $('[name="domain-search"]').val().toLowerCase().trim();
 
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
   //---------------- Domain Type Filter ------------
@@ -476,7 +443,7 @@ jQuery(document).ready(function ($) {
       selectedDomainType = "";
     }
 
-    applyFilters(searchTerm);
+    applyFiltersWithAjax(searchTerm);
   });
 
   //---------------- Use Case Filter ------------
@@ -495,7 +462,7 @@ jQuery(document).ready(function ($) {
       }
     }
 
-    applyFilters(searchTerm); // Call the combined filtering function
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
   //---------------- Use Case Filter ------------
@@ -619,6 +586,31 @@ jQuery(document).ready(function ($) {
     setTimeout(() => {
       noResults();
     }, 600);
+  };
+
+  let applyFiltersWithAjaxWithAjax = (searchTerm) => {
+    // Gather your filter data here, e.g., minPrice, maxPrice, selectedCats, etc.
+    let filterData = {
+      minPrice: parseFloat($(".price-range-min").val()),
+      maxPrice: parseFloat($(".price-range-max").val()),
+      minDa: parseFloat($(".da-range-min").val()),
+      // ... (rest of your filter data)
+      searchTerm: searchTerm,
+    };
+
+    $.ajax({
+      type: "POST",
+      url: '<?php echo esc_url(admin_url("admin-ajax.php", "https")); ?>',
+      data: {
+        action: "apply_filters_ajax", // The action name for your server-side function
+        filterData: filterData,
+      },
+      success: function (response) {
+        // Update the product list based on the filtered data received from the server
+        updateProductList(response.filteredProducts);
+        noResults(); // Perform other necessary actions
+      },
+    });
   };
 
   //---------------- Reveal domain name ------------

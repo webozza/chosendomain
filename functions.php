@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.61' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.62' );
 
 /**
  * Enqueue styles
@@ -28,3 +28,23 @@ function custom_scripts() {
 	wp_enqueue_script( 'nouislider', get_stylesheet_directory_uri() . '/js/nouislider.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'custom_scripts');
+
+/**
+ * Ajax filter
+ */
+add_action('wp_ajax_apply_filters', 'apply_filters_ajax');
+add_action('wp_ajax_nopriv_apply_filters', 'apply_filters_ajax');
+
+function apply_filters_ajax() {
+    $filterData = $_POST['filterData'];
+    $filteredProductIds = get_filtered_product_ids($filterData);
+    wp_send_json_success($filteredProductIds);
+    wp_die();
+}
+
+function get_filtered_product_ids($filterData) {
+    // Apply the filter criteria to retrieve the filtered product IDs
+    // Implement your filtering logic here
+    // Return an array of product IDs
+    return array();
+}
