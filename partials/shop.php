@@ -499,12 +499,12 @@
             <!-- DOMAINS -->
             <div class="domain-inventory-content" id="product-container">
                 <?php
-					if ($products) {
-						foreach ($products as $product) {
+					if ($product_query->have_posts()) {
+						while ($product_query->have_posts()) {
 							
-							$product_id = $product->get_id();
-							$product_id = $product->get_id();
-							$product_title = $product->get_name();
+							$product_query->the_post(); // Set up the post data
+							$product_id = get_the_ID(); // Use get_the_ID() to get post ID
+							$product_title = get_the_title();
 							$product_slug = $product->get_slug();
 							$price = $product -> get_price();
 							$product_description = $product->get_description();
