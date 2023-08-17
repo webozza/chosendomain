@@ -589,6 +589,8 @@ jQuery(document).ready(function ($) {
   };
 
   let applyFiltersWithAjax = (searchTerm) => {
+    let nonce = my_ajax_obj.nonce;
+
     // Gather your filter data here, e.g., minPrice, maxPrice, selectedCats, etc.
     let filterData = {
       minPrice: parseFloat($(".price-range-min").val()),
@@ -601,7 +603,7 @@ jQuery(document).ready(function ($) {
 
     $.ajax({
       type: "POST",
-      url: "/wp-admin/admin-ajax.php",
+      url: my_ajax_obj.ajax_url,
       data: {
         action: "apply_filters_ajax", // The action name for your server-side function
         filterData: filterData,
