@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.04' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.05' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -72,6 +72,7 @@ function render_product_loop($productIds, $filterData) {
     ob_start(); // Start output buffering
 
     $maxDa = $filterData['maxDa'];
+    $minDa = $filterData['minDa'];
     
     $args = array(
         'post_type' => 'product',
