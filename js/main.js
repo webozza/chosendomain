@@ -607,10 +607,11 @@ jQuery(document).ready(function ($) {
       data: {
         action: "apply_filters_ajax", // The action name for your server-side function
         filterData: filterData,
+        nonce: my_ajax_obj.nonce, // Add the nonce value to the data
       },
       success: function (response) {
         // Update the product list based on the filtered data received from the server
-        updateProductList(response.filteredProducts);
+        updateProductList(response.data.filteredProducts); // Access the filteredProducts key
         noResults(); // Perform other necessary actions
       },
     });
