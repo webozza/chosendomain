@@ -10,12 +10,11 @@
         'posts_per_page' => 10,
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
     );
-    $product_query = new WP_Query($args); // Use WP_Query for standard pagination
-	$products = $product_query->posts;
+    $product_query = new WP_Query($args);
 
 	$product_cats = get_terms(array(
-		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
-		'hide_empty' => false,       // Set to true if you want to hide empty categories
+		'taxonomy' => 'product_cat',
+		'hide_empty' => false,
 	));
 
     function obscureDomain($domain) {
@@ -32,6 +31,23 @@
         
         return implode('.', $obscured);
     }
+
+	$extensions = get_terms(array(
+		'taxonomy' => 'extension',
+		'hide_empty' => false,
+	));
+
+	$backlinkos = get_terms(array(
+		'taxonomy' => 'authory_backlink',
+		'hide_empty' => false,
+	));
+
+	$languages = get_terms(array(
+		'taxonomy' => 'language',
+		'hide_empty' => false,
+	));
+
+	$usecases = ["Affiliate","Adsense","PBN","301 redirection"];
 ?>
 
 <div class="domain-section">
@@ -69,6 +85,8 @@
             <div class="domain-inventory-sidebar">
                 <div class="domain-inventory-search-filters">
                     <h2>Filters</h2>
+
+					<!-- Saved Filters -->
 					<div class="slide-accor">
 						<div class="filter-title">
                             <h3>Saved Filters </h3>
@@ -77,6 +95,8 @@
 							<p> No saved filters </p>
 						</div>
 					</div>
+
+					<!-- Reset Filters -->
                     <div class="reset-filters">
                         <span data-cfa="0">No filters applied</span>
                         <button class="dc-btn dc-btn-primary-outline di-reset-selected-filters" disabled="disabled">Reset all</button>
@@ -257,6 +277,7 @@
 							</div>
 						</div>
 					</div>
+
                     <!-- Live RD Range Filter -->
 					<div class="slide-accor"> 
 						<div class="filter-title">
@@ -359,14 +380,6 @@
 						</div>
 					</div>
 
-					<!-- Get Extensions -->
-					<?php
-						$extensions = get_terms(array(
-							'taxonomy' => 'extension',
-							'hide_empty' => false,
-						));
-					?>
-
 					<!-- Extension Filter -->
                     <div class="extension-filter slide-accor">
                         <div class="filter-title">
@@ -393,14 +406,6 @@
                         </div>
 						</div>
                     </div>
-
-					<!-- Get Auth Backlinks -->
-					<?php
-						$backlinkos = get_terms(array(
-							'taxonomy' => 'authory_backlink',
-							'hide_empty' => false,
-						));
-					?>
 
 					<!-- Authority Backlinks Filter -->
                     <div class="authority-backlinks-filter slide-accor">
@@ -429,16 +434,8 @@
 						</div>
                     </div>
 
-					<!-- Get Languages -->
-					<?php
-						$languages = get_terms(array(
-							'taxonomy' => 'language',
-							'hide_empty' => false,
-						));
-					?>
-
 					<!-- Language Filter -->
-                    <!--<div class="authority-backlinks-filter slide-accor">
+                    <div style="display:none" class="authority-backlinks-filter slide-accor">
                         <div class="filter-title">
                             <h3>Languages</h3>
                         </div>
@@ -462,15 +459,10 @@
 							 } ?>
                         </div>
 						</div>
-                    </div>-->
-
-					<!-- Get Use Cases -->
-					<?php
-						$usecases = ["Affiliate","Adsense","PBN","301 redirection"];
-					?>
+                    </div>
 
 					<!-- Use Case Filter -->
-                    <!--<div class="use-case-filter slide-accor">
+                    <div style="display:none" class="use-case-filter slide-accor">
                         <div class="filter-title">
                             <h3>Use case</h3>
                         </div>
@@ -493,10 +485,11 @@
 								} ?>
 							</div>
 						</div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
-            <!-- DOMAINS -->
+
+            <!-- DOMAIN INVENTORY -->
             <div class="domain-inventory-content" id="product-container">
                 <?php
 					if ($product_query->have_posts()) {
