@@ -661,6 +661,7 @@
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
 					minDa: parseFloat(jQuery(".da-range-min").val()),
+					maxDa: parseFloat(jQuery(".da-range-max").val()),
 					searchTerm: searchTerm,
 				};
 

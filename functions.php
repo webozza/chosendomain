@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.01' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.03' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -50,7 +50,7 @@ function load_more_products() {
         $filteredProductIds = get_filtered_product_ids($filterData);
 
         // Render the products loop and return the HTML
-        $products_html = render_product_loop($filteredProductIds);
+        $products_html = render_product_loop($filteredProductIds, $filterData);
 
         wp_send_json_success(array('data' => $products_html));
     } else {
@@ -66,10 +66,12 @@ function get_filtered_product_ids($filterData) {
     return array(); // Placeholder, replace with your actual logic
 }
 
-function render_product_loop($productIds) {
+function render_product_loop($productIds, $filterData) {
     // Use the product IDs to query and render the products loop
     
     ob_start(); // Start output buffering
+
+    $maxDa = $filterData['maxDa'];
     
     $args = array(
         'post_type' => 'product',
@@ -166,7 +168,7 @@ function render_product_loop($productIds) {
                 $uses = $use_cases[0];
             }
 
-            ?>
+            if($da < $maxDa) ?>
                 <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
                     <div class="product-details">
                         <div class="product-head">
