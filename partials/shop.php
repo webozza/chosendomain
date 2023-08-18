@@ -673,20 +673,28 @@
 					},
 					success: function(response) {
 						if (response.success) {
-							if (response.data.trim() === '') {
-								hasMoreProducts = false; // No more products to load
-								disableButton();
-								return;
+							// Check if response.data is an object
+							if (typeof response.data === 'object') {
+								const responseData = response.data.data;
+								
+								if (responseData.trim() === '') {
+									hasMoreProducts = false; // No more products to load
+									disableButton();
+									return;
+								}
+								
+								// Append new content to the container
+								jQuery('.ajax-loader').hide();
+								productContainer.insertAdjacentHTML('beforeend', responseData);
+							} else {
+								console.error('Invalid response data:', response.data);
 							}
-							// Append new content to the container
-							jQuery('.ajax-loader').hide();
-							productContainer.insertAdjacentHTML('beforeend', response.data);
 						} else {
-							console.error(response.data); // Log the error message
+							console.error('Error in AJAX response:', response.data);
 						}
 					},
 					error: function(error) {
-						console.error(error);
+						console.error('AJAX error:', error);
 					},
 					complete: function() {
 						loadingText.style.display = 'none';
