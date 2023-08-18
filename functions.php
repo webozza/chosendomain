@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.81' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.82' );
 
 /**
  * Enqueue styles
@@ -40,10 +40,20 @@ add_action('wp_ajax_apply_filters', 'apply_filters_ajax');
 add_action('wp_ajax_nopriv_apply_filters', 'apply_filters_ajax');
 
 function apply_filters_ajax() {
-    check_ajax_referer('ajax-nonce', 'nonce');
+    // Check nonce security
+    if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'ajax-nonce' ) ) {
+        wp_send_json_error( 'Invalid nonce.' );
+    }
+
+    // Log POST data for debugging
+    error_log( print_r( $_POST, true ) );
 
     $filterData = $_POST['filterData'];
     $filteredProductIds = get_filtered_product_ids($filterData);
+
+    // Log nonce verification result for debugging
+    error_log( 'Nonce verification result: ' . var_export( wp_verify_nonce( $_POST['nonce'], 'ajax-nonce' ), true ) );
+
     wp_send_json_success(array('filteredProducts' => $filteredProductIds));
     wp_die();
 }
