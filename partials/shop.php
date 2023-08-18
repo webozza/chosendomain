@@ -685,7 +685,7 @@
 								}
 								
 								// Append new content to the container
-								jQuery('.ajax-loader').hide();
+								jQuery('.ajax-loader').addClass('hidden');
 								productContainer.insertAdjacentHTML('beforeend', responseData);
 							} else {
 								console.error('Invalid response data:', response.data);
