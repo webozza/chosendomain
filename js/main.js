@@ -606,13 +606,13 @@ jQuery(document).ready(function ($) {
       type: "POST",
       url: my_ajax_obj.ajax_url,
       data: {
-        action: "apply_filters_ajax", // The action name for your server-side function
+        action: "apply_filters_ajax",
         filterData: filterData,
-        nonce: my_ajax_obj.nonce, // Add the nonce value to the data
+        nonce: my_ajax_obj.nonce,
       },
       success: function (response) {
         // Update the product list based on the filtered data received from the server
-        updateProductList(response.data.filteredProducts); // Access the filteredProducts key
+        updateProductList(response.data.filteredProducts);
         noResults(); // Perform other necessary actions
       },
     });
