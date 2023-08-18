@@ -630,10 +630,6 @@
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
             </div>
-			
-			<script>
-				rf
-			</script>
         </div>
 
 	</div>
