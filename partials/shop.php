@@ -501,9 +501,9 @@
 							$product_query->the_post(); // Set up the post data
 							$product_id = get_the_ID(); // Use get_the_ID() to get post ID
 							$product_title = get_the_title();
-							$product_slug = $product->get_slug();
+							//$product_slug = $product->get_slug();
 							$price = $product -> get_price();
-							$product_description = $product->get_description();
+							//$product_description = $product->get_description();
 							$da = get_post_meta($product_id, 'da', true);
 							$dr = get_post_meta($product_id, 'dr', true);
 							$pa = get_post_meta($product_id, 'pa', true);
@@ -565,7 +565,7 @@
 												<br>
 												<div class="description hidden">
 													<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
-													<span><?= $product_description?></span>
+													<span></span>
 												</div>
 												<div class="domain-name-revealer">
 													<i class="flaticon-eye"></i>
@@ -596,7 +596,7 @@
 											<li>
 												<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
 											</li>
-											<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+											<li> <a href="<?= get_site_url() ?>"> More Data </a> </li>
 										</ul>
 									</div>
 								</div>
