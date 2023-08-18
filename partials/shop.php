@@ -632,54 +632,63 @@
             </div>
         </div>
 
+		<!-- LOAD MORE SECTION -->
+		<div class="load-more-container">
+			<div id="loading-text" style="display: none;">
+				<img src="<?= get_site_url() . '/wp-content/uploads/2023/08/imgpsh_fullsize_anim.gif'?>" alt="">
+			</div>
+		</div>
+
 		<!-- Ajax Filters -->
 		<script>
-			let loadingMore = false;
-			let applyFiltersWithAjax = (searchTerm) => {
+			let loading = false;
+			let hasMoreProducts = true;
+			const productContainer = document.getElementById('product-container');
+			const loadingText = document.getElementById('loading-text');
+
+			// Move your AJAX code inside a function for better organization
+			function applyFiltersWithAjax(searchTerm) {
 				if (loading || !hasMoreProducts) return;
 				loading = true;
 				loadingText.style.display = 'block';
 
-				const ajaxPromise = new Promise((resolve, reject) => {
-					jQuery.ajax({
-						url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
-						type: 'POST',
-						data: {
-							action: 'load_more_products',
-							page: page,
-							filterData: filterData,
-							base_url: window.location.pathname,
-						},
-						success: function(response) {
-							resolve(response);
-							loadingMore = true;
-						},
-						error: function(error) {
-							reject(error);
-						},
-						complete: function() {
-							loadingText.style.display = 'none';
-							loading = false;
+				const filterData = {
+					minPrice: parseFloat(jQuery(".price-range-min").val()),
+					maxPrice: parseFloat(jQuery(".price-range-max").val()),
+					minDa: parseFloat(jQuery(".da-range-min").val()),
+					searchTerm: searchTerm,
+				};
+
+				jQuery.ajax({
+					url: my_ajax_obj.ajax_url,
+					type: 'POST',
+					data: {
+						action: 'load_more_products',
+						filterData: filterData,
+					},
+					success: function(response) {
+						if (response.success) {
+							if (response.data.trim() === '') {
+								hasMoreProducts = false; // No more products to load
+								disableButton();
+								return;
+							}
+							// Append new content to the container
+							productContainer.insertAdjacentHTML('beforeend', response.data);
+						} else {
+							console.error(response.data); // Log the error message
 						}
-					});
-				});
-
-				ajaxPromise.then(response => {
-					if (response.trim() === '') {
-						hasMoreProducts = false; // No more products to load
-						disableButton();
-						return;
+					},
+					error: function(error) {
+						console.error(error);
+					},
+					complete: function() {
+						loadingText.style.display = 'none';
+						loading = false;
 					}
-
-					// Append new content to the container
-					productContainer.insertAdjacentHTML('beforeend', response);
-					page++;
-				}).catch(error => {
-					console.error(error);
 				});
-			}
+			}				
 		</script>
-
 	</div>
 </div>
 

@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.88' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.89' );
 
 /**
  * Enqueue styles
@@ -41,11 +41,14 @@ add_action('wp_ajax_load_more_products', 'load_more_products');
 add_action('wp_ajax_nopriv_load_more_products', 'load_more_products');
 
 function load_more_products() {
-    $filterData = $_POST['filterData'];
-    $filteredProductIds = get_filtered_product_ids($filterData);
+    if (isset($_POST['filterData'])) {
+        $filterData = $_POST['filterData'];
+        $filteredProductIds = get_filtered_product_ids($filterData);
 
-    // Send a JSON response with appropriate headers
-    wp_send_json_success(array('filteredProducts' => $filteredProductIds));
+        wp_send_json_success($filteredProductIds);
+    } else {
+        wp_send_json_error('Filter data not provided.');
+    }
     wp_die();
 }
 
