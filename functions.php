@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.93' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.94' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -71,8 +71,8 @@ function render_product_loop($productIds) {
     ob_start(); // Start output buffering
     foreach ($productIds as $productId) {
         // Query and render each product here
-        // Example: $product = wc_get_product($productId);
-        // Example: echo '<div class="product">' . $product->get_title() . '</div>';
+        $product = wc_get_product($productId);
+        echo '<div class="product">' . $product->get_title() . '</div>';
     }
     $products_html = ob_get_clean(); // Get the buffered content and clear buffer
     return $products_html;
