@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.97' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.98' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -124,7 +124,7 @@ function render_product_loop($productIds) {
             $product_id = get_the_ID(); // Use get_the_ID() to get post ID
             $product_title = get_the_title();
             //$product_slug = $product->get_slug();
-            $price = $product -> get_price();
+            //$price = $product -> get_price();
             //$product_description = $product->get_description();
             $da = get_post_meta($product_id, 'da', true);
             $dr = get_post_meta($product_id, 'dr', true);
@@ -213,7 +213,7 @@ function render_product_loop($productIds) {
                         </div>
                     </div>
                     <div class="product-card">
-                        <h2>$<?= $price ?> </h2>
+                        <h2>$ </h2>
                         <ul>
                             <li>
                                 <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
