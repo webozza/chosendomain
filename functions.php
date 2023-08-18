@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.73' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.74' );
 
 /**
  * Enqueue styles
@@ -24,12 +24,11 @@ function child_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
 function custom_scripts() {
-	$nonce = wp_create_nonce('my_nonce_action');
 	wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, true );
 	wp_enqueue_script( 'nouislider', get_stylesheet_directory_uri() . '/js/nouislider.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION );
 	wp_localize_script('main', 'my_ajax_obj', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
-		'nonce' => $nonce,
+		'nonce' => wp_create_nonce('ajax-nonce'),
 	));
 }
 add_action( 'wp_enqueue_scripts', 'custom_scripts');
@@ -41,9 +40,9 @@ add_action('wp_ajax_apply_filters', 'apply_filters_ajax');
 add_action('wp_ajax_nopriv_apply_filters', 'apply_filters_ajax');
 
 function apply_filters_ajax() {
-    // Verify the nonce
-    if ( ! check_ajax_referer( 'my_nonce_action', 'nonce', false ) ) {
-        wp_send_json_error( 'Invalid nonce' );
+    // Check for nonce security      
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'ajax-nonce' ) ) {
+        die ( 'Busted!');
     }
 
     $filterData = $_POST['filterData'];
@@ -56,5 +55,6 @@ function get_filtered_product_ids($filterData) {
     // Apply the filter criteria to retrieve the filtered product IDs
     // Implement your filtering logic here
     // Return an array of product IDs
-    return array();
+    return 'hola amigos';
+    //return array();
 }

@@ -614,7 +614,14 @@
 							'next_text' => __('Next &raquo;'),
 						);
 
-						echo '<div class="pagination-section" id="">' ."<p>" . "Showing " . $Totalproducts . " domains filtered out of " . $Totalproducts . " domains" . "</p>"  . '<div class="pagination">' .paginate_links($pagination_args) .'</div' . '</div>';
+						?>
+							<div class="pagination-section" id="">
+								<p class="hidden">Showing <?= $Totalproducts; ?> domains filtered out of <?= $Totalproducts; ?> domains</p>
+								<div class="pagination">
+									<?= paginate_links($pagination_args); ?>
+								</div>
+							</div>
+						<?php
 					} else {
 						echo 'No products found.';
 					}
