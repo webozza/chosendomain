@@ -634,6 +634,7 @@
 
 		<!-- Ajax Filters -->
 		<script>
+			let loadingMore = false;
 			let applyFiltersWithAjax = (searchTerm) => {
 				if (loading || !hasMoreProducts) return;
 				loading = true;
@@ -651,6 +652,7 @@
 						},
 						success: function(response) {
 							resolve(response);
+							loadingMore = true;
 						},
 						error: function(error) {
 							reject(error);
