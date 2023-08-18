@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.98' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.99' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -70,8 +70,6 @@ function render_product_loop($productIds) {
     // Use the product IDs to query and render the products loop
     
     ob_start(); // Start output buffering
-
-    var_dump($productIds);
     
     $args = array(
         'post_type' => 'product',

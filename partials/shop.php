@@ -673,22 +673,17 @@
 					},
 					success: function(response) {
 						if (response.success) {
-						// Parse the JSON data from the response
-						const responseData = JSON.parse(response.data.data);
-
-						if (responseData.length === 0) {
-							hasMoreProducts = false; // No more products to load
-							disableButton();
-							return;
+							if (response.data.trim() === '') {
+								hasMoreProducts = false; // No more products to load
+								disableButton();
+								return;
+							}
+							// Append new content to the container
+							jQuery('.ajax-loader').hide();
+							productContainer.insertAdjacentHTML('beforeend', response.data);
+						} else {
+							console.error(response.data); // Log the error message
 						}
-
-						// Append new content to the container
-						jQuery('.ajax-loader').hide();
-						productContainer.insertAdjacentHTML('beforeend', responseData);
-
-					} else {
-						console.error(response.data); // Log the error message
-					}
 					},
 					error: function(error) {
 						console.error(error);
