@@ -633,34 +633,7 @@
 			
 			<script>
 				jQuery(document).ready(function($) {
-					let applyFiltersWithAjax = (searchTerm) => {
-						let nonce = my_ajax_obj.nonce;
-
-						// Gather your filter data here, e.g., minPrice, maxPrice, selectedCats, etc.
-						let filterData = {
-						minPrice: parseFloat($(".price-range-min").val()),
-						maxPrice: parseFloat($(".price-range-max").val()),
-						minDa: parseFloat($(".da-range-min").val()),
-						// ... (rest of your filter data)
-						searchTerm: searchTerm,
-						nonce: nonce,
-						};
-
-						$.ajax({
-						type: "POST",
-						url: my_ajax_obj.ajax_url,
-						data: {
-							action: "apply_filters_ajax", // The action name for your server-side function
-							filterData: filterData,
-							nonce: my_ajax_obj.nonce, // Add the nonce value to the data
-						},
-						success: function (response) {
-							// Update the product list based on the filtered data received from the server
-							updateProductList(response.data.filteredProducts); // Access the filteredProducts key
-							noResults(); // Perform other necessary actions
-						},
-						});
-					};
+					//aaa
 				});
 			</script>
         </div>
