@@ -610,6 +610,10 @@ jQuery(document).ready(function ($) {
         filterData: filterData,
         nonce: my_ajax_obj.nonce,
       },
+      dataType: "json",
+      xhrFields: {
+        withCredentials: true,
+      },
       success: function (response) {
         // Update the product list based on the filtered data received from the server
         updateProductList(response.data.filteredProducts);

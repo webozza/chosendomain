@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.83' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.85' );
 
 /**
  * Enqueue styles
@@ -45,15 +45,10 @@ function apply_filters_ajax() {
         wp_send_json_error( 'Invalid nonce.' );
     }
 
-    // Log POST data for debugging
-    error_log( print_r( $_POST, true ) );
-
     $filterData = $_POST['filterData'];
     $filteredProductIds = get_filtered_product_ids($filterData);
 
-    // Log nonce verification result for debugging
-    error_log( 'Nonce verification result: ' . var_export( wp_verify_nonce( $_POST['nonce'], 'ajax-nonce' ), true ) );
-
+    // Send a JSON response with appropriate headers
     wp_send_json_success(array('filteredProducts' => $filteredProductIds));
     wp_die();
 }
