@@ -11,7 +11,7 @@
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
     );
     $product_query = new WP_Query($args);
-
+	$Totalproducts = $product_query -> found_posts;
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat',
 		'hide_empty' => false,
@@ -614,7 +614,7 @@
 							'next_text' => __('Next &raquo;'),
 						);
 
-						echo '<div class="pagination">' . paginate_links($pagination_args) . '</div>';
+						echo '<div class="pagination-section" id="">' ."<p>" . "Showing " . $Totalproducts . " domains filtered out of " . $Totalproducts . " domains" . "</p>"  . '<div class="pagination">' .paginate_links($pagination_args) .'</div' . '</div>';
 					} else {
 						echo 'No products found.';
 					}
@@ -626,6 +626,7 @@
 			
 			<script>
 				jQuery(document).ready(function($) {
+// 					$("#pagination").append()
 					// will do something.....
 				});
 			</script>

@@ -649,7 +649,88 @@ li.sf-field-post-meta-_sale_price.open {
 .auhtority_backlinks-checkboxes label {
   display: none;
 }
-
+/* -------------------------- Pagination ----------------- */
+.pagination-section p {
+  font-size: 18px;
+  color: #08104d;
+  font-weight: 500;
+  text-align: center;
+  padding-top: 20px;
+  letter-spacing: 0.2px;
+}
+.pagination {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  margin-top: 20px;
+}
+.pagination a:focus {
+  outline: none !important;
+}
+.page-numbers {
+  font-size: 14px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  line-height: 30px;
+  border-radius: 5px;
+  transition: 0.5s;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.page-numbers.current {
+  background: #ee5829;
+  color: #fff;
+}
+.page-numbers:hover,
+.page-numbers:focus {
+  background: #ee5829;
+  color: #fff;
+}
+.prev.page-numbers,
+.next.page-numbers {
+  position: relative;
+  font-size: 0;
+  background: #eeefff;
+  transition: 0.4s;
+}
+.prev.page-numbers:hover,
+.next.page-numbers:hover {
+  background: #ee5829;
+  color: #fff;
+}
+.prev.page-numbers:focus,
+.next.page-numbers:focus {
+  background: #ee5829;
+  color: #fff;
+}
+.prev.page-numbers::before {
+  content: "\f078";
+  font-family: "FontAwesome";
+  position: absolute;
+  right: 7px;
+  color: #08104d;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  transform: rotate(88deg);
+}
+.next.page-numbers::after {
+  content: "\f078";
+  font-family: "FontAwesome";
+  position: absolute;
+  right: 7px;
+  color: #08104d;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  transform: rotate(-88deg);
+}
+.prev.page-numbers:hover:before,
+.next.page-numbers:hover:after {
+  color: #fff;
+}
+/* -------------------------- Pagination ----------------- */
 /*product details page*/
 
 /* -------------------------- premium domain page ----------------- */
