@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
     var itemList = $(itemListSelector);
     var items = itemList.find("label");
 
-    searchInput.on("keyup", function () {
+    searchInput.on("change", function () {
       var searchTerm = $(this).val().toLowerCase();
 
       items.each(function () {
@@ -196,7 +196,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- Price Range Filter ------------
   if (curPath !== "/premium-domain/") {
-    priceSlider.noUiSlider.on("slide.one", function () {
+    priceSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0] * 100;
       let maxPrice = $(this)[0].getPositions()[1] * 100;
 
@@ -209,7 +209,7 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  $(".price-range-min").on("keyup", function () {
+  $(".price-range-min").on("change", function () {
     let newMinPrice = parseFloat($(this).val());
     let newMaxPrice = parseFloat($(".price-range-max").val());
 
@@ -219,7 +219,7 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("price", newMinPrice, newMaxPrice, 10000);
   });
 
-  $(".price-range-max").on("keyup", function () {
+  $(".price-range-max").on("change", function () {
     let newMinPrice = parseFloat($(".price-range-min").val());
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
@@ -230,7 +230,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- DA Range Filter ------------
   if (curPath !== "/premium-domain/") {
-    daSlider.noUiSlider.on("slide.one", function () {
+    daSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0];
       let maxPrice = $(this)[0].getPositions()[1];
 
@@ -243,7 +243,7 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  $(".da-range-min").on("keyup", function () {
+  $(".da-range-min").on("change", function () {
     let newMinPrice = parseFloat($(this).val());
     let newMaxPrice = parseFloat($(".da-range-max").val());
 
@@ -253,7 +253,7 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("da", newMinPrice, newMaxPrice, 100);
   });
 
-  $(".da-range-max").on("keyup", function () {
+  $(".da-range-max").on("change", function () {
     let newMinPrice = parseFloat($(".da-range-min").val());
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
@@ -264,7 +264,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- PA Range Filter ------------
   if (curPath !== "/premium-domain/") {
-    drSlider.noUiSlider.on("slide.one", function () {
+    drSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0];
       let maxPrice = $(this)[0].getPositions()[1];
 
@@ -277,7 +277,7 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  $(".dr-range-min").on("keyup", function () {
+  $(".dr-range-min").on("change", function () {
     let newMinPrice = parseFloat($(this).val());
     let newMaxPrice = parseFloat($(".dr-range-max").val());
 
@@ -287,7 +287,7 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("dr", newMinPrice, newMaxPrice, 100);
   });
 
-  $(".dr-range-max").on("keyup", function () {
+  $(".dr-range-max").on("change", function () {
     let newMinPrice = parseFloat($(".dr-range-min").val());
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
@@ -298,7 +298,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- Live RD Range Filter ------------
   if (curPath !== "/premium-domain/") {
-    liveRdSlider.noUiSlider.on("slide.one", function () {
+    liveRdSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0] * 100;
       let maxPrice = $(this)[0].getPositions()[1] * 100;
 
@@ -311,7 +311,7 @@ jQuery(document).ready(function ($) {
     });
   }
 
-  $(".live-rd-range-min").on("keyup", function () {
+  $(".live-rd-range-min").on("change", function () {
     let newMinPrice = parseFloat($(this).val());
     let newMaxPrice = parseFloat($(".live-rd-range-max").val());
 
@@ -321,7 +321,7 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("da", newMinPrice, newMaxPrice, 1000);
   });
 
-  $(".live-rd-range-max").on("keyup", function () {
+  $(".live-rd-range-max").on("change", function () {
     let newMinPrice = parseFloat($(".live-rd-range-min").val());
     let newMaxPrice = parseFloat($(this).val());
     // Update slider positions
@@ -332,7 +332,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- Age Range Filter ------------
   if (curPath !== "/premium-domain/") {
-    ageSlider.noUiSlider.on("slide.one", function () {
+    ageSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0] / 2;
       let maxPrice = $(this)[0].getPositions()[1] / 2;
 
