@@ -632,6 +632,52 @@
             </div>
         </div>
 
+		<!-- Ajax Filters -->
+		<script>
+			let applyFiltersWithAjax = (searchTerm) => {
+				if (loading || !hasMoreProducts) return;
+				loading = true;
+				loadingText.style.display = 'block';
+
+				const ajaxPromise = new Promise((resolve, reject) => {
+					jQuery.ajax({
+						url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>',
+						type: 'POST',
+						data: {
+							action: 'load_more_products',
+							page: page,
+							filterData: filterData,
+							base_url: window.location.pathname,
+						},
+						success: function(response) {
+							resolve(response);
+						},
+						error: function(error) {
+							reject(error);
+						},
+						complete: function() {
+							loadingText.style.display = 'none';
+							loading = false;
+						}
+					});
+				});
+
+				ajaxPromise.then(response => {
+					if (response.trim() === '') {
+						hasMoreProducts = false; // No more products to load
+						disableButton();
+						return;
+					}
+
+					// Append new content to the container
+					productContainer.insertAdjacentHTML('beforeend', response);
+					page++;
+				}).catch(error => {
+					console.error(error);
+				});
+			}
+		</script>
+
 	</div>
 </div>
 
