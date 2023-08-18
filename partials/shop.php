@@ -651,7 +651,7 @@
 
 			function applyFiltersWithAjax(searchTerm) {
 				jQuery('.ajax-loader').show();
-				jQuery('.domain-inventory-content').remove();
+				jQuery('.domain-inventory-content *:not(.ajax-loader)').remove();
 				
 				if (loading || !hasMoreProducts) return;
 				loading = true;
