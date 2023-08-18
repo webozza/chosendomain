@@ -650,7 +650,7 @@
 			const loadingText = document.getElementById('loading-text');
 
 			function applyFiltersWithAjax(searchTerm) {
-				jQuery('.ajax-loader').show();
+				jQuery('.ajax-loader').removeClass('hidden');
 				jQuery('.domain-inventory-content *:not(.ajax-loader)').remove();
 				
 				if (loading || !hasMoreProducts) return;
@@ -679,7 +679,7 @@
 								return;
 							}
 							// Append new content to the container
-							jQuery('.ajax-loader').hide();
+							jQuery('.ajax-loader').addClass('hidden');
 							productContainer.insertAdjacentHTML('beforeend', response.data);
 						} else {
 							console.error(response.data); // Log the error message
