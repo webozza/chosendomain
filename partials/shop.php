@@ -491,6 +491,9 @@
 
             <!-- DOMAIN INVENTORY -->
             <div class="domain-inventory-content" id="product-container">
+				<div class="ajax-loader hidden">
+					<img src="<?= get_stylesheet_directory_uri() . '/img/ajax-loader.gif' ?>">
+				</div>
                 <?php
 					if ($product_query->have_posts()) {
 						while ($product_query->have_posts()) {
@@ -646,8 +649,10 @@
 			const productContainer = document.getElementById('product-container');
 			const loadingText = document.getElementById('loading-text');
 
-			// Move your AJAX code inside a function for better organization
 			function applyFiltersWithAjax(searchTerm) {
+				jQuery('.ajax-loader').show();
+				jQuery('.domain-inventory-content').remove();
+				
 				if (loading || !hasMoreProducts) return;
 				loading = true;
 				loadingText.style.display = 'block';
@@ -674,6 +679,7 @@
 								return;
 							}
 							// Append new content to the container
+							jQuery('.ajax-loader').hide();
 							productContainer.insertAdjacentHTML('beforeend', response.data);
 						} else {
 							console.error(response.data); // Log the error message
@@ -687,8 +693,9 @@
 						loading = false;
 					}
 				});
-			}				
+			}
 		</script>
+
 	</div>
 </div>
 

@@ -11,7 +11,11 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.89' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.1.91' );
+
+// Enable error reporting and display errors for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 /**
  * Enqueue styles
@@ -45,11 +49,26 @@ function load_more_products() {
         $filterData = $_POST['filterData'];
         $filteredProductIds = get_filtered_product_ids($filterData);
 
-        wp_send_json_success($filteredProductIds);
+        // Render the products loop and return the HTML
+        $products_html = render_product_loop($filteredProductIds);
+
+        wp_send_json_success(array('data' => $products_html));
     } else {
         wp_send_json_error('Filter data not provided.');
     }
     wp_die();
+}
+
+function render_product_loop($productIds) {
+    // Use the product IDs to query and render the products loop
+    ob_start(); // Start output buffering
+    foreach ($productIds as $productId) {
+        // Query and render each product here
+        // Example: $product = wc_get_product($productId);
+        // Example: echo '<div class="product">' . $product->get_title() . '</div>';
+    }
+    $products_html = ob_get_clean(); // Get the buffered content and clear buffer
+    return $products_html;
 }
 
 
