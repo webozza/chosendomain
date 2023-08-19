@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.20' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.21' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -71,12 +71,6 @@ function render_product_loop($productIds, $filterData) {
     $maxLiveRd = $filterData['maxLiveRd'];
     $minLiveRd = $filterData['minLiveRd'];
 
-    // Cat Filters
-    $category_filters = isset($_POST['filterData']['categoryFilter']) ? $_POST['filterData']['categoryFilter'] : array();
-    if (!is_array($category_filters)) {
-        $category_filters = array($category_filters);
-    }
-
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 10,
@@ -130,12 +124,6 @@ function render_product_loop($productIds, $filterData) {
                 'type' => 'NUMERIC',
                 'compare' => '<=', // Less than or equal to
                 'value' => $maxLiveRd,
-            ),
-            array(
-                'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
-                'field' => 'slug', // You can change to 'id' if you use category IDs
-                'terms' => $category_filters,
-                'operator' => 'IN', // Include products in any of the selected categories
             ),
         ),
     );

@@ -643,15 +643,6 @@
 			const productContainer = document.getElementById('product-container');
 			const loadingText = document.getElementById('loading-text');
 
-			// Category Filters
-			const categoryFilters = new Set(); // Array to store selected category values
-			async function filterCats() {
-				jQuery('input[name="category_filter[]"]:checked').each(function() {
-					categoryFilters.push(jQuery(this).val());
-				});
-			}
-			const uniqueCategoryFilters = Array.from(categoryFilters);
-
 			async function applyFiltersWithAjax(searchTerm) {
 				await filterCats();
 				jQuery('.ajax-loader').removeClass('hidden');
