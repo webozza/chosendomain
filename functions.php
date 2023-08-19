@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.19' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.20' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -70,7 +70,12 @@ function render_product_loop($productIds, $filterData) {
     $minPa = $filterData['minPa'];
     $maxLiveRd = $filterData['maxLiveRd'];
     $minLiveRd = $filterData['minLiveRd'];
-    $category_filters = isset($filterData['categoryFilter']) ? $filterData['categoryFilter'] : array();
+
+    // Cat Filters
+    $category_filters = isset($_POST['filterData']['categoryFilter']) ? $_POST['filterData']['categoryFilter'] : array();
+    if (!is_array($category_filters)) {
+        $category_filters = array($category_filters);
+    }
 
     $args = array(
         'post_type' => 'product',

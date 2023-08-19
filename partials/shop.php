@@ -643,16 +643,17 @@
 			const productContainer = document.getElementById('product-container');
 			const loadingText = document.getElementById('loading-text');
 
-			const categoryFilters = [];
-			let categoryFilters = async () => {
+			// Category Filters
+			const categoryFilters = new Set(); // Array to store selected category values
+			async function filterCats() {
 				jQuery('input[name="category_filter[]"]:checked').each(function() {
 					categoryFilters.push(jQuery(this).val());
 				});
 			}
+			const uniqueCategoryFilters = Array.from(categoryFilters);
 
-			let applyFiltersWithAjax = async (searchTerm) => {
-				await categoryFilters();
-
+			async function applyFiltersWithAjax(searchTerm) {
+				await filterCats();
 				jQuery('.ajax-loader').removeClass('hidden');
 				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
 				
@@ -670,7 +671,7 @@
 					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
 					searchTerm: searchTerm,
-					categoryFilter: categoryFilters,
+					categoryFilter: uniqueCategoryFilters,
 				};
 
 				jQuery.ajax({
