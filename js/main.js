@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
   // jQuery code to initialize the range slider
   var priceSlider = $(".price-slider")[0];
   var daSlider = $(".da-slider")[0];
-  var drSlider = $(".dr-slider")[0];
+  // var drSlider = $(".dr-slider")[0];
   var liveRdSlider = $(".live-rd-slider")[0];
   var ageSlider = $(".age-slider")[0];
   var paSlider = $(".pa-slider")[0];
@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
 
     runUiSlider(ageSlider, 50);
     runUiSlider(liveRdSlider, 10000);
-    runUiSlider(drSlider, 100);
+    //runUiSlider(drSlider, 100);
     runUiSlider(daSlider, 100);
     runUiSlider(paSlider, 100);
     runUiSlider(priceSlider, 10000);
@@ -265,7 +265,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- PA Range Filter ------------
   if (curPath !== "/premium-domain/") {
-    drSlider.noUiSlider.on("change.one", function () {
+    paSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0];
       let maxPrice = $(this)[0].getPositions()[1];
 
