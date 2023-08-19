@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.15' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.16' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -88,7 +88,34 @@ function render_product_loop($productIds, $filterData) {
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 10,
-		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+        'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+        'meta_query' => array(
+            'relation' => 'AND', // Combine the meta queries using AND operator
+            array(
+                'key' => 'price', // Adjust the key according to your actual meta key
+                'value' => array($minPrice, $maxPrice),
+                'type' => 'NUMERIC',
+                'compare' => 'BETWEEN',
+            ),
+            array(
+                'key' => 'da', // Adjust the key according to your actual meta key
+                'value' => array($minDa, $maxDa),
+                'type' => 'NUMERIC',
+                'compare' => 'BETWEEN',
+            ),
+            array(
+                'key' => 'pa', // Adjust the key according to your actual meta key
+                'value' => array($minPa, $maxPa),
+                'type' => 'NUMERIC',
+                'compare' => 'BETWEEN',
+            ),
+            array(
+                'key' => 'live_rd', // Adjust the key according to your actual meta key
+                'value' => array($minLiveRd, $maxLiveRd),
+                'type' => 'NUMERIC',
+                'compare' => 'BETWEEN',
+            ),
+        ),
     );
     $product_query = new WP_Query($args);
 	$Totalproducts = $product_query -> found_posts;
