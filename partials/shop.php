@@ -643,14 +643,16 @@
 			const productContainer = document.getElementById('product-container');
 			const loadingText = document.getElementById('loading-text');
 
-			const categoryFilters = []; // Array to store selected category values
-			jQuery('input[name="category_filter[]"]:checked').each(function() {
-				categoryFilters.push(jQuery(this).val());
-			});
+			const categoryFilters = [];
+			let categoryFilters = async () => {
+				jQuery('input[name="category_filter[]"]:checked').each(function() {
+					categoryFilters.push(jQuery(this).val());
+				});
+			}
 
-			console.log(categoryFilters);
+			let applyFiltersWithAjax = async (searchTerm) => {
+				await categoryFilters();
 
-			function applyFiltersWithAjax(searchTerm) {
 				jQuery('.ajax-loader').removeClass('hidden');
 				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
 				
