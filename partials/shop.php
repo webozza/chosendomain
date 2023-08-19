@@ -648,6 +648,8 @@
 				categoryFilters.push(jQuery(this).val());
 			});
 
+			console.log(categoryFilters);
+
 			function applyFiltersWithAjax(searchTerm) {
 				jQuery('.ajax-loader').removeClass('hidden');
 				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
