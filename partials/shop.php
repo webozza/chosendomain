@@ -661,7 +661,6 @@
 					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
 					searchTerm: searchTerm,
-					categoryFilter: uniqueCategoryFilters,
 				};
 
 				jQuery.ajax({
