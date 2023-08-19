@@ -644,7 +644,6 @@
 			const loadingText = document.getElementById('loading-text');
 
 			async function applyFiltersWithAjax(searchTerm) {
-				await filterCats();
 				jQuery('.ajax-loader').removeClass('hidden');
 				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
 				
