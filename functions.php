@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.09' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.12' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -71,11 +71,13 @@ function render_product_loop($productIds, $filterData) {
     
     ob_start(); // Start output buffering
 
-    $minPrice = $filterData('minPrice');
-    $maxPrice = $filterData('maxPrice');
+    //var_dump($filterData);
 
-    // $maxDa = $filterData['maxDa'];
-    // $minDa = $filterData['minDa'];
+    $minPrice = $filterData['minPrice'];
+    $maxPrice = $filterData['maxPrice'];
+
+    $maxDa = $filterData['maxDa'];
+    $minDa = $filterData['minDa'];
     
     $args = array(
         'post_type' => 'product',
@@ -173,9 +175,9 @@ function render_product_loop($productIds, $filterData) {
             }
 
             $price_filter = $price >= $minPrice && $price <= $maxPrice;
-            //$da_filter = $da <= $maxDa && $da >= $minDa;
+            $da_filter = $da <= $maxDa && $da >= $minDa;
 
-            if($price_filter) { ?>
+            if($price_filter && $da_filter) { ?>
                 <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
                     <div class="product-details">
                         <div class="product-head">
