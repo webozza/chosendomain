@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.06' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.07' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -71,6 +71,9 @@ function render_product_loop($productIds, $filterData) {
     
     ob_start(); // Start output buffering
 
+    $minPrice = $filterData('minPrice');
+    $maxPrice = $filterData('maxPrice');
+
     $maxDa = $filterData['maxDa'];
     $minDa = $filterData['minDa'];
     
@@ -121,12 +124,12 @@ function render_product_loop($productIds, $filterData) {
     if ($product_query->have_posts()) {
         while ($product_query->have_posts()) {
             
-            $product_query->the_post(); // Set up the post data
-            $product_id = get_the_ID(); // Use get_the_ID() to get post ID
+            $product_query->the_post();
+            $product_id = get_the_ID();
             $product_title = get_the_title();
-            //$product_slug = $product->get_slug();
-            //$price = $product -> get_price();
-            //$product_description = $product->get_description();
+            $product_slug = get_post_field('post_name', $product_id);
+            $price = get_post_meta($product_id, '_price', true);
+            $product_description = get_the_content();
             $da = get_post_meta($product_id, 'da', true);
             $dr = get_post_meta($product_id, 'dr', true);
             $pa = get_post_meta($product_id, 'pa', true);
@@ -169,7 +172,10 @@ function render_product_loop($productIds, $filterData) {
                 $uses = $use_cases[0];
             }
 
-            if($da <= $maxDa && $da >= $minDa) { ?>
+            $price_filter = $price >= $minPrice && $price <= $maxPrice;
+            $da_filter = $da <= $maxDa && $da >= $minDa;
+
+            if($da_filter && $price_filter) { ?>
                 <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
                     <div class="product-details">
                         <div class="product-head">
@@ -214,12 +220,12 @@ function render_product_loop($productIds, $filterData) {
                         </div>
                     </div>
                     <div class="product-card">
-                        <h2>$ </h2>
+                        <h2>$<?= $price ?></h2>
                         <ul>
                             <li>
                                 <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
                             </li>
-                            <li> <a href="<?= get_site_url() ?>"> More Data </a> </li>
+                            <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
                         </ul>
                     </div>
                 </div>
