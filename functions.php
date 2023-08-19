@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.16' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.17' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -48,10 +48,7 @@ function load_more_products() {
     if (isset($_POST['filterData'])) {
         $filterData = $_POST['filterData'];
         $filteredProductIds = get_filtered_product_ids($filterData);
-
-        // Render the products loop and return the HTML
         $products_html = render_product_loop($filteredProductIds, $filterData);
-
         wp_send_json_success(array('data' => $products_html));
     } else {
         wp_send_json_error('Filter data not provided.');
@@ -60,65 +57,86 @@ function load_more_products() {
 }
 
 function get_filtered_product_ids($filterData) {
-    // Apply the filter criteria to retrieve the filtered product IDs
-    // Implement your filtering logic here
-    // Return an array of product IDs
-    return array(); // Placeholder, replace with your actual logic
+    return array();
 }
 
 function render_product_loop($productIds, $filterData) {
-    // Use the product IDs to query and render the products loop
-    
-    ob_start(); // Start output buffering
-
-    //var_dump($filterData);
-
+    ob_start();
     $minPrice = $filterData['minPrice'];
     $maxPrice = $filterData['maxPrice'];
-
     $maxDa = $filterData['maxDa'];
     $minDa = $filterData['minDa'];
-
     $maxPa = $filterData['maxPa'];
     $minPa = $filterData['minPa'];
-
     $maxLiveRd = $filterData['maxLiveRd'];
     $minLiveRd = $filterData['minLiveRd'];
-    
+    $category_filters = isset($filterData['categoryFilter']) ? $filterData['categoryFilter'] : array();
+
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => 10,
         'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
         'meta_query' => array(
-            'relation' => 'AND', // Combine the meta queries using AND operator
+            'relation' => 'AND', // Combine the meta queries using the AND operator
             array(
-                'key' => 'price', // Adjust the key according to your actual meta key
-                'value' => array($minPrice, $maxPrice),
+                'key' => '_price', // Use '_price' for WooCommerce product price
                 'type' => 'NUMERIC',
-                'compare' => 'BETWEEN',
+                'compare' => '>=', // Greater than or equal to
+                'value' => $minPrice,
             ),
             array(
-                'key' => 'da', // Adjust the key according to your actual meta key
-                'value' => array($minDa, $maxDa),
+                'key' => '_price', // Use '_price' for WooCommerce product price
                 'type' => 'NUMERIC',
-                'compare' => 'BETWEEN',
+                'compare' => '<=', // Less than or equal to
+                'value' => $maxPrice,
             ),
             array(
-                'key' => 'pa', // Adjust the key according to your actual meta key
-                'value' => array($minPa, $maxPa),
+                'key' => 'da', // Replace 'da' with the actual ACF field key
                 'type' => 'NUMERIC',
-                'compare' => 'BETWEEN',
+                'compare' => '>=', // Greater than or equal to
+                'value' => $minDa,
             ),
             array(
-                'key' => 'live_rd', // Adjust the key according to your actual meta key
-                'value' => array($minLiveRd, $maxLiveRd),
+                'key' => 'da', // Replace 'da' with the actual ACF field key
                 'type' => 'NUMERIC',
-                'compare' => 'BETWEEN',
+                'compare' => '<=', // Less than or equal to
+                'value' => $maxDa,
+            ),
+            array(
+                'key' => 'pa', // Replace 'pa' with the actual ACF field key for Page Authority
+                'type' => 'NUMERIC',
+                'compare' => '>=', // Greater than or equal to
+                'value' => $minPa,
+            ),
+            array(
+                'key' => 'pa', // Replace 'pa' with the actual ACF field key for Page Authority
+                'type' => 'NUMERIC',
+                'compare' => '<=', // Less than or equal to
+                'value' => $maxPa,
+            ),
+            array(
+                'key' => 'live_rd', // Replace 'live_rd' with the actual ACF field key for live_rd
+                'type' => 'NUMERIC',
+                'compare' => '>=', // Greater than or equal to
+                'value' => $minLiveRd,
+            ),
+            array(
+                'key' => 'live_rd', // Replace 'live_rd' with the actual ACF field key for live_rd
+                'type' => 'NUMERIC',
+                'compare' => '<=', // Less than or equal to
+                'value' => $maxLiveRd,
+            ),
+            array(
+                'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
+                'field' => 'slug', // You can change to 'id' if you use category IDs
+                'terms' => $category_filters,
+                'operator' => 'IN', // Include products in any of the selected categories
             ),
         ),
     );
+    
     $product_query = new WP_Query($args);
-	$Totalproducts = $product_query -> found_posts;
+	$totalProducts = $product_query -> found_posts;
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat',
 		'hide_empty' => false,
@@ -126,7 +144,6 @@ function render_product_loop($productIds, $filterData) {
 
     function obscureDomain($domain) {
         $parts = explode('.', $domain);
-        
         $obscured = [];
         foreach ($parts as $part) {
             if (strlen($part) <= 2) {
@@ -135,7 +152,6 @@ function render_product_loop($productIds, $filterData) {
                 $obscured[] = $part[0] . str_repeat('*', strlen($part) - 2) . $part[strlen($part) - 1];
             }
         }
-        
         return implode('.', $obscured);
     }
 
@@ -212,7 +228,7 @@ function render_product_loop($productIds, $filterData) {
             $pa_filter = $pa <= $maxPa && $pa >= $minPa;
             $live_rd_filter = $live_rd <= $maxLiveRd && $live_rd >= $minLiveRd;
 
-            if($price_filter && $da_filter && $pa_filter && $live_rd_filter) { ?>
+            ?>
                 <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
                     <div class="product-details">
                         <div class="product-head">
@@ -266,12 +282,12 @@ function render_product_loop($productIds, $filterData) {
                         </ul>
                     </div>
                 </div>
-            <?php }
+            <?php
         }
 
         // Pagination
         $pagination_args = array(
-            'base' => add_query_arg('paged', '%#%'),
+            'base' => esc_url(add_query_arg(array('paged' => '%#%', 'filterData' => http_build_query($filterData)), 'https://chosendomain.com/domains')),
             'format' => '',
             'total' => $product_query->max_num_pages,
             'current' => max(1, get_query_var('paged')),
@@ -281,11 +297,11 @@ function render_product_loop($productIds, $filterData) {
             'prev_next' => true,
             'prev_text' => __('&laquo; Previous'),
             'next_text' => __('Next &raquo;'),
-        );
+        );                
 
         ?>
             <div class="pagination-section" id="">
-                <p class="hidden">Showing <?= $Totalproducts; ?> domains filtered out of <?= $Totalproducts; ?> domains</p>
+                <p class="hidden">Showing <?= $totalProducts; ?> domains filtered out of <?= $totalProducts; ?> domains</p>
                 <div class="pagination">
                     <?= paginate_links($pagination_args); ?>
                 </div>
@@ -295,7 +311,7 @@ function render_product_loop($productIds, $filterData) {
         echo 'No products found.';
     }
 
-    $products_html = ob_get_clean(); // Get the buffered content and clear buffer
+    $products_html = ob_get_clean();
     return $products_html;
 }
 
