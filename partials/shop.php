@@ -246,17 +246,17 @@
 									class="sf-meta-range sf-meta-range-slider">
 									<div class="price-range-inputs">
 										<label>
-											<input class="sf-input-range-number sf-range-min dr-range-min sf-input-number" min="0"
+											<input class="sf-input-range-number sf-range-min pa-range-min sf-input-number" min="0"
 												max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
 										</label>
 										<span class="sf-range-values-separator"></span>
 										<label>
-											<input class="sf-input-range-number sf-range-max dr-range-max sf-input-number" min="0"
+											<input class="sf-input-range-number sf-range-max pa-range-max sf-input-number" min="0"
 												max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
 												title="">
 										</label>
 									</div>
-									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal dr-slider">
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal pa-slider">
 										<div class="noUi-base">
 											<div class="noUi-connects">
 												<div class="noUi-connect"></div>
@@ -285,47 +285,43 @@
                             <i class="fa-solid fa-circle-info"></i>
                         </div>
 						<div class="answer">
-
-							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
-									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
-									data-sf-meta-type="number">
-
-									<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
-										data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
-										data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
-										data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
-										class="sf-meta-range sf-meta-range-slider">
-										<div class="price-range-inputs">
-											<label>
-												<input class="sf-input-range-number sf-range-min live-rd-range-min sf-input-number" min="0"
-													max="10000" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
-											</label>
-											<span class="sf-range-values-separator"></span>
-											<label>
-												<input class="sf-input-range-number sf-range-max live-rd-range-max sf-input-number" min="0"
-													max="10000" step="1" name="_sfm__sale_price[]" type="number" value="10000"
-													title="">
-											</label>
-										</div>
-										<div class="meta-slider noUi-target noUi-ltr noUi-horizontal live-rd-slider">
-											<div class="noUi-base">
-												<div class="noUi-connects">
-													<div class="noUi-connect"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
-												</div>
+							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price" data-sf-field-type="post_meta" data-sf-field-input-type="range-slider" data-sf-meta-type="number">
+								<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+									data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+									data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+									data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+									class="sf-meta-range sf-meta-range-slider">
+									<div class="price-range-inputs">
+										<label>
+											<input class="sf-input-range-number sf-range-min live-rd-range-min sf-input-number" min="0"
+												max="10000" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+										</label>
+										<span class="sf-range-values-separator"></span>
+										<label>
+											<input class="sf-input-range-number sf-range-max live-rd-range-max sf-input-number" min="0"
+												max="10000" step="1" name="_sfm__sale_price[]" type="number" value="10000"
+												title="">
+										</label>
+									</div>
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal live-rd-slider">
+										<div class="noUi-base">
+											<div class="noUi-connects">
+												<div class="noUi-connect"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 						</div>
 					</div>
 
@@ -337,46 +333,44 @@
                         </div>
 						<div class="answer">
 
-							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
-									data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
-									data-sf-meta-type="number">
+							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price" data-sf-field-type="post_meta" data-sf-field-input-type="range-slider" data-sf-meta-type="number">
 
-									<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
-										data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
-										data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
-										data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
-										class="sf-meta-range sf-meta-range-slider">
-										<div class="price-range-inputs">
-											<label>
-												<input class="sf-input-range-number sf-range-min age-range-min sf-input-number" min="0"
-													max="50" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
-											</label>
-											<span class="sf-range-values-separator"></span>
-											<label>
-												<input class="sf-input-range-number sf-range-max age-range-max sf-input-number" min="0"
-													max="50" step="1" name="_sfm__sale_price[]" type="number" value="50"
-													title="">
-											</label>
-										</div>
-										<div class="meta-slider noUi-target noUi-ltr noUi-horizontal age-slider">
-											<div class="noUi-base">
-												<div class="noUi-connects">
-													<div class="noUi-connect"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="50.0" aria-valuenow="0.0" aria-valuetext="0"></div>
-												</div>
-												<div class="noUi-origin">
-													<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
-														role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
-														aria-valuemax="50.0" aria-valuenow="50.0" aria-valuetext="50"></div>
-												</div>
+								<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+									data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+									data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+									data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+									class="sf-meta-range sf-meta-range-slider">
+									<div class="price-range-inputs">
+										<label>
+											<input class="sf-input-range-number sf-range-min age-range-min sf-input-number" min="0"
+												max="50" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+										</label>
+										<span class="sf-range-values-separator"></span>
+										<label>
+											<input class="sf-input-range-number sf-range-max age-range-max sf-input-number" min="0"
+												max="50" step="1" name="_sfm__sale_price[]" type="number" value="50"
+												title="">
+										</label>
+									</div>
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal age-slider">
+										<div class="noUi-base">
+											<div class="noUi-connects">
+												<div class="noUi-connect"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="50.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="50.0" aria-valuenow="50.0" aria-valuetext="50"></div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 						</div>
 					</div>
 
@@ -662,6 +656,10 @@
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
 					minDa: parseFloat(jQuery(".da-range-min").val()),
 					maxDa: parseFloat(jQuery(".da-range-max").val()),
+					minPa: parseFloat(jQuery(".pa-range-min").val()),
+					maxPa: parseFloat(jQuery(".pa-range-max").val()),
+					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
+					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
 					searchTerm: searchTerm,
 				};
 
