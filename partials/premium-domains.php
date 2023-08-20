@@ -94,44 +94,59 @@
             </div>
 					
             <!-- DOMAINS -->
-			<div class="domain-inventory-content" id="product-container">
-				<?php if ($product_query->have_posts()) {
-					while ($product_query->have_posts()) {
-						$product_id = get_the_ID(); // Use get_the_ID() to get post ID
-						$product_title = get_the_title();
-						$product_slug = get_post_field('post_name', $product_id);
-						$price = get_post_meta($product_id, '_price', true);
-						$product_description = get_the_content();
-						$da = get_post_meta($product_id, 'da', true);
-						$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
-						$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+            <div class="domain-inventory-content" id="product-container">
+                <?php
+					if ($product_query->have_posts()) {
+						while ($product_query->have_posts()) {
+							
+							//$product_id = $product->get_id();
+							$product_id = get_the_ID(); // Use get_the_ID() to get post ID
+							$product_title = get_the_title();
+							$product_slug = get_post_field('post_name', $product_id);
+            				$price = get_post_meta($product_id, '_price', true);
+							$product_description = get_the_content();
+							$da = get_post_meta($product_id, 'da', true);
+							$dr = get_post_meta($product_id, 'dr', true);
+							$pa = get_post_meta($product_id, 'pa', true);
+							$live_rd = get_post_meta($product_id, 'live_rd', true);
+							$hist_rd = get_post_meta($product_id, 'hist_rd', true);
+							$age = get_post_meta($product_id, 'age', true);
+							$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
+							$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
 
-						// Domain Type
-						$domain_type = get_field('domain_type', $product_id);
+							// Domain Extensions
+							$domain_extensions = wp_get_post_terms($product_id, 'extension');
+							$extension_names = array();
+							foreach ($domain_extensions as $extension) {
+								$extension_names[] = $extension->name;
+							};
 
-						// Authority Backlinks
-						$authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
-						$ab_names = array();
-						foreach ($authority_backlinks as $backlink) {
-							$ab_names[] = $backlink->name;
-						};
+							// Domain Type
+							$domain_type = get_field('domain_type', $product_id);
 
-						// Language
-						$languages  = wp_get_post_terms($product_id, 'language');
-						//var_dump($languages);
-						$langs = array();
-						foreach ($languages as $lang) {
-							$langs[] = $lang->name;
-						};
+							// Authority Backlinks
+							$authority_backlinks = wp_get_post_terms($product_id, 'authory_backlink');
+							$ab_names = array();
+							foreach ($authority_backlinks as $backlink) {
+								$ab_names[] = $backlink->name;
+							};
 
-						// Use Cases
-						$use_cases = get_post_meta($product_id, 'usecase', false);
-						if(empty($use_cases)) {
-							$uses = [];
-						} else {
-							$uses = $use_cases[0];
-						}
-						?>
+							// Language
+							$languages  = wp_get_post_terms($product_id, 'language');
+							//var_dump($languages);
+							$langs = array();
+							foreach ($languages as $lang) {
+								$langs[] = $lang->name;
+							};
+
+							// Use Cases
+							$use_cases = get_post_meta($product_id, 'usecase', false);
+							if(empty($use_cases)) {
+								$uses = [];
+							} else {
+								$uses = $use_cases[0];
+							}
+					?>
 						<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 							<div class="product-details">
 								<div class="product-head">
@@ -174,31 +189,38 @@
 								</div>
 							</div>
 						</div>
-					<?php }
-					
-					// Pagination
-					$pagination_args = array(
-						'base' => esc_url(add_query_arg('paged', '%#%')),
-						'format' => '?paged=%#%',
-						'total' => $product_query->max_num_pages,
-						'current' => $current_page,
-						'prev_next' => true,
-						'prev_text' => __('&laquo; Previous'),
-						'next_text' => __('Next &raquo;'),
-					);
+						<?php
+							$pagination_args = array(
+								'base' => esc_url(add_query_arg('paged', '%#%')),
+								'format' => '?paged=%#%',
+								'total' => $product_query->max_num_pages,
+								'current' => $current_page,
+								'prev_next' => true,
+								'prev_text' => __('&laquo; Previous'),
+								'next_text' => __('Next &raquo;'),
+							);
+
+							?>
+								<div class="pagination-section" id="">
+									<p class="hidden">Showing <?= $totalProducts; ?> domains filtered out of <?= $totalProducts; ?> domains</p>
+									<div id="pagination-container" class="pagination">
+										<?php
+										if ($pagination_links) {
+											echo $pagination_links;
+										}
+										?>
+									</div>
+								</div>
+							<?php }
+					} else {
+						echo 'No products found.';
+					}
 					?>
-					<div class="pagination-section" id="">
-						<p class="hidden">Showing <?= $totalProducts; ?> domains filtered out of <?= $totalProducts; ?> domains</p>
-						<div id="pagination-container" class="pagination">
-							<?php if ($pagination_links) {
-								echo $pagination_links;
-							} ?>
-						</div>
-					</div>
-				<?php } else {
-					echo 'No products found.';
-				} ?>
-			</div>
+
+                <div class="no-results-found" style="display:none;">
+                    No results found to the selected filters. Please change/remove filters to show domains.
+                </div>
+            </div>
 
 			<!-- LOAD MORE SECTION -->
 			<div class="load-more-container">
