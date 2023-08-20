@@ -100,8 +100,8 @@
 						while ($product_query->have_posts()) {
 							
 							//$product_id = $product->get_id();
-							$product_id = $product->get_id();
-							$product_title = $product->get_name();
+							$product_id = get_the_ID(); // Use get_the_ID() to get post ID
+							$product_title = get_the_title();
 							$product_slug = $product->get_slug();
 							$price = $product -> get_price();
 							$product_description = $product->get_description();
