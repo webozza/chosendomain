@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.38' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.39' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -337,15 +337,31 @@ function render_product_loop($productIds, $filterData) {
             'prev_next' => true,
             'prev_text' => __('&laquo; Previous'),
             'next_text' => __('Next &raquo;'),
-        );                
+        );
+        
+        $pagination_links = paginate_links($pagination_args);                        
 
         ?>
             <div class="pagination-section" id="">
                 <p class="hidden">Showing <?= $totalProducts; ?> domains filtered out of <?= $totalProducts; ?> domains</p>
                 <div id="pagination-container" class="pagination">
-                    
+                    <?php
+                    if ($pagination_links) {
+                        echo $pagination_links;
+                    }
+                    ?>
                 </div>
             </div>
+            <script>
+                // Attach a click event handler to the pagination links
+                jQuery(document).on('click', '.pagination-link', function(e) {
+                    e.preventDefault();
+                    const targetPage = parseInt(jQuery(this).data('page'), 10);
+                    if (targetPage !== currentPage) {
+                        loadPage(targetPage);
+                    }
+                });
+            </script>
         <?php
     } else {
        ?>

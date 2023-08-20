@@ -887,14 +887,7 @@
 				});
 			}
 
-			// Attach a click event handler to the pagination links
-			jQuery(document).on('click', '.pagination-link', function(e) {
-				e.preventDefault();
-				const targetPage = parseInt(jQuery(this).data('page'), 10);
-				if (targetPage !== currentPage) {
-					loadPage(targetPage);
-				}
-			});
+			
 		</script>
 
 	</div>
