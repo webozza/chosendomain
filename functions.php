@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.25' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.26' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -127,6 +127,20 @@ function render_product_loop($productIds, $filterData) {
             ),
         ),
     );
+    
+    // Check if the categoryFilter is defined before adding the tax query
+    if (isset($filterData['categoryFilter'])) {
+        $categoryFilter = $filterData['categoryFilter'];
+    
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $categoryFilter,
+                'operator' => 'IN',
+            ),
+        );
+    }    
     
     $product_query = new WP_Query($args);
 	$totalProducts = $product_query -> found_posts;
@@ -301,7 +315,7 @@ function render_product_loop($productIds, $filterData) {
             </div>
         <?php
     } else {
-        echo 'No products found.';
+       // echo 'No products found.';
     }
 
     $products_html = ob_get_clean();

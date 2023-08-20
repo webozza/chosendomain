@@ -651,6 +651,18 @@
 				loading = true;
 				loadingText.style.display = 'block';
 
+				let catsSelected = new Set();
+
+				jQuery('input[name="category_filter[]"]').each(function() {
+					let cat = jQuery(this);
+					if (cat.is(':checked')) {
+						catsSelected.add(cat.val());
+					}
+				});
+
+				// Convert the Set to an array
+				let uniqueCategoryFilters = Array.from(catsSelected);
+
 				const filterData = {
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
@@ -661,6 +673,7 @@
 					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
 					searchTerm: searchTerm,
+					categoryFilter: uniqueCategoryFilters,
 				};
 
 				jQuery.ajax({
@@ -678,7 +691,6 @@
 								
 								if (responseData.trim() === '') {
 									hasMoreProducts = false; // No more products to load
-									disableButton();
 									return;
 								}
 								
