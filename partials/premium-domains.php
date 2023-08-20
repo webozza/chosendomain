@@ -99,8 +99,9 @@
 					while ($product_query->have_posts()) {
 						$product_id = get_the_ID(); // Use get_the_ID() to get post ID
 						$product_title = get_the_title();
-						$product_slug = $product->get_slug();
-						$price = $product -> get_price();
+						$product_slug = get_post_field('post_name', $product_id);
+						$price = get_post_meta($product_id, '_price', true);
+						$product_description = get_the_content();
 						$da = get_post_meta($product_id, 'da', true);
 						$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
 						$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
