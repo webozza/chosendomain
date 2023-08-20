@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.37' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.38' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -165,7 +165,7 @@ function render_product_loop($productIds, $filterData) {
     }
 
     // Check if domainType is defined
-    if (isset($filterData['domainTypeFilter'])) {
+    if (isset($filterData['domainTypeFilter']) && !empty($filterData['domainTypeFilter'])) {
         $domainType = $filterData['domainTypeFilter'];
 
         $args['meta_query'][] = array(
@@ -342,8 +342,8 @@ function render_product_loop($productIds, $filterData) {
         ?>
             <div class="pagination-section" id="">
                 <p class="hidden">Showing <?= $totalProducts; ?> domains filtered out of <?= $totalProducts; ?> domains</p>
-                <div class="pagination">
-                    <?= paginate_links($pagination_args); ?>
+                <div id="pagination-container" class="pagination">
+                    
                 </div>
             </div>
         <?php
