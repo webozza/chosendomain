@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.29' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.30' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -151,7 +151,18 @@ function render_product_loop($productIds, $filterData) {
             'terms' => $extensionFilter,
             'operator' => 'IN',
         );
-    }    
+    }   
+    
+    // Check if the authority Backlinks Filter is defined before adding the tax query
+    if (isset($filterData['authorityBacklinksFilter'])) {
+        $authorityBacklinksFilter = $filterData['authorityBacklinksFilter'];
+        $args['tax_query'][] = array(
+            'taxonomy' => 'authorityBacklinks',
+            'field' => 'slug',
+            'terms' => $authorityBacklinksFilter,
+            'operator' => 'IN',
+        );
+    }
     
     $product_query = new WP_Query($args);
 	$totalProducts = $product_query -> found_posts;

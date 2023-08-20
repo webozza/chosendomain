@@ -671,6 +671,16 @@
 				});
 				let uniqueExtensionFilters = Array.from(extensionsSelected);
 
+				// Pass the extension selection to server
+				let authorityBacklinksSelected = new Set();
+				jQuery('input[name="extension_filter[]"]').each(function() {
+					let ab = jQuery(this);
+					if (ab.is(':checked')) {
+						authorityBacklinksSelected.add(ab.val());
+					}
+				});
+				let uniqueAuthorityBacklinks = Array.from(authorityBacklinksSelected);
+
 				const filterData = {
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
@@ -683,6 +693,7 @@
 					searchTerm: searchTerm,
 					categoryFilter: uniqueCategoryFilters,
 					extensionFilter: uniqueExtensionFilters,
+					authorityBacklinksFilter: uniqueAuthorityBacklinks,
 				};
 
 				jQuery.ajax({
