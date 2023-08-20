@@ -102,8 +102,8 @@
 							//$product_id = $product->get_id();
 							$product_id = get_the_ID(); // Use get_the_ID() to get post ID
 							$product_title = get_the_title();
-							$product_slug = $product->get_slug();
-							$price = $product -> get_price();
+							$product_slug = get_post_field('post_name', $product_id);
+            				$price = get_post_meta($product_id, '_price', true);
 							$product_description = $product->get_description();
 							$da = get_post_meta($product_id, 'da', true);
 							$dr = get_post_meta($product_id, 'dr', true);
