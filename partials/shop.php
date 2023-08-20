@@ -706,6 +706,23 @@
 								// Append new content to the container
 								jQuery('.ajax-loader').addClass('hidden');
 								productContainer.insertAdjacentHTML('beforeend', responseData);
+
+								jQuery(".domain-name-revealer").click(function () {
+									let isLoggedIn = jQuery("body").hasClass("logged-in");
+
+									let unobscuredDomainName = jQuery(this)
+									.closest(".product-box")
+									.data("domain-name");
+
+									if (isLoggedIn) {
+									jQuery(this)
+										.closest(".product-box")
+										.find(".obscured-domain-name")
+										.text(unobscuredDomainName);
+									} else {
+									jQuery(".ast-account-action-login").click();
+									}
+								});
 							} else {
 								console.error('Invalid response data:', response.data);
 							}
