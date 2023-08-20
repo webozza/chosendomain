@@ -683,8 +683,8 @@
 
 				// Pass the domain type selected
 				let domainTypeSelected = "";
-				$('input[name="domain-type[]"]').each(function() {
-					let domainType = $(this);
+				jQuery('input[name="domain-type[]"]').each(function() {
+					let domainType = jQuery(this);
 					if(domainType.is(':checked')) {
 						domainTypeSelected = domainType.val();
 					}
