@@ -497,7 +497,7 @@
 							$product_title = get_the_title();
 							$product_slug = get_post_field('post_name', $product_id);
             				$price = get_post_meta($product_id, '_price', true);
-							$product_description = $product->get_description();
+							$product_description = get_the_content();
 							$da = get_post_meta($product_id, 'da', true);
 							$dr = get_post_meta($product_id, 'dr', true);
 							$pa = get_post_meta($product_id, 'pa', true);
