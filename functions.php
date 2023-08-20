@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.32' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.34' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -161,6 +161,17 @@ function render_product_loop($productIds, $filterData) {
             'field' => 'slug',
             'terms' => $authorityBacklinksFilter,
             'operator' => 'IN',
+        );
+    }
+
+    // Check if domainType is defined
+    if (isset($filterData['domainTypeFilter'])) {
+        $domainType = $filterData['domainTypeFilter'];
+
+        $args['meta_query'][] = array(
+            'key' => 'domain_type',
+            'value' => $domainType,
+            'compare' => '=',
         );
     }
     

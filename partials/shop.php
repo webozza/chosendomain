@@ -681,6 +681,15 @@
 				});
 				let uniqueAuthorityBacklinks = Array.from(authorityBacklinksSelected);
 
+				// Pass the domain type selected
+				let domainTypeSelected = "";
+				$('input[name="domain-type[]"]').each(function() {
+					let domainType = $(this);
+					if(domainType.is(':checked')) {
+						domainTypeSelected = domainType.val();
+					}
+				})
+
 				const filterData = {
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
@@ -694,6 +703,7 @@
 					categoryFilter: uniqueCategoryFilters,
 					extensionFilter: uniqueExtensionFilters,
 					authorityBacklinksFilter: uniqueAuthorityBacklinks,
+					domainTypeFilter: domainTypeSelected,
 				};
 
 				jQuery.ajax({
