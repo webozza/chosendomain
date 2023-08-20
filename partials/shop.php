@@ -57,9 +57,9 @@
         <div class="domain-inventory-search-box">
             <h2>Choose your Domain Type</h2>
             <div class="domain-inventory-domain-type switch-domain-type">
-                <input type="radio" id="domain-type-budget" name="domain-type[]" value="Budget">
+                <input type="radio" id="domain-type-budget" name="domain-type[]" value="Budget Domain">
                 <label for="domain-type-budget" class="show-tooltip">Budget Domains</label>
-                <input type="radio" id="domain-type-premium" name="domain-type[]" value="Premium">
+                <input type="radio" id="domain-type-premium" name="domain-type[]" value="Premium Domain">
                 <label for="domain-type-premium" class="show-tooltip">Premium Domains</label>
                 <input type="radio" id="domain-type-30" name="domain-type[]" value="30">
                 <label for="domain-type-30" class="show-tooltip">$30 Domains</label>
