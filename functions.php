@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.26' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.27' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -139,6 +139,17 @@ function render_product_loop($productIds, $filterData) {
                 'terms' => $categoryFilter,
                 'operator' => 'IN',
             ),
+        );
+    }
+
+    // Check if the extensionFilter is defined before adding the tax query
+    if (isset($filterData['extensionFilter'])) {
+        $extensionFilter = $filterData['extensionFilter'];
+        $args['tax_query'][] = array(
+            'taxonomy' => 'extension',
+            'field' => 'slug',
+            'terms' => $extensionFilter,
+            'operator' => 'IN',
         );
     }    
     
@@ -315,7 +326,11 @@ function render_product_loop($productIds, $filterData) {
             </div>
         <?php
     } else {
-       // echo 'No products found.';
+       ?>
+            <div class="no-products-found">
+                <h5>No products found for your selected filters.</h5>
+            </div>
+       <?php
     }
 
     $products_html = ob_get_clean();

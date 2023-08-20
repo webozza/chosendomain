@@ -651,17 +651,25 @@
 				loading = true;
 				loadingText.style.display = 'block';
 
+				// Pass the category selection to server
 				let catsSelected = new Set();
-
 				jQuery('input[name="category_filter[]"]').each(function() {
 					let cat = jQuery(this);
 					if (cat.is(':checked')) {
 						catsSelected.add(cat.val());
 					}
 				});
-
-				// Convert the Set to an array
 				let uniqueCategoryFilters = Array.from(catsSelected);
+
+				// Pass the extension selection to server
+				let extensionsSelected = new Set();
+				jQuery('input[name="extension_filter[]"]').each(function() {
+					let extension = jQuery(this);
+					if (extension.is(':checked')) {
+						extensionsSelected.add(extension.val());
+					}
+				});
+				let uniqueExtensionFilters = Array.from(extensionsSelected);
 
 				const filterData = {
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
@@ -674,6 +682,7 @@
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
 					searchTerm: searchTerm,
 					categoryFilter: uniqueCategoryFilters,
+					extensionFilter: uniqueExtensionFilters,
 				};
 
 				jQuery.ajax({
