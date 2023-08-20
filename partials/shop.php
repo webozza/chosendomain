@@ -673,7 +673,7 @@
 
 				// Pass the extension selection to server
 				let authorityBacklinksSelected = new Set();
-				jQuery('input[name="extension_filter[]"]').each(function() {
+				jQuery('input[name="auhtority_backlinks_filter[]"]').each(function() {
 					let ab = jQuery(this);
 					if (ab.is(':checked')) {
 						authorityBacklinksSelected.add(ab.val());

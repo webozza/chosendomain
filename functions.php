@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.31' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.32' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -157,7 +157,7 @@ function render_product_loop($productIds, $filterData) {
     if (isset($filterData['authorityBacklinksFilter'])) {
         $authorityBacklinksFilter = $filterData['authorityBacklinksFilter'];
         $args['tax_query'][] = array(
-            'taxonomy' => 'authorityBacklinks',
+            'taxonomy' => 'authory_backlink',
             'field' => 'slug',
             'terms' => $authorityBacklinksFilter,
             'operator' => 'IN',
