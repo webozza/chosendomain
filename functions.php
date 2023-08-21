@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.54' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.55' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -383,14 +383,18 @@ add_action('wp_ajax_load_more_premium_products', 'load_more_premium_products');
 add_action('wp_ajax_nopriv_load_more_premium_products', 'load_more_premium_products');
 
 function load_more_premium_products() {
-    if (isset($_POST['filterData'])) {
-        $filterData = $_POST['filterData'];
+    $filterData = isset($_POST['filterData']) ? $_POST['filterData'] : array();
+    
+    if (isset($filterData['categoryFilter'])) {
         $filteredProductIds = get_filtered_premium_product_ids($filterData);
-        $products_html = render_premium_product_loop($filteredProductIds, $filterData);
-        wp_send_json_success(array('data' => $products_html));
     } else {
-        wp_send_json_error('Filter data not provided.');
+        // For all categories
+        $filterData['categoryFilter'] = array(); // Empty array indicates all categories
+        $filteredProductIds = get_filtered_premium_product_ids($filterData);
     }
+    
+    $products_html = render_premium_product_loop($filteredProductIds, $filterData);
+    wp_send_json_success(array('data' => $products_html));
     wp_die();
 }
 
@@ -410,6 +414,17 @@ function render_premium_product_loop($productIds, $filterData) {
     // Check if the categoryFilter is defined before adding the tax query
     if (isset($filterData['categoryFilter'])) {
         $categoryFilter = $filterData['categoryFilter'];
+    
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $categoryFilter,
+                'operator' => 'IN',
+            ),
+        );
+    } else {
+        $categoryFilter = array();
     
         $args['tax_query'] = array(
             array(
@@ -508,11 +523,6 @@ function render_premium_product_loop($productIds, $filterData) {
             } else {
                 $uses = $use_cases[0];
             }
-
-            $price_filter = $price >= $minPrice && $price <= $maxPrice;
-            $da_filter = $da <= $maxDa && $da >= $minDa;
-            $pa_filter = $pa <= $maxPa && $pa >= $minPa;
-            $live_rd_filter = $live_rd <= $maxLiveRd && $live_rd >= $minLiveRd;
 
             ?>
                 <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
