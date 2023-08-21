@@ -55,8 +55,6 @@
 						}
 					}
 				}
-				// $premium_category_names = array_unique($premium_category_names);
-				// var_dump($premium_category_names);
 			?>
             <div class="domain-inventory-sidebar">
 				
@@ -197,6 +195,87 @@
 
 	</div>
 </div>
+
+<script>
+	let loading = false;
+	let hasMoreProducts = true;
+	const productContainer = document.getElementById('product-container');
+
+	async function applyFiltersWithAjax(searchTerm) {
+		jQuery('.ajax-loader').removeClass('hidden');
+		jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
+		
+		if (loading || !hasMoreProducts) return;
+		loading = true;
+
+		// Pass the category selection to server
+		let catsSelected = new Set();
+		jQuery('input[name="category_filter[]"]').each(function() {
+			let cat = jQuery(this);
+			if (cat.is(':checked')) {
+				catsSelected.add(cat.val());
+			}
+		});
+		let uniqueCategoryFilters = Array.from(catsSelected);
+
+		const filterData = {
+			categoryFilter: uniqueCategoryFilters,
+		};
+
+		jQuery.ajax({
+			url: my_ajax_obj.ajax_url,
+			type: 'POST',
+			data: {
+				action: 'load_more_premium_products',
+				filterData: filterData,
+			},
+			success: function(response) {
+				if (response.success) {
+					// Check if response.data is an object
+					if (typeof response.data === 'object') {
+						const responseData = response.data.data;
+						
+						if (responseData.trim() === '') {
+							hasMoreProducts = false; // No more products to load
+							return;
+						}
+						
+						// Append new content to the container
+						jQuery('.ajax-loader').addClass('hidden');
+						productContainer.insertAdjacentHTML('beforeend', responseData);
+
+						jQuery(".domain-name-revealer").click(function () {
+							let isLoggedIn = jQuery("body").hasClass("logged-in");
+
+							let unobscuredDomainName = jQuery(this)
+							.closest(".product-box")
+							.data("domain-name");
+
+							if (isLoggedIn) {
+							jQuery(this)
+								.closest(".product-box")
+								.find(".obscured-domain-name")
+								.text(unobscuredDomainName);
+							} else {
+							jQuery(".ast-account-action-login").click();
+							}
+						});
+					} else {
+						console.error('Invalid response data:', response.data);
+					}
+				} else {
+					console.error('Error in AJAX response:', response.data);
+				}
+			},
+			error: function(error) {
+				console.error('AJAX error:', error);
+			},
+			complete: function() {
+				loading = false;
+			}
+		});
+	}
+</script>
 
 <?php get_footer(); ?>
 
