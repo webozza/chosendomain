@@ -89,6 +89,9 @@
             </div>
             <!-- DOMAINS -->
             <div class="domain-inventory-content" id="product-container">
+				<div class="ajax-loader hidden">
+					<img src="<?= get_stylesheet_directory_uri() . '/img/ajax-loader.gif' ?>">
+				</div>
                 <?php
 					if ($premium_products->have_posts()) {
 						while ($premium_products->have_posts()) {

@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.53' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.54' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -385,8 +385,8 @@ add_action('wp_ajax_nopriv_load_more_premium_products', 'load_more_premium_produ
 function load_more_premium_products() {
     if (isset($_POST['filterData'])) {
         $filterData = $_POST['filterData'];
-        $filteredProductIds = get_filtered_product_ids($filterData);
-        $products_html = render_product_loop($filteredProductIds, $filterData);
+        $filteredProductIds = get_filtered_premium_product_ids($filterData);
+        $products_html = render_premium_product_loop($filteredProductIds, $filterData);
         wp_send_json_success(array('data' => $products_html));
     } else {
         wp_send_json_error('Filter data not provided.');
