@@ -643,22 +643,54 @@
 			const productContainer = document.getElementById('product-container');
 			const loadingText = document.getElementById('loading-text');
 
-			function getSelectedFilters() {
-				let uniqueCategoryFilters = Array.from(jQuery('input[name="category_filter[]"]:checked').map(function() {
-					return jQuery(this).val();
-				}));
+			async function applyFiltersWithAjax(searchTerm) {
+				jQuery('.ajax-loader').removeClass('hidden');
+				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
+				
+				if (loading || !hasMoreProducts) return;
+				loading = true;
+				loadingText.style.display = 'block';
 
-				let uniqueExtensionFilters = Array.from(jQuery('input[name="extension_filter[]"]:checked').map(function() {
-					return jQuery(this).val();
-				}));
+				// Pass the category selection to server
+				let catsSelected = new Set();
+				jQuery('input[name="category_filter[]"]').each(function() {
+					let cat = jQuery(this);
+					if (cat.is(':checked')) {
+						catsSelected.add(cat.val());
+					}
+				});
+				let uniqueCategoryFilters = Array.from(catsSelected);
 
-				let uniqueAuthorityBacklinks = Array.from(jQuery('input[name="auhtority_backlinks_filter[]"]:checked').map(function() {
-					return jQuery(this).val();
-				}));
+				// Pass the extension selection to server
+				let extensionsSelected = new Set();
+				jQuery('input[name="extension_filter[]"]').each(function() {
+					let extension = jQuery(this);
+					if (extension.is(':checked')) {
+						extensionsSelected.add(extension.val());
+					}
+				});
+				let uniqueExtensionFilters = Array.from(extensionsSelected);
 
-				let domainTypeSelected = jQuery('input[name="domain-type[]"]:checked').val() || '';
+				// Pass the extension selection to server
+				let authorityBacklinksSelected = new Set();
+				jQuery('input[name="auhtority_backlinks_filter[]"]').each(function() {
+					let ab = jQuery(this);
+					if (ab.is(':checked')) {
+						authorityBacklinksSelected.add(ab.val());
+					}
+				});
+				let uniqueAuthorityBacklinks = Array.from(authorityBacklinksSelected);
 
-				return {
+				// Pass the domain type selected
+				let domainTypeSelected = "";
+				jQuery('input[name="domain-type[]"]').each(function() {
+					let domainType = jQuery(this);
+					if(domainType.is(':checked')) {
+						domainTypeSelected = domainType.val();
+					}
+				})
+
+				const filterData = {
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
 					minDa: parseFloat(jQuery(".da-range-min").val()),
@@ -673,14 +705,6 @@
 					authorityBacklinksFilter: uniqueAuthorityBacklinks,
 					domainTypeFilter: domainTypeSelected,
 				};
-			}
-
-			async function loadPage(pageNumber) {
-				if (loading || !hasMoreProducts) return;
-				loading = true;
-				loadingText.style.display = 'block';
-
-				const filterData = getSelectedFilters();
 
 				jQuery.ajax({
 					url: my_ajax_obj.ajax_url,
@@ -688,42 +712,43 @@
 					data: {
 						action: 'load_more_products',
 						filterData: filterData,
-						pageNumber: pageNumber,
 					},
 					success: function(response) {
-						if (response.success && typeof response.data === 'object') {
-							const responseData = response.data.data;
+						if (response.success) {
+							// Check if response.data is an object
+							if (typeof response.data === 'object') {
+								const responseData = response.data.data;
+								
+								if (responseData.trim() === '') {
+									hasMoreProducts = false; // No more products to load
+									return;
+								}
+								
+								// Append new content to the container
+								jQuery('.ajax-loader').addClass('hidden');
+								productContainer.insertAdjacentHTML('beforeend', responseData);
 
-							if (responseData.trim() === '') {
-								hasMoreProducts = false;
-								return;
-							}
+								jQuery(".domain-name-revealer").click(function () {
+									let isLoggedIn = jQuery("body").hasClass("logged-in");
 
-							jQuery('.ajax-loader').addClass('hidden');
-							productContainer.insertAdjacentHTML('beforeend', responseData);
-
-							jQuery(".domain-name-revealer").click(function () {
-								let isLoggedIn = jQuery("body").hasClass("logged-in");
-
-								let unobscuredDomainName = jQuery(this)
+									let unobscuredDomainName = jQuery(this)
 									.closest(".product-box")
 									.data("domain-name");
 
-								if (isLoggedIn) {
+									if (isLoggedIn) {
 									jQuery(this)
 										.closest(".product-box")
 										.find(".obscured-domain-name")
 										.text(unobscuredDomainName);
-								} else {
+									} else {
 									jQuery(".ast-account-action-login").click();
-								}
-							});
-
-							if (typeof response.data.pagination !== 'undefined') {
-								jQuery('#pagination-container').html(response.data.pagination);
+									}
+								});
+							} else {
+								console.error('Invalid response data:', response.data);
 							}
 						} else {
-							console.error('Invalid response data:', response.data);
+							console.error('Error in AJAX response:', response.data);
 						}
 					},
 					error: function(error) {
@@ -736,17 +761,133 @@
 				});
 			}
 
-			// Attach a click event handler to the pagination links
-			jQuery(document).on('click', '.pagination-link', function(e) {
-				e.preventDefault();
-				const targetPage = parseInt(jQuery(this).data('page'), 10);
-				if (targetPage !== currentPage) {
-					loadPage(targetPage);
-				}
-			});
+			let currentPage = 1;
 
-			// Load the initial page when the page loads
-			loadPage(currentPage);
+			function loadPage(pageNumber) {
+				jQuery('.ajax-loader').removeClass('hidden');
+				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
+				
+				if (loading || !hasMoreProducts) return;
+				loading = true;
+				loadingText.style.display = 'block';
+
+				// Pass the category selection to server
+				let catsSelected = new Set();
+				jQuery('input[name="category_filter[]"]').each(function() {
+					let cat = jQuery(this);
+					if (cat.is(':checked')) {
+						catsSelected.add(cat.val());
+					}
+				});
+				let uniqueCategoryFilters = Array.from(catsSelected);
+
+				// Pass the extension selection to server
+				let extensionsSelected = new Set();
+				jQuery('input[name="extension_filter[]"]').each(function() {
+					let extension = jQuery(this);
+					if (extension.is(':checked')) {
+						extensionsSelected.add(extension.val());
+					}
+				});
+				let uniqueExtensionFilters = Array.from(extensionsSelected);
+
+				// Pass the extension selection to server
+				let authorityBacklinksSelected = new Set();
+				jQuery('input[name="auhtority_backlinks_filter[]"]').each(function() {
+					let ab = jQuery(this);
+					if (ab.is(':checked')) {
+						authorityBacklinksSelected.add(ab.val());
+					}
+				});
+				let uniqueAuthorityBacklinks = Array.from(authorityBacklinksSelected);
+
+				// Pass the domain type selected
+				let domainTypeSelected = "";
+				jQuery('input[name="domain-type[]"]').each(function() {
+					let domainType = jQuery(this);
+					if(domainType.is(':checked')) {
+						domainTypeSelected = domainType.val();
+					}
+				})
+
+				const filterData = {
+					minPrice: parseFloat(jQuery(".price-range-min").val()),
+					maxPrice: parseFloat(jQuery(".price-range-max").val()),
+					minDa: parseFloat(jQuery(".da-range-min").val()),
+					maxDa: parseFloat(jQuery(".da-range-max").val()),
+					minPa: parseFloat(jQuery(".pa-range-min").val()),
+					maxPa: parseFloat(jQuery(".pa-range-max").val()),
+					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
+					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
+					searchTerm: searchTerm,
+					categoryFilter: uniqueCategoryFilters,
+					extensionFilter: uniqueExtensionFilters,
+					authorityBacklinksFilter: uniqueAuthorityBacklinks,
+					domainTypeFilter: domainTypeSelected,
+				};
+
+				jQuery.ajax({
+					url: my_ajax_obj.ajax_url,
+					type: 'POST',
+					data: {
+						action: 'load_more_products',
+						filterData: filterData,
+						pageNumber: currentPage, // Add the current page number
+					},
+					success: function(response) {
+						if (response.success) {
+							// Check if response.data is an object
+							if (typeof response.data === 'object') {
+								const responseData = response.data.data;
+
+								if (responseData.trim() === '') {
+									hasMoreProducts = false; // No more products to load
+									return;
+								}
+
+								// Append new content to the container
+								jQuery('.ajax-loader').addClass('hidden');
+								productContainer.insertAdjacentHTML('beforeend', responseData);
+
+								jQuery(".domain-name-revealer").click(function () {
+									let isLoggedIn = jQuery("body").hasClass("logged-in");
+
+									let unobscuredDomainName = jQuery(this)
+										.closest(".product-box")
+										.data("domain-name");
+
+									if (isLoggedIn) {
+										jQuery(this)
+											.closest(".product-box")
+											.find(".obscured-domain-name")
+											.text(unobscuredDomainName);
+									} else {
+										jQuery(".ast-account-action-login").click();
+									}
+								});
+
+								// Update the pagination container if provided in the response
+								if (typeof response.data.pagination !== 'undefined') {
+									jQuery('#pagination-container').html(response.data.pagination);
+								}
+							} else {
+								console.error('Invalid response data:', response.data);
+							}
+						} else {
+							console.error('Error in AJAX response:', response.data);
+						}
+					},
+					error: function(error) {
+						console.error('AJAX error:', error);
+					},
+					complete: function() {
+						loadingText.style.display = 'none';
+						loading = false;
+					}
+				});
+			}
+
+			
 		</script>
 
 	</div>
