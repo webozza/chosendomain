@@ -49,7 +49,7 @@ jQuery(document).ready(function ($) {
     var itemList = $(itemListSelector);
     var items = itemList.find("label");
 
-    searchInput.on("change", function () {
+    searchInput.on("keyup", function () {
       var searchTerm = $(this).val().toLowerCase();
 
       items.each(function () {

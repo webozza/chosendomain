@@ -11,7 +11,7 @@
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
     );
     $product_query = new WP_Query($args);
-	$Totalproducts = $product_query -> found_posts;
+	$total_products = $product_query -> found_posts;
 	$product_cats = get_terms(array(
 		'taxonomy' => 'product_cat',
 		'hide_empty' => false,
@@ -613,7 +613,7 @@
 
 						?>
 							<div class="pagination-section" id="">
-								<p class="hidden">Showing <?= $Totalproducts; ?> domains filtered out of <?= $Totalproducts; ?> domains</p>
+								<p class="hidden">Showing <?= $total_products; ?> domains filtered out of <?= $total_products; ?> domains</p>
 								<div class="pagination">
 									<?= paginate_links($pagination_args); ?>
 								</div>

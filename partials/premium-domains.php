@@ -4,47 +4,60 @@
 
 <?php get_header(); ?>
 
-
-
-<!-- ------------------ start ----------- -->
 <?php
     $args = array(
         'post_type' => 'product',
         'posts_per_page' => -1,
+		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+		'meta_query' => array(
+			array(
+				'key' => 'domain_type',
+				'value' => 'Premium Domain',
+				'compare' => '=',
+				'type' => 'CHAR',
+			),
+		),
     );
-    $product_query = new WC_Product_Query($args);
-    $premium_products = $product_query->get_products();
-	$product_cats = get_terms(array(
-		'taxonomy' => 'product_cat', // WooCommerce product category taxonomy
-		'hide_empty' => false,       // Set to true if you want to hide empty categories
-	));
+    $premium_products = new WP_Query($args);
 
-    function obscureDomain($domain) {
-        $parts = explode('.', $domain);
-        
-        $obscured = [];
-        foreach ($parts as $part) {
-            if (strlen($part) <= 2) {
-                $obscured[] = $part;
-            } else {
-                $obscured[] = $part[0] . str_repeat('*', strlen($part) - 2) . $part[strlen($part) - 1];
-            }
-        }
-        
-        return implode('.', $obscured);
-    }
+	$product_query = new WC_Product_Query($args);
+    $pps = $product_query->get_products();
+
+	// Separate query for categories
+	$product_cats = get_terms(array(
+		'taxonomy' => 'product_cat',
+		'hide_empty' => false,
+	));
 ?>
 
 <div class="domain-section premium-domain-section">
     <div class="domain-inventory-wrap premium-domain">
-
-        <!-- Domain Inventory Search Box -->
         <div class="domain-inventory-search-box">
-            <h2>Premium Domain </h2>
+            <h2>Premium Domains</h2>
         </div>
-        <!-- Domain Loop with Filters -->
         <div class="domain-inventory-search-wrap">
             <!-- FILTERS -->
+			<?php
+				$premium_category_names = array();
+				foreach ($pps as $pp) {
+					$product_id = $pp->get_id();
+					$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+				
+					// Check if the product has the "Premium Domain" value
+					if (get_field('domain_type', $product_id) === 'Premium Domain') {
+						foreach ($product_categories as $category_name) {
+							// Increment the count for the category or initialize if it doesn't exist
+							if (isset($premium_category_counts[$category_name])) {
+								$premium_category_counts[$category_name]++;
+							} else {
+								$premium_category_counts[$category_name] = 1;
+							}
+						}
+					}
+				}
+				// $premium_category_names = array_unique($premium_category_names);
+				// var_dump($premium_category_names);
+			?>
             <div class="domain-inventory-sidebar">
 				
                <div class="domain-inventory-search-filters">
@@ -59,41 +72,35 @@
 								<span class="search-icon"></span>
 							</div>
 							<div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
-								<?php if(!empty($product_cats)) { 
-									foreach ($product_cats as $category) { ?>
-										<?php
-											$catObj = get_term_by('name', $category->name, 'product_cat');
-											$productCount = $catObj->count;
+								<?php
+									foreach ($premium_category_counts as $category_name => $count) {
 										?>
-										<?php if($productCount != 0) { ?>
-											<a href="javascript:void(0)"> 
-												<label>
-													<input name="category_filter[]" type="checkbox" value="<?= $category->name ?>">	
-													<span><?= esc_html($category->name) ?> (<?= $productCount ?>)</span> <br>
-												</label>
-											</a>
-										<?php } ?>
-									<?php
+										<a href="javascript:void(0)"> 
+											<label>
+												<input name="category_filter[]" type="checkbox" value="<?= $category_name ?>">	
+												<span><?= esc_html($category_name) ?> (<?= $count ?>)</span> <br>
+											</label>
+										</a>
+										<?php
 									}
-								} ?>
+								?>
 							</div>
 						</div>
                     </div>
 			   </div>
             </div>
-					
             <!-- DOMAINS -->
             <div class="domain-inventory-content" id="product-container">
                 <?php
-					if ($premium_products) {
-						foreach ($premium_products as $product) {
+					if ($premium_products->have_posts()) {
+						while ($premium_products->have_posts()) {
 							
-							//$product_id = $product->get_id();
-							$product_id = $product->get_id();
-							$product_title = $product->get_name();
-							$product_slug = $product->get_slug();
-							$price = $product -> get_price();
-							$product_description = $product->get_description();
+							$premium_products->the_post(); // Set up the post data
+							$product_id = get_the_ID(); // Use get_the_ID() to get post ID
+							$product_title = get_the_title();
+							$product_slug = get_post_field('post_name', $product_id);
+            				$price = get_post_meta($product_id, '_price', true);
+							$product_description = get_the_content();
 							$da = get_post_meta($product_id, 'da', true);
 							$dr = get_post_meta($product_id, 'dr', true);
 							$pa = get_post_meta($product_id, 'pa', true);
@@ -136,51 +143,46 @@
 								$uses = $use_cases[0];
 							}
 					?>
-				<?php if($domain_type == 'Premium Domain') { ?>
-					<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
-						<div class="product-details">
-							<div class="product-head">
-								<div class="product-img">
-									<?php if ($product_image_url) { ?>
-										<img src="<?= $product_image_url ?>" alt="product image">
-									<?php } else { ?>
-										<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
-									<?php } ?>
-								</div>
-								<div class="product-title"> 
-									<label>
-										<span class="obscured-domain-name"> <?= $product_title ?> </span> 
-									</label> 
-									<br>
-									<div class="description hidden">
-										<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+						<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+							<div class="product-details">
+								<div class="product-head">
+									<div class="product-img">
+										<?php if ($product_image_url) { ?>
+											<img src="<?= $product_image_url ?>" alt="product image">
+										<?php } else { ?>
+											<img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
+										<?php } ?>
 									</div>
-									<!--<div class="domain-name-revealer">
-										<i class="flaticon-eye"></i>
-									</div>-->
+									<div class="product-title"> 
+										<label>
+											<span class="obscured-domain-name"> <?= $product_title ?> </span> 
+										</label> 
+										<br>
+										<div class="description hidden">
+											<a href="javascript:void(0)"> <img src="/wp-content/uploads/2023/08/heart-love.jpg"> </a>
+										</div>
+									</div>
+									<h6>$<?= $price ?></h6>
+									<div class="product-card">
+										<ul>
+											<li>
+												<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+											</li>
+											<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+										</ul>
+									</div>
 								</div>
-								<h6>$<?= $price ?></h6>
-								<div class="product-card">
-									<ul>
-										<li>
-											<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
-										</li>
-										<li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
-									</ul>
-								</div>
-							</div>
-							<div class="product-body" style="display:none;">
-								<div class="catgories"> 
-									<?php foreach($product_categories as $catagory) { ?>
-										<span><?= $catagory?></span>
-									<?php }?>
-										<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+								<div class="product-body" style="display:none;">
+									<div class="catgories"> 
+										<?php foreach($product_categories as $catagory) { ?>
+											<span><?= $catagory?></span>
+										<?php }?>
+											<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				<?php } ?>
-                <?php
+                	<?php
 						}
 					} else {
 						echo 'No products found.';
@@ -191,59 +193,10 @@
                     No results found to the selected filters. Please change/remove filters to show domains.
                 </div>
             </div>
-			<!-- LOAD MORE SECTION -->
-			<div class="load-more-container">
-				<div id="loading-text" style="display: none;">
-					<img src="<?= get_site_url() . '/wp-content/uploads/2023/08/imgpsh_fullsize_anim.gif'?>" alt="">
-				</div>
-			</div>
-			<script>
-				// const productContainer = document.getElementById('product-container');
-				// const loadingText = document.getElementById('loading-text');
-				// 	let page = 1; // Initial page number
-				// 	const productsPerPage = 10;
-				// 	const curLoc = window.loca
-
-				// 	function fetchAndAppendProducts() {
-				// 		loadingText.style.display = 'block'; // Show the loading images
-				// 		jQuery.ajax({
-				// 			url: '<?php echo esc_url(admin_url('admin-ajax.php', 'https')); ?>', // WordPress AJAX URL
-				// 			type: 'POST',
-				// 			data: {
-				// 				action: 'load_more_posts', // Custom AJAX action
-				// 				page: page,
-				// 				base_url: window.location.pathname,
-				// 				products_per_page: productsPerPage,
-				// 			},
-				// 			success: function(response) {
-				// 			productContainer.insertAdjacentHTML('beforeend', response);
-				// 			page++; // Increment the page number for the next fetch
-				// 			loadingText.style.display = 'none'; // Hide the loading images
-				// 			},
-				// 			error: function(error) {
-				// 			console.error(error);
-				// 			loadingText.style.display = 'none'; // Hide the loading text in case of an error
-				// 			}
-				// 		});
-				// 	}
-
-					// Detect when the user has scrolled to the bottom
-					window.addEventListener('scroll', () => {
-					const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-					if (scrollTop + clientHeight >= scrollHeight - 10) {
-						fetchAndAppendProducts();
-					}
-					});
-
-					// Initial fetch
-					fetchAndAppendProducts();
-			</script>
         </div>
 
 	</div>
 </div>
-<!-- ---------------------- end -------------- -->
 
 <?php get_footer(); ?>
 
