@@ -643,6 +643,20 @@
 			const productContainer = document.getElementById('product-container');
 			const loadingText = document.getElementById('loading-text');
 
+			function parseQueryString(url) {
+				const queryString = url.split('?')[1];
+				const paramsArray = queryString.split('&');
+				
+				const paramsObject = {};
+				
+				paramsArray.forEach(param => {
+					const [key, value] = param.split('=');
+					paramsObject[key] = value || true; // If no value, set it to true
+				});
+				
+				return paramsObject;
+			}
+
 			async function applyFiltersWithAjax(searchTerm) {
 				jQuery('.ajax-loader').removeClass('hidden');
 				jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
@@ -744,6 +758,14 @@
 									jQuery(".ast-account-action-login").click();
 									}
 								});
+
+								// handle the filtered paginations
+								jQuery('#pagination-container a').click(function(e) {
+									e.preventDefault();
+									jQuery('.ajax-loader').removeClass('hidden');
+									let filterData = parseQueryString(jQuery(this).attr('href'));
+									console.log(filterData);
+								})
 							} else {
 								console.error('Invalid response data:', response.data);
 							}
