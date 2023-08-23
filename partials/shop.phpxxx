@@ -638,15 +638,6 @@
 
 		<!-- Ajax Filters -->
 		<script>
-			// Check if URL contains a page number
-			const urlParams = new URLSearchParams(window.location.search);
-			const urlPageNumber = urlParams.get('paged');
-
-			if (urlPageNumber) {
-				currentPage = parseInt(urlPageNumber); // Update the current page number
-				loadPage(currentPage); // Load the page based on URL page number
-			}
-
 			let loading = false;
 			let hasMoreProducts = true;
 			const productContainer = document.getElementById('product-container');
@@ -912,15 +903,6 @@
 					}
 				});
 			}
-
-			// Add an event listener to pagination links
-			document.querySelectorAll('.pagination-link').forEach(link => {
-				link.addEventListener('click', function(event) {
-					event.preventDefault(); // Prevent default link behavior
-					const newPageNumber = parseInt(this.dataset.page); // Get the page number from data-page attribute
-					loadPage(newPageNumber); // Load the clicked page
-				});
-			});
 
 			
 		</script>

@@ -30,6 +30,7 @@ add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 function custom_scripts() {
     wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION, false );
     wp_enqueue_script( 'nouislider', get_stylesheet_directory_uri() . '/js/nouislider.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION );
+    wp_enqueue_script( 'pagination', get_stylesheet_directory_uri() . '/js/pagination.min.js', array('jquery'), CHILD_THEME_ASTRA_CHILD_VERSION );
     wp_localize_script('main', 'my_ajax_obj', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('ajax-nonce'),
@@ -73,8 +74,7 @@ function render_product_loop($productIds, $filterData) {
 
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => 10,
-        'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+        'posts_per_page' => -1,
         'meta_query' => array(
             'relation' => 'AND', // Combine the meta queries using the AND operator
             array(
@@ -565,16 +565,6 @@ function render_premium_product_loop($productIds, $filterData) {
                     ?>
                 </div>
             </div>
-            <script>
-                // Attach a click event handler to the pagination links
-                jQuery(document).on('click', '.pagination-link', function(e) {
-                    e.preventDefault();
-                    const targetPage = parseInt(jQuery(this).data('page'), 10);
-                    if (targetPage !== currentPage) {
-                        loadPage(targetPage);
-                    }
-                });
-            </script>
         <?php
     } else {
         ?>
