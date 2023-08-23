@@ -19,6 +19,7 @@
 		),
     );
     $premium_products = new WP_Query($args);
+	$total_products = $premium_products->found_posts;
 
 	$product_query = new WC_Product_Query($args);
     $pps = $product_query->get_products();
@@ -189,7 +190,7 @@
 						$pagination_args = array(
 							'base' => add_query_arg('paged', '%#%'),
 							'format' => '',
-							'total' => $product_query->max_num_pages,
+							'total' => ceil($total_products / $products_per_page),
 							'current' => max(1, get_query_var('paged')),
 							'show_all' => false,
 							'end_size' => 1,
