@@ -767,16 +767,23 @@
 						loading = false;
 					}
 				});
+
+				// Attach a click event handler to the pagination links
+				jQuery(document).on('click', '.pagination-link', function(e) {
+					e.preventDefault();
+					const targetPage = parseInt(jQuery(this).data('page'), 10);
+					if (targetPage !== currentPage) {
+						loadPage(targetPage); // Call the loadPage function with the new page number
+					}
+				});
+			}
+			function applyFiltersWithAjax(searchTerm) {
+				// Rest of your existing applyFiltersWithAjax function code
+				// Call the loadPage function to load products with the given filter data
+				loadPage(1); // Start from the first page when applying filters
 			}
 
-			// Attach a click event handler to the pagination links
-			jQuery(document).on('click', '.pagination-link', function(e) {
-				e.preventDefault();
-				const targetPage = parseInt(jQuery(this).data('page'), 10);
-				if (targetPage !== currentPage) {
-					loadPage(targetPage); // Call the loadPage function with the new page number
-				}
-			});
+			
 		</script>
 
 	</div>
