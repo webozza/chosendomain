@@ -7,7 +7,7 @@
 <?php
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => -1,
+        'posts_per_page' => 10,
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
 		'meta_query' => array(
 			array(
@@ -185,6 +185,28 @@
 						</div>
                 	<?php
 						}
+						// Pagination
+						$pagination_args = array(
+							'base' => add_query_arg('paged', '%#%'),
+							'format' => '',
+							'total' => $product_query->max_num_pages,
+							'current' => max(1, get_query_var('paged')),
+							'show_all' => false,
+							'end_size' => 1,
+							'mid_size' => 2,
+							'prev_next' => true,
+							'prev_text' => __('&laquo; Previous'),
+							'next_text' => __('Next &raquo;'),
+						);
+
+						?>
+							<div class="pagination-section" id="">
+								<p class="hidden">Showing <?= $total_products; ?> domains filtered out of <?= $total_products; ?> domains</p>
+								<div class="pagination">
+									<?= paginate_links($pagination_args); ?>
+								</div>
+							</div>
+						<?php
 					} else {
 						echo 'No products found.';
 					}
