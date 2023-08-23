@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.55' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.60' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);

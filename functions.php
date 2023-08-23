@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.60' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.61' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -47,7 +47,8 @@ add_action('wp_ajax_nopriv_load_more_products', 'load_more_products');
 function load_more_products() {
     if (isset($_POST['filterData'])) {
         $filterData = $_POST['filterData'];
-        $filteredProductIds = get_filtered_product_ids($filterData);
+        $pageNumber = isset($_POST['pageNumber']) ? intval($_POST['pageNumber']) : 1; // Get the requested page number
+        $filteredProductIds = get_filtered_product_ids($filterData, $pageNumber); // Pass the page number to the function
         $products_html = render_product_loop($filteredProductIds, $filterData);
         wp_send_json_success(array('data' => $products_html));
     } else {
@@ -56,8 +57,19 @@ function load_more_products() {
     wp_die();
 }
 
-function get_filtered_product_ids($filterData) {
-    return array();
+function get_filtered_product_ids($filterData, $pageNumber) {
+    $posts_per_page = 10; // Adjust this value as needed
+
+    $args = array(
+        'post_type' => 'product',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $pageNumber, // Use the passed page number
+        // ... (your existing meta_query and tax_query conditions)
+    );
+
+    // ... (rest of the function logic)
+
+    return $filteredProductIds;
 }
 
 function render_product_loop($productIds, $filterData) {
