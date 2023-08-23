@@ -758,6 +758,9 @@
 									jQuery(".ast-account-action-login").click();
 									}
 								});
+
+								let containerOffset = jQuery('.domain-search-controls').offset().top;
+								$(window).scrollTop(containerOffset);
 							} else {
 								console.error('Invalid response data:', response.data);
 							}
@@ -902,76 +905,6 @@
 			}
 
 			
-		</script>
-
-		<!-- Ajax Filters -->
-		<script>
-			let loading = false;
-			let hasMoreProducts = true;
-			let currentPage = 1; // Initialize the current page
-
-			const productContainer = document.getElementById('product-container');
-			const loadingText = document.getElementById('loading-text');
-
-			function loadPage(pageNumber) {
-				// ... Other code ...
-
-				jQuery.ajax({
-					url: my_ajax_obj.ajax_url,
-					type: 'POST',
-					data: {
-						action: 'load_more_products',
-						filterData: filterData,
-						pageNumber: pageNumber, // Pass the current page number
-					},
-					success: function(response) {
-						if (response.success) {
-							// Check if response.data is an object
-							if (typeof response.data === 'object') {
-								const responseData = response.data.data;
-
-								if (responseData.trim() === '') {
-									hasMoreProducts = false; // No more products to load
-									return;
-								}
-
-								// Append new content to the container
-								jQuery('.ajax-loader').addClass('hidden');
-								productContainer.insertAdjacentHTML('beforeend', responseData);
-
-								jQuery(".domain-name-revealer").click(function () {
-									// ... Other code ...
-								});
-
-								// Update the pagination container if provided in the response
-								if (typeof response.data.pagination !== 'undefined') {
-									jQuery('#pagination-container').html(response.data.pagination);
-								}
-							} else {
-								console.error('Invalid response data:', response.data);
-							}
-						} else {
-							console.error('Error in AJAX response:', response.data);
-						}
-					},
-					error: function(error) {
-						console.error('AJAX error:', error);
-					},
-					complete: function() {
-						loadingText.style.display = 'none';
-						loading = false;
-					}
-				});
-			}
-
-			// Attach a click event handler to the pagination links
-			jQuery(document).on('click', '.pagination-link', function(e) {
-				e.preventDefault();
-				const targetPage = parseInt(jQuery(this).data('page'), 10);
-				if (targetPage !== currentPage) {
-					loadPage(targetPage); // Call the loadPage function with the new page number
-				}
-			});
 		</script>
 
 	</div>

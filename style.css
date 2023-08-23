@@ -10,6 +10,10 @@ Text Domain: astra-child
 Template: astra
 */
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Domain Search Box
 ================================================================================*/
 .page-id-354 section.ast-archive-entry-banner {
