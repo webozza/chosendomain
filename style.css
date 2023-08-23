@@ -889,3 +889,8 @@ input::-webkit-inner-spin-button {
     margin-right: 2%;
   }
 }
+
+.page-template-premium-domains .pagination-section {
+  display: block;
+  width: 100%;
+}
