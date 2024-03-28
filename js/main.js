@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
   // jQuery code to initialize the range slider
   var priceSlider = $(".price-slider")[0];
   var daSlider = $(".da-slider")[0];
-  // var drSlider = $(".dr-slider")[0];
+  var drSlider = $(".dr-slider")[0];
   var liveRdSlider = $(".live-rd-slider")[0];
   var ageSlider = $(".age-slider")[0];
   var paSlider = $(".pa-slider")[0];
@@ -33,6 +33,7 @@ jQuery(document).ready(function ($) {
 
     if (window.location.href.includes("/aged-domains")) {
       runUiSlider(tfSlider, 100);
+      runUiSlider(drSlider, 100);
     }
   }
 
@@ -365,7 +366,7 @@ jQuery(document).ready(function ($) {
   });
 
   //---------------- TF Range Filter -------------
-  if (curPath !== "/premium-domain/" && curPath !== "/seo-domains/") {
+  if (curPath == "/aged-domains/") {
     tfSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0];
       let maxPrice = $(this)[0].getPositions()[1];
@@ -380,6 +381,25 @@ jQuery(document).ready(function ($) {
       // Set Price
       $(".tf-range-min").val(minPrice.toFixed());
       $(".tf-range-max").val(maxPrice.toFixed());
+    });
+  }
+
+  //---------------- DR Range Filter -------------
+  if (curPath == "/aged-domains/") {
+    drSlider.noUiSlider.on("change.one", function () {
+      let minPrice = $(this)[0].getPositions()[0];
+      let maxPrice = $(this)[0].getPositions()[1];
+
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
+      updateFiltersApplied("dr", minPrice, maxPrice, 100);
+    });
+    drSlider.noUiSlider.on("slide.one", function () {
+      let minPrice = $(this)[0].getPositions()[0];
+      let maxPrice = $(this)[0].getPositions()[1];
+
+      // Set Price
+      $(".dr-range-min").val(minPrice.toFixed());
+      $(".dr-range-max").val(maxPrice.toFixed());
     });
   }
 

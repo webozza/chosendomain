@@ -379,17 +379,17 @@
 									class="sf-meta-range sf-meta-range-slider">
 									<div class="price-range-inputs">
 										<label>
-											<input class="sf-input-range-number sf-range-min pa-range-min sf-input-number" min="0"
+											<input class="sf-input-range-number sf-range-min dr-range-min sf-input-number" min="0"
 												max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
 										</label>
 										<span class="sf-range-values-separator"></span>
 										<label>
-											<input class="sf-input-range-number sf-range-max pa-range-max sf-input-number" min="0"
+											<input class="sf-input-range-number sf-range-max dr-range-max sf-input-number" min="0"
 												max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
 												title="">
 										</label>
 									</div>
-									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal pa-slider">
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal dr-slider">
 										<div class="noUi-base">
 											<div class="noUi-connects">
 												<div class="noUi-connect"></div>
