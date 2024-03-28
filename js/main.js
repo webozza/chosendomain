@@ -135,6 +135,10 @@ jQuery(document).ready(function ($) {
       filtersApplied: 0,
       hasBeenIncremented: false,
     },
+    tf: {
+      filtersApplied: 0,
+      hasBeenIncremented: false,
+    },
   };
 
   const updateCombinedFiltersAppliedUI = () => {
