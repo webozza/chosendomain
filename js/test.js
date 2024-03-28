@@ -231,3 +231,6 @@ function generatePaginationLinks() {
 // Initial display
 displayItems(cP);
 generatePaginationLinks();
+
+
+

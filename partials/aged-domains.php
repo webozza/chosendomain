@@ -1,5 +1,5 @@
 <?php
-    /* Template Name: Custom Shop */
+    /* Template Name: Aged Domains */
 ?>
 
 <?php get_header() ?>
@@ -10,18 +10,12 @@
         'posts_per_page' => 10,
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
 		'meta_query'     => array(
-        'relation' => 'AND',
-            array(
-                'key'     => 'domain_type', // Replace with the actual ACF field key
-                'value'   => 'Premium Domain 2',
-                'compare' => '!='
-            ),
-            array(
-                'key'     => 'domain_type', // Replace with the actual ACF field key
-                'value'   => 'Aged Domain',
-                'compare' => '!='
-            )
-        )
+			array(
+				'key'     => 'domain_type', // Replace with the actual ACF field key
+				'value'   => 'Aged Domain',
+				'compare' => '=='
+			)
+		)
     );
     $product_query = new WP_Query($args);
 	$total_products = $product_query -> found_posts;
@@ -50,6 +44,11 @@
 		'hide_empty' => false,
 	));
 
+    $tlds = get_terms(array(
+		'taxonomy' => 'tld',
+		'hide_empty' => false,
+	));
+
 	$backlinkos = get_terms(array(
 		'taxonomy' => 'authory_backlink',
 		'hide_empty' => false,
@@ -67,7 +66,7 @@
 
 <div class="domain-section">
 	<!-- upper Heading -->
-	        <div class="upper-heading">
+	        <div class="upper-heading" style="display:none;">
 				<style>
 				.upper-heading {
     max-width: 800px;
@@ -119,11 +118,13 @@
 				</ul>
         </div>
 	<!-- upper Heading ending -->
-      
+    <div class="aged-domain-heading">
+        <h2>Aged Domains</h2>
+    </div>
     <div class="domain-inventory-wrap">
         <!-- Domain Inventory Search Box -->
-        <div class="domain-inventory-search-box">
-            <h2>Choose your Domain Type</h2>
+        <div class="domain-inventory-search-box" style="display:none;">
+            <h2>Aged Domains</h2>
             <div class="domain-inventory-domain-type switch-domain-type">
                 <input type="radio" id="domain-type-budget" name="domain-type[]" value="Budget Domain">
                 <label for="domain-type-budget" class="show-tooltip">Budget Domains</label>
@@ -356,7 +357,115 @@
 						</div>
 					</div>
 
-                    <!-- Live RD Range Filter -->
+                    <!-- DR Range Filter -->
+					<div style="" class="slide-accor"> 
+						<div class="filter-title">
+							<div class="tooltip1">
+							<div style="display:flex;">
+                            	<h3>DR</h3>
+								<i class="fa-solid fa-circle-info"></i>
+							</div>
+								<div class="tooltiptext1">Domain Rating</div>
+								</div>
+                        </div>
+						<div class="answer">
+							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
+								data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
+								data-sf-meta-type="number">
+								<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+									data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+									data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+									data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+									class="sf-meta-range sf-meta-range-slider">
+									<div class="price-range-inputs">
+										<label>
+											<input class="sf-input-range-number sf-range-min pa-range-min sf-input-number" min="0"
+												max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+										</label>
+										<span class="sf-range-values-separator"></span>
+										<label>
+											<input class="sf-input-range-number sf-range-max pa-range-max sf-input-number" min="0"
+												max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
+												title="">
+										</label>
+									</div>
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal pa-slider">
+										<div class="noUi-base">
+											<div class="noUi-connects">
+												<div class="noUi-connect"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+                    <!-- TF Range Filter -->
+					<div style="" class="slide-accor"> 
+						<div class="filter-title">
+							<div class="tooltip1">
+							<div style="display:flex;">
+                            	<h3>TF</h3>
+								<i class="fa-solid fa-circle-info"></i>
+							</div>
+								<div class="tooltiptext1">Trust Flow</div>
+								</div>
+                        </div>
+						<div class="answer">
+							<div class="sf-field-post-meta-_sale_price open" data-sf-field-name="_sfm__sale_price"
+								data-sf-field-type="post_meta" data-sf-field-input-type="range-slider"
+								data-sf-meta-type="number">
+								<div data-start-min="0" data-start-max="10000" data-start-min-formatted="0"
+									data-start-max-formatted="10000" data-min="0" data-max="10000" data-step="1"
+									data-decimal-places="0" data-thousand-seperator="" data-decimal-seperator="."
+									data-display-values-as="textinput" data-sf-field-name="_sfm__sale_price"
+									class="sf-meta-range sf-meta-range-slider">
+									<div class="price-range-inputs">
+										<label>
+											<input class="sf-input-range-number sf-range-min tf-range-min sf-input-number" min="0"
+												max="100" step="1" name="_sfm__sale_price[]" type="number" value="0" title="">
+										</label>
+										<span class="sf-range-values-separator"></span>
+										<label>
+											<input class="sf-input-range-number sf-range-max tf-range-max sf-input-number" min="0"
+												max="100" step="1" name="_sfm__sale_price[]" type="number" value="100"
+												title="">
+										</label>
+									</div>
+									<div class="meta-slider noUi-target noUi-ltr noUi-horizontal tf-slider">
+										<div class="noUi-base">
+											<div class="noUi-connects">
+												<div class="noUi-connect"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="0"></div>
+											</div>
+											<div class="noUi-origin">
+												<div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
+													role="slider" aria-orientation="horizontal" aria-valuemin="0.0"
+													aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="10000"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+                    <!-- RD -->
 					<div class="slide-accor"> 
 						<div class="filter-title">
 							<div class="tooltip1">
@@ -364,7 +473,7 @@
                             	<h3>RD</h3>
 								<i class="fa-solid fa-circle-info"></i>
 							</div>
-								<div class="tooltiptext1">Referring Domains</div>
+								<div class="tooltiptext1">Referring Domains</div>
 								</div>
 							
                         </div>
@@ -410,7 +519,7 @@
 					</div>
 
                     <!-- Age Range Filter -->
-					<div class="slide-accor hidden"> 
+					<div class="slide-accor"> 
 						<div class="filter-title">
                             <h3>Age</h3>
                             <i class="fa-solid fa-circle-info"></i>
@@ -458,24 +567,24 @@
 						</div>
 					</div>
 
-					<!-- Extension Filter -->
-                    <div class="extension-filter slide-accor">
+                    <!-- TLDs -->
+                    <div class="tld-filter slide-accor">
                         <div class="filter-title">
-                            <h3>Extension </h3>
+                            <h3>TLD </h3>
                         </div>
 						<div class="answer">
 							<div class="search-input-wrapper">
-								<input type="text" id="extension_search" placeholder="Search extensions">
+								<input type="text" id="tld_search" placeholder="Search tlds">
 								<span class="search-icon"></span>
 							</div>
 						
-                        <div class="extension-checkboxes cd-checkboxes" id="extension_checkboxes">
-							<?php if(!empty($extensions)) { 
-								foreach ($extensions as $extension) {?>
+                        <div class="tld-checkboxes cd-checkboxes" id="tld_checkboxes">
+							<?php if(!empty($tlds)) { 
+								foreach ($tlds as $tld) {?>
 									<a href="javascript:void(0)"> 
 										<label>
-											<input name="extension_filter[]" type="checkbox" value="<?= $extension->name ?>">	
-											<span><?= $extension->name ?></span> <br>
+											<input name="tld_filter[]" type="checkbox" value="<?= $tld->name ?>">	
+											<span>.<?= $tld->name ?></span> <br>
 										</label>
 									</a>
 								<?php
@@ -485,85 +594,7 @@
 						</div>
                     </div>
 
-					<!-- Authority Backlinks Filter -->
-                    <!--<div class="authority-backlinks-filter slide-accor">
-                        <div class="filter-title">
-                            <h3>Authority backlinks</h3>
-                        </div>
-						<div class="answer">
-							<div class="search-input-wrapper">
-								<input type="text" id="auhtority_backlinks_search" placeholder="Search authority sites. Eg. BBC">
-								<span class="search-icon"></span>
-							</div>
-						
-                        <div class="auhtority_backlinks-checkboxes cd-checkboxes" id="auhtority_backlinks_checkboxes">
-							<?php if(!empty($backlinkos)) { 
-								foreach ($backlinkos as $backlink) {?>
-									<a href="javascript:void(0)"> 
-										<label>
-											<input name="auhtority_backlinks_filter[]" type="checkbox" value="<?= $backlink->name ?>">	
-											<span><?= $backlink->name ?></span> <br>
-										</label>
-									</a>
-								<?php
-								}
-							 } ?>
-                        </div>
-						</div>
-                    </div>-->
-
-					<!-- Language Filter -->
-                    <div style="display:none" class="authority-backlinks-filter slide-accor">
-                        <div class="filter-title">
-                            <h3>Languages</h3>
-                        </div>
-						<div class="answer">
-							<div class="search-input-wrapper">
-								<input type="text" id="languages_search" placeholder="Search languages">
-								<span class="search-icon"></span>
-							</div>
-						
-                        <div class="languages-checkboxes cd-checkboxes" id="languages_checkboxes">
-							<?php if(!empty($languages)) { 
-								foreach ($languages as $language) {?>
-									<a href="javascript:void(0)"> 
-										<label>
-											<input name="languages_filter[]" type="checkbox" value="<?= $language->name ?>">	
-											<span><?= $language->name ?></span> <br>
-										</label>
-									</a>
-								<?php
-								}
-							 } ?>
-                        </div>
-						</div>
-                    </div>
-
-					<!-- Use Case Filter -->
-                    <div style="display:none" class="use-case-filter slide-accor">
-                        <div class="filter-title">
-                            <h3>Use case</h3>
-                        </div>
-						<div class="answer">
-							<div class="search-input-wrapper hidden">
-								<input type="text" id="use_case_search" placeholder="Search use cases">
-								<span class="search-icon"></span>
-							</div>
-							<div class="use-case-checkboxes cd-checkboxes" id="use_case_checkboxes">
-								<?php if(!empty($usecases)) { 
-									foreach ($usecases as $use) {?>
-										<a href="javascript:void(0)"> 
-											<label>
-												<input name="use_case_filter[]" type="checkbox" value="<?= $use ?>">	
-												<span><?= $use ?></span> <br>
-											</label>
-										</a>
-									<?php
-									}
-								} ?>
-							</div>
-						</div>
-                    </div>
+                    <!-- Google Index -->
                 </div>
             </div>
 
@@ -586,13 +617,19 @@
             				$price = get_post_meta($product_id, '_price', true);
 							$product_description = get_the_content();
 							$da = get_post_meta($product_id, 'da', true);
-							$dr = get_post_meta($product_id, 'dr', true);
 							$pa = get_post_meta($product_id, 'pa', true);
 							$live_rd = get_post_meta($product_id, 'live_rd', true);
 							$hist_rd = get_post_meta($product_id, 'hist_rd', true);
-							$age = get_post_meta($product_id, 'age', true);
 							$product_image_url = get_the_post_thumbnail_url($product_id, 'full');
 							$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+
+                            // Aged Domain Filters
+                            $dr = get_post_meta($product_id, 'dr', true);
+                            $tf = get_post_meta($product_id, 'tf', true);
+                            $rd = get_post_meta($product_id, 'live_rd', true);
+                            $age = get_post_meta($product_id, 'age', true);
+                            $google_index = get_post_meta($product_id, 'google_index', true);
+
 
 							// Domain Extensions
 							$domain_extensions = wp_get_post_terms($product_id, 'extension');
@@ -600,6 +637,13 @@
 							foreach ($domain_extensions as $extension) {
 								$extension_names[] = $extension->name;
 							};
+
+                            // Top Level Domains (TLD)
+                            $tlds = wp_get_post_terms($product_id, 'tld');
+                            $tld_names = array();
+                            foreach ($tlds as $tld) {
+                                $tld_names[] = $tld->name;
+                            };
 
 							// Domain Type
 							$domain_type = get_field('domain_type', $product_id);
@@ -628,7 +672,7 @@
 							}
 
 							?>
-								<div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+								<div style="display:none;" class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-tld='<?= esc_attr(json_encode($tld_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
 									<div class="product-details">
 										<div class="product-head">
 											<!--
@@ -665,11 +709,12 @@
 											<ul>
 												<li> <span class="da"><?= $da ?></span> DA </li>
 												<li> <span class="pa"><?= $pa ?></span> PA </li>
-												<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
-												<li> <span class="live-rd"><?= $live_rd ?></span> RD </li>
-												<li> <span class="hist-rd"><?= $hist_rd ?></span> BL </li>
-												<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
-												<li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
+												<li> <span class="dr"><?= $dr ?></span> DR </li>
+                                                <li> <span class="dr"> 0 </span> TF </li>
+												<li> <span class="rd">0</span> RD </li>
+												<li> <span class="age"><?= $age ?></span> Age </li>
+                                                <li> <span class="tld"> 0 </span> TLD </li>
+                                                <li> <span class="google-index"> 0 </span> Google Index </li>
 											</ul>
 											<div class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
 										</div>
@@ -684,6 +729,55 @@
 										</ul>
 									</div>
 								</div>
+                                <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200">
+                                    <div class="auction-inner">
+                                        <div class="upcoming-badge" title="Upcoming Auction">
+                                            <img src="/wp-content/uploads/2024/03/new-domain.png">
+                                        </div>
+                                        <div class="auction-thumb">
+                                            <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><img src="./assets/images/auction/upcoming/upcoming-2.png" alt="upcoming"></a>
+                                            <a href="#0" class="rating"><i class="far fa-star"></i></a>
+                                        </div>
+                                        <div class="auction-content">
+                                            <div class="title-area">
+                                                <h6 class="title">
+                                                    <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
+                                                </h6>
+                                                <div class="product-body">
+                                                    <div class="catgories"> 
+                                                        <?php foreach($product_categories as $catagory) { ?>
+                                                            <span><?= $catagory?></span>
+                                                        <?php }?>
+                                                            <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+                                                    </div>
+                                                    <div class="bid-area">
+                                                        <ul>
+                                                            <li> <span class="da"><?= $da ?></span> DA </li>
+                                                            <li> <span class="pa"><?= $pa ?></span> PA </li>
+                                                            <li> <span class="dr"><?= $dr ?></span> DR </li>
+                                                            <li> <span class="tf"><?= $tf ?></span> TF </li>
+                                                            <li> <span class="rd"><?= $rd ?></span> RD </li>
+                                                            <li> <span class="age"><?= $age ?></span> Age </li>
+                                                            <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div style="display:none" class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="auction-bidding product-card">
+                                            <div class="bid-incr">
+                                                <h4>$<?= $price ?></h4>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+                                                </li>
+                                                <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
 							<?php
 						}
 
@@ -787,7 +881,17 @@
 				});
 				let uniqueExtensionFilters = Array.from(extensionsSelected);
 
-				// Pass the extension selection to server
+                // Pass the tld selection to server
+				let tldsSelected = new Set();
+				jQuery('input[name="tld_filter[]"]').each(function() {
+					let tld = jQuery(this);
+					if (tld.is(':checked')) {
+						tldsSelected.add(tld.val());
+					}
+				});
+				let uniqueTldFilters = Array.from(tldsSelected);
+
+				// Pass the authority backlinks selection to server
 				let authorityBacklinksSelected = new Set();
 				jQuery('input[name="auhtority_backlinks_filter[]"]').each(function() {
 					let ab = jQuery(this);
@@ -815,9 +919,12 @@
 					maxPa: parseFloat(jQuery(".pa-range-max").val()),
 					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
+                    minTf: parseFloat(jQuery(".tf-range-min").val()),
+					maxTf: parseFloat(jQuery(".tf-range-max").val()),
 					searchTerm: searchTerm,
 					categoryFilter: uniqueCategoryFilters,
 					extensionFilter: uniqueExtensionFilters,
+                    tldFilter: uniqueTldFilters,
 					authorityBacklinksFilter: uniqueAuthorityBacklinks,
 					domainTypeFilter: domainTypeSelected,
 				};
@@ -828,7 +935,7 @@
 					data: {
 						action: 'load_more_products',
 						filterData: filterData,
-						cd_page: 'seo_domains',
+						cd_page: 'aged_domains',
 					},
 					success: function(response) {
 						if (response.success) {
@@ -921,9 +1028,12 @@
 					maxPa: parseFloat(jQuery(".pa-range-max").val()),
 					minLiveRd: parseFloat(jQuery(".live-rd-range-min").val()),
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
+                    minTf: parseFloat(jQuery(".tf-range-min").val()),
+					maxTf: parseFloat(jQuery(".tf-range-max").val()),
 					searchTerm: searchTerm,
 					categoryFilter: uniqueCategoryFilters,
 					extensionFilter: uniqueExtensionFilters,
+                    tldFilter: uniqueTldFilters,
 					authorityBacklinksFilter: uniqueAuthorityBacklinks,
 					domainTypeFilter: domainTypeSelected,
 				};
@@ -934,7 +1044,7 @@
 					data: {
 						action: 'load_more_products',
 						filterData: filterData,
-						cd_page: 'seo_domains',
+						cd_page: 'aged_domains',
 						pageNumber: currentPage, // Add the current page number
 					},
 					success: function(response) {

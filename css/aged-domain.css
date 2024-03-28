@@ -1,0 +1,271 @@
+.auction-item-5 {
+    padding: 15px;
+    width: 100%;
+}
+
+.auction-item-5 .auction-inner {
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 9px 20px 0px rgba(22, 26, 57, 0.36);
+    overflow: hidden;
+    position: relative;
+}
+
+.auction-item-5 .auction-inner .auction-thumb {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(246, 246, 255);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+}
+
+.auction-item-5 .auction-inner .auction-thumb a {
+    display: block;
+    overflow: hidden;
+}
+
+.auction-item-5 .auction-inner .auction-thumb a img {
+    transition: all 0.5s;
+}
+
+.auction-item-5 .auction-inner .auction-thumb .rating {
+    color: #ff7800;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.auction-item-5 .auction-inner .auction-thumb img {
+    width: 100%;
+}
+
+.auction-item-5 .auction-inner .auction-content {
+    width: 495px;
+    padding: 15px 20px;
+    align-self: center;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area {
+    padding: 0 0 30px;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area .title {
+    margin: 0;
+    line-height: 28px;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area .title a {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area .list-area {
+    display: flex;
+    margin: -5px -20px;
+    font-size: 16px;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area .list-area .list-item {
+    padding: 5px 20px;
+    color: $body-color;
+    border-right: 1px solid #bfbee8;
+    display: inline-block;
+    line-height: 1;
+    max-width: 50%;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area .list-area .list-item:last-child {
+    border: none;
+}
+
+.auction-item-5 .auction-inner .auction-content .title-area .list-area .list-item .list-id {
+    color: $title-color;
+    font-family: $heading;
+    font-weight: 500;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area {
+    border-bottom: 2px dotted #deddf5;
+    border-top: 2px dotted #deddf5;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner {
+    display: flex;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner .bid-amount {
+    padding: 12px 10px;
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+    width: 185px;
+    position: relative;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner .bid-amount .icon {
+    max-width: 30px;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner .bid-amount .icon i {
+    line-height: 1;
+    font-size: 36px;
+    color: $theme-two;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner .bid-amount .amount-content {
+    padding-left: 15px;
+    max-width: calc(100% - 30px);
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner .bid-amount .amount-content .current {
+    font-size: 14px;
+    color: $theme-two;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-area .bid-inner .bid-amount .amount-content .amount {
+    font-size: 20px;
+    line-height: 20px;
+    color: $title-color;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-count-area {
+    display: flex;
+    margin: -5px -20px;
+    margin-top: 15px;
+    font-size: 16px;
+    align-items: center;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-count-area .item {
+    padding: 5px 20px;
+    color: $theme-two;
+    border-right: 1px solid #bfbee8;
+    display: inline-block;
+    line-height: 1;
+    max-width: 50%;
+}
+
+.auction-item-5 .auction-inner .auction-content .bid-count-area .item:last-child {
+    border: none;
+}
+
+.auction-item-5 .auction-inner .auction-bidding {
+    border-radius: 10px;
+    background-color: rgba(214, 213, 243, 0.302);
+    padding: 30px 15px;
+    text-align: center;
+    min-width: 20%;
+}
+
+.auction-item-5 .auction-inner .auction-bidding .bid-title {
+    color: $theme-one;
+    font-family: $heading;
+    font-weight: 500;
+}
+
+.auction-item-5 .auction-inner .auction-bidding .countdown {
+    margin-bottom: 30px;
+}
+
+.auction-item-5 .auction-inner .auction-bidding .bid-incr {
+    margin-bottom: 25px;
+}
+
+.auction-item-5 .auction-inner .auction-bidding .bid-incr .title {
+    margin-bottom: 18px;
+    display: block;
+}
+
+.auction-item-5 .auction-inner .auction-bidding .custom-button {
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+.auction-item-5:hover .auction-thumb a img {
+    transform: scale(1.1);
+}
+
+.upcoming-badge {
+    width: 125px;
+    height: 128px;
+    left: 0;
+    top: 0;
+    color: $white-color;
+    font-size: 30px;
+    padding: 20px;
+    line-height: 1;
+    z-index: 2;
+    background: -webkit-linear-gradient(135deg, rgb(44, 191, 199) 0%, rgb(70, 238, 170) 100%);
+    clip-path: polygon(100% 0, 0% 100%, 0 0);
+    -webkit-clip-path: polygon(100% 0, 0% 100%, 0 0);
+    text-align: left;
+}
+
+.aged-domain-heading {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.auction-bidding ul {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.upcoming-badge img {
+    width: 75%;
+    transform: rotate(-45deg);
+    position: relative;
+    top: -10px;
+    left: -10px;
+}
+
+.page-template-aged-domains .bid-area {
+    overflow: scroll;
+}
+
+@media screen and (max-width: 425px) {
+    .upcoming-badge {
+        width: 100px;
+        height: 100px;
+        padding: 15px;
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .auction-item-5 .auction-inner {
+        flex-direction: column;
+    }
+    .auction-item-5 .auction-inner .auction-content {
+        width: unset;
+        align-self: unset;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

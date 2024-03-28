@@ -7,12 +7,12 @@
 <?php
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => 10,
+        'posts_per_page' => -1,
 		'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
 		'meta_query' => array(
 			array(
 				'key' => 'domain_type',
-				'value' => 'Premium Domain',
+				'value' => 'Premium Domain 2',
 				'compare' => '=',
 				'type' => 'CHAR',
 			),
@@ -20,7 +20,7 @@
     );
     $premium_products = new WP_Query($args);
 	$total_products = $premium_products->found_posts;
-
+	
 	$product_query = new WC_Product_Query($args);
     $pps = $product_query->get_products();
 
@@ -34,18 +34,24 @@
 <div class="domain-section premium-domain-section">
     <div class="domain-inventory-wrap premium-domain">
         <div class="domain-inventory-search-box">
-            <h2>Premium Domains</h2>
+            <h2>Premium Domain</h2>
+			<p>Explore Premium Brand Domains Available for Purchase! Harness the full potential of your startup with our meticulously curated selection of unique domain names, tailor-made for boutiques, e-commerce ventures, and beyond. Secure your domain today and leave a lasting impression in the world of style.</p>
         </div>
         <div class="domain-inventory-search-wrap">
             <!-- FILTERS -->
 			<?php
 				$premium_category_names = array();
+
+			
 				foreach ($pps as $pp) {
 					$product_id = $pp->get_id();
+					$domain_type = get_field('domain_type', $product_id);
 					$product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
-				
+					
+
 					// Check if the product has the "Premium Domain" value
-					if (get_field('domain_type', $product_id) === 'Premium Domain') {
+					if ($domain_type === 'Premium Domain 2') {
+						
 						foreach ($product_categories as $category_name) {
 							// Increment the count for the category or initialize if it doesn't exist
 							if (isset($premium_category_counts[$category_name])) {
@@ -63,7 +69,7 @@
 			   		<!-- Category Filter -->
 				   <div class="category-filter">
                         <div class="filter-title">
-                            <h3>Product Categories</h3>
+                            <h3>By Category</h3>
                         </div>
 						<div class="answer" style="display:block">
 							<div class="search-input-wrapper">
@@ -73,6 +79,7 @@
 							<div class="category-checkboxes cd-checkboxes" id="category_checkboxes">
 								<?php
 									foreach ($premium_category_counts as $category_name => $count) {
+										
 										?>
 										<a href="javascript:void(0)"> 
 											<label>
@@ -230,8 +237,12 @@
 	const productContainer = document.getElementById('product-container');
 
 	async function applyFiltersWithAjax(searchTerm) {
+		jQuery('.pagination-section').hide();
 		jQuery('.ajax-loader').removeClass('hidden');
 		jQuery('.domain-inventory-content *:not(.ajax-loader):not(.ajax-loader img)').remove();
+
+		let containerOffset = jQuery('.domain-inventory-content').offset().top  - 70;
+		jQuery(window).scrollTop(containerOffset);
 		
 		if (loading || !hasMoreProducts) return;
 		loading = true;
@@ -255,6 +266,7 @@
 			type: 'POST',
 			data: {
 				action: 'load_more_premium_products',
+				cd_page: 'premium_domains',
 				filterData: filterData,
 			},
 			success: function(response) {

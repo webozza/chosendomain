@@ -7,6 +7,21 @@
 <!-- Product Details Info -->
 <div class="domain-inventory-content product-details-page" id="product-container">
     <?php
+	
+		function obscureDomain($domain) {
+			$parts = explode('.', $domain);
+
+			$obscured = [];
+			foreach ($parts as $part) {
+				if (strlen($part) <= 2) {
+					$obscured[] = $part;
+				} else {
+					$obscured[] = $part[0] . str_repeat('*', strlen($part) - 2) . $part[strlen($part) - 1];
+				}
+			}
+
+			return implode('.', $obscured);
+		}
                 
         $product_id = get_the_ID();
         $product_title = get_the_title($product_id);
@@ -40,14 +55,6 @@
             $ab_names[] = $backlink->name;
         };
 
-        // Language
-        //$languages  = wp_get_post_terms($product_id, 'language');
-        //var_dump($languages);
-        $langs = array();
-        foreach ($languages as $lang) {
-            $langs[] = $lang->name;
-        };
-
         // Use Cases
         $use_cases = get_post_meta($product_id, 'usecase', false);
         if(empty($use_cases)) {
@@ -56,7 +63,7 @@
             $uses = $use_cases[0];
         }
     ?>
-    <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+    <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
         <div class="product-details">
 
             <div class="product-head">
@@ -68,12 +75,10 @@
                     <?php } ?>
                 </div> -->
                 <div class="product-title"> 
-					<span class="obscured-domain-name"> <?= $product_title ?> </span>
-					<span class="domain-name-revealer"><i class="flaticon-eye"></i></span>
+					<span class="obscured-domain-name"> <?= $domain_type !== "Premium Domain 2" && !is_user_logged_in() ? obscureDomain($product_title) : $product_title ?> </span>
+					<div class="domain-name-revealer"><i class="flaticon-eye"></i></div>
                 </div>
-                <div class="priceSection">
-                    <h4>$<?= $product_price ?> </h4>
-                </div>
+                
                 <div class="catsection">
                     <div class="catgories">
                     <b> Category: </b>
@@ -83,24 +88,28 @@
                                 <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
                     </div>
 					<div>
+						<div class="priceSection">
+							<h4>$<?= $product_price ?> </h4>
+						</div>
 						<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
 					</div>
                 </div>
             </div>
 
-            <div class="product-body">
-                <ul>
-                    <li> <span class="da"><?= $da ?></span> DA </li>
-					<li> <span class="pa"><?= $pa ?></span> PA </li>
-                    <li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
-                    <li> <span class="live-rd"><?= $live_rd ?></span> Live RD </li>
-                    <li> <span class="hist-rd"><?= $hist_rd ?></span> Hist RD </li>
-                    <li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
-                    <li class="hidden"> <span class="language"><?= $langs[0] ?></span> Language</li>
-                </ul>
-            </div>
+			<?php if($domain_type != "Premium Domain 2") { ?>
+				<div class="product-body">
+					<ul>
+						<li> <span class="da"><?= $da ?></span> DA </li>
+						<li> <span class="pa"><?= $pa ?></span> PA </li>
+						<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
+						<li> <span class="live-rd"><?= $live_rd ?></span> RD </li>
+						<li> <span class="hist-rd"><?= $hist_rd ?></span> BL </li>
+						<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
+					</ul>
+				</div>
+			<?php } ?>
 			<div class="product-description">
-				<h4>Domain Details:</h4>
+				<h4><span>Domain Details:</span></h4>
 				<p><?= $product_description ?></p>
 			</div>
         </div>
@@ -134,6 +143,28 @@ woocommerce_related_products( array(
 </div>
 
 
+<script>
+	jQuery(document).ready(function($) {
+		$(".domain-name-revealer").click(function () {
+			let isLoggedIn = $("body").hasClass("logged-in");
+
+			let unobscuredDomainName = $(this)
+			  .closest(".product-box")
+			  .data("domain-name");
+
+			if (isLoggedIn) {
+			  $(this)
+				.closest(".product-box")
+				.find(".obscured-domain-name")
+				.text(unobscuredDomainName);
+			} else {
+			  $(".ast-account-action-login").click();
+			}
+		});
+	})
+</script>
+
+
 
 
 <?php get_footer() ?>
@@ -142,11 +173,14 @@ woocommerce_related_products( array(
 <style>
 .product-details-page{margin-top:50px;}
 .product-details-page .product-box{
-	border: 1px solid #f45a2a4d;
+	border: 1px solid #b9b9b94d;
     border-radius: 10px;
     padding: 30px;
-    box-shadow: 0px 4px 6px #f45a2a4d;
+    box-shadow: 0px 4px 6px #d1d1d14d;
 	margin-bottom: 50px;
+}
+.product-details-page .product-box:hover{
+    box-shadow: 0px 0px 15px #7171714d;
 }
 .product-details-page .product-title{
 	text-align: center;
@@ -156,10 +190,10 @@ woocommerce_related_products( array(
     right: 0px;
     top: 0px;
 }
-.product-details-page .product-title .obscured-domain-name{
-	font-size: 2.625rem;
-	font-weight: 700;
-	color:#000;
+.product-details-page .product-title .obscured-domain-name {
+    font-size: 2.625rem;
+    font-weight: 400;
+    color: #08104d;
 }
 .product-details-page .product-description h4{text-decoration:underline;}
 .product-details-page .product-description p{
@@ -173,28 +207,29 @@ woocommerce_related_products( array(
     justify-content: space-between;
 	margin-bottom: 30px;
 }
-.product-details-page .catsection a{
-	font-size: 15px;
+.product-details-page .catsection a {
+    font-size: 15px;
     font-weight: 400;
-	padding-top: 15px;
+    padding-top: 12px;
     padding-right: 25px;
-    padding-bottom: 15px;
+    padding-bottom: 12px;
     padding-left: 25px;
+    border-radius: 40px;
 }
 .product-details-page .priceSection h4{
 	text-align: right;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 .product-details-page .catsection .catgories b{
 	margin-top: 10px;
     margin-right: 25px;
-	color: #000;
+	color: #08104d;
 }
 .product-details-page .catsection .catgories span {
     display: inline-block;
     background: #beebe7;
     border-radius: 35px;
-    padding: 8px 31px;
+    padding: 3px 25px;
     font-size: 14px;
     line-height: 33px;
     color: #155c5e;
@@ -217,8 +252,17 @@ woocommerce_related_products( array(
 	color: #000;
     font-size: 15px;
 }
-.product-details-page .product-details .product-body ul li span{
-	font-weight: 600;
+.product-details-page .product-details .product-body ul li span {
+    font-weight: 600;
     font-size: 18px;
+    color: #08104d;
 }
+	
+	/*related product*/
+	.woocommerce ul.products li.product.desktop-align-left .button{
+		padding: 10px 20px;
+    	font-weight: 400;
+    	font-size: 15px;
+   		border-radius: 30px;
+	}
 </style>

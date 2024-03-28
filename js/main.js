@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+  $("body.logged-in .ast-account-action-link").attr("href", "/my-account");
+
   // jQuery code to initialize the range slider
   var priceSlider = $(".price-slider")[0];
   var daSlider = $(".da-slider")[0];
@@ -6,6 +8,7 @@ jQuery(document).ready(function ($) {
   var liveRdSlider = $(".live-rd-slider")[0];
   var ageSlider = $(".age-slider")[0];
   var paSlider = $(".pa-slider")[0];
+  var tfSlider = $(".tf-slider")[0];
 
   const curPath = window.location.pathname;
 
@@ -27,6 +30,10 @@ jQuery(document).ready(function ($) {
     runUiSlider(daSlider, 100);
     runUiSlider(paSlider, 100);
     runUiSlider(priceSlider, 10000);
+
+    if (window.location.href.includes("/aged-domains")) {
+      runUiSlider(tfSlider, 100);
+    }
   }
 
   //---------------- accordian slide-----------
@@ -95,6 +102,7 @@ jQuery(document).ready(function ($) {
   //---------------- Initialize empty arrays ------------
   let selectedCats = [];
   let selectedExtensions = [];
+  let selectedTlds = [];
   let selectedBacklinks = [];
   let selectedLanguages = [];
   let selectedUses = [];
@@ -352,6 +360,44 @@ jQuery(document).ready(function ($) {
     updateFiltersApplied("liveRd", newMinPrice, newMaxPrice, 1000);
   });
 
+  //---------------- TF Range Filter -------------
+  if (curPath !== "/premium-domain/") {
+    tfSlider.noUiSlider.on("change.one", function () {
+      let minPrice = $(this)[0].getPositions()[0];
+      let maxPrice = $(this)[0].getPositions()[1];
+
+      applyFiltersWithAjax(searchTerm); // Call the combined filtering function
+      updateFiltersApplied("tf", minPrice, maxPrice, 100);
+    });
+    tfSlider.noUiSlider.on("slide.one", function () {
+      let minPrice = $(this)[0].getPositions()[0];
+      let maxPrice = $(this)[0].getPositions()[1];
+
+      // Set Price
+      $(".tf-range-min").val(minPrice.toFixed());
+      $(".tf-range-max").val(maxPrice.toFixed());
+    });
+  }
+
+  $(".tf-range-min").on("change", function () {
+    let newMinPrice = parseFloat($(this).val());
+    let newMaxPrice = parseFloat($(".tf-range-max").val());
+
+    // Update slider positions
+    tfSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFiltersWithAjax(searchTerm);
+    updateFiltersApplied("tf", newMinPrice, newMaxPrice, 100);
+  });
+
+  $(".tf-range-max").on("change", function () {
+    let newMinPrice = parseFloat($(".tf-range-min").val());
+    let newMaxPrice = parseFloat($(this).val());
+    // Update slider positions
+    tfSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+    applyFiltersWithAjax(searchTerm);
+    updateFiltersApplied("tf", newMinPrice, newMaxPrice, 100);
+  });
+
   //---------------- Age Range Filter ------------
   if (curPath !== "/premium-domain/") {
     ageSlider.noUiSlider.on("change.one", function () {
@@ -405,6 +451,25 @@ jQuery(document).ready(function ($) {
     applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- Domain Tld Filter ------------
+  $('[name="tld_filter[]"]').change(async function () {
+    let tld = $(this);
+    let selectedTld = tld.is(":checked");
+
+    if (selectedTld) {
+      if (!selectedTlds.includes(tld.val())) {
+        selectedTlds.push(tld.val());
+      }
+    } else {
+      let index = selectedTlds.indexOf(tld.val());
+      if (index !== -1) {
+        selectedTlds.splice(index, 1);
+      }
+    }
+
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Authority Backlinks Filter ------------
   $('[name="auhtority_backlinks_filter[]"]').change(async function () {
     let backlink = $(this);
@@ -451,10 +516,13 @@ jQuery(document).ready(function ($) {
   });
 
   //---------------- Domain Type Filter ------------
+  let reload = () => {
+    return window.location.reload();
+  };
+
   $('[name="domain-type[]"]').change(function () {
     let selection = $(this);
     let selected = selection.is(":checked");
-
     if (selected && selection.val() === "Premium") {
       selectedDomainType = "Premium Domain";
     } else if (selected && selection.val() === "Budget") {
@@ -464,7 +532,9 @@ jQuery(document).ready(function ($) {
     } else if (!selected) {
       selectedDomainType = "";
     }
-
+    $(this).on("click", () => {
+      reload();
+    });
     applyFiltersWithAjax(searchTerm);
   });
 
@@ -611,20 +681,26 @@ jQuery(document).ready(function ($) {
   };
 
   //---------------- Reveal domain name ------------
-  $(".domain-name-revealer").click(function () {
-    let isLoggedIn = $("body").hasClass("logged-in");
+  let domainRevealerFunc = () => {
+    $(".domain-name-revealer").click(function () {
+      let isLoggedIn = $("body").hasClass("logged-in");
 
-    let unobscuredDomainName = $(this)
-      .closest(".product-box")
-      .data("domain-name");
+      if (isLoggedIn) {
+        $(".domain-name-revealer").each(function () {
+          let unobscuredDomainName = $(this)
+            .closest(".product-box")
+            .data("domain-name");
+          $(this)
+            .closest(".product-box")
+            .find(".obscured-domain-name")
+            .text(unobscuredDomainName);
+        });
+      } else {
+        $(".ast-account-action-login").click();
+      }
+    });
+  };
 
-    if (isLoggedIn) {
-      $(this)
-        .closest(".product-box")
-        .find(".obscured-domain-name")
-        .text(unobscuredDomainName);
-    } else {
-      $(".ast-account-action-login").click();
-    }
-  });
+  window.domainRevealerFunc = domainRevealerFunc;
+  domainRevealerFunc();
 });
