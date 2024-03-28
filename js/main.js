@@ -361,7 +361,7 @@ jQuery(document).ready(function ($) {
   });
 
   //---------------- TF Range Filter -------------
-  if (curPath !== "/premium-domain/") {
+  if (curPath !== "/premium-domain/" && curPath !== "/seo-domains/") {
     tfSlider.noUiSlider.on("change.one", function () {
       let minPrice = $(this)[0].getPositions()[0];
       let maxPrice = $(this)[0].getPositions()[1];
