@@ -761,7 +761,7 @@
                                                             <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
                                                         </ul>
                                                     </div>
-                                                    <div style="display:none" class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
+                                                    <div class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
                                                 </div>
                                             </div>
                                         </div>
