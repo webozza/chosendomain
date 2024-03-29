@@ -198,7 +198,7 @@ function render_product_loop($productIds, $filterData, $cd_page) {
     if (isset($filterData['categoryFilter'])) {
         $categoryFilter = $filterData['categoryFilter'];
     
-        $args['meta_query'] = array(
+        $args['tax_query'] = array(
             array(
                 'taxonomy' => 'product_cat',
                 'field' => 'slug',
