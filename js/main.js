@@ -752,7 +752,9 @@ jQuery(document).ready(function ($) {
           });
         });
       } else {
-        $(".ast-account-action-login").click();
+        $(".auction-item-5 .domain-name-revealer").click(function () {
+          $(".ast-account-action-login").click();
+        });
       }
     }
   };
