@@ -258,14 +258,18 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             $price = get_post_meta($product_id, '_price', true);
             $product_description = get_the_content();
             $da = get_post_meta($product_id, 'da', true);
-            $dr = get_post_meta($product_id, 'dr', true);
             $pa = get_post_meta($product_id, 'pa', true);
-            $tf = get_post_meta($product_id, 'tf', true);
             $live_rd = get_post_meta($product_id, 'live_rd', true);
             $hist_rd = get_post_meta($product_id, 'hist_rd', true);
-            $age = get_post_meta($product_id, 'age', true);
             $product_image_url = get_the_post_thumbnail_url($product_id, 'full');
             $product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+
+            // Aged Domain Filters
+            $dr = get_post_meta($product_id, 'dr', true);
+            $tf = get_post_meta($product_id, 'tf', true);
+            $rd = get_post_meta($product_id, 'live_rd', true);
+            $age = get_post_meta($product_id, 'age', true);
+            $google_index = get_post_meta($product_id, 'google_index', true);
 
             // Domain Extensions
             $domain_extensions = wp_get_post_terms($product_id, 'extension');
@@ -617,8 +621,7 @@ function render_premium_product_loop($productIds, $filterData) {
             $age = get_post_meta($product_id, 'age', true);
             $product_image_url = get_the_post_thumbnail_url($product_id, 'full');
             $product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
-            $google_index = get_post_meta($product_id, 'google_index', true);
-
+            
             // Domain Extensions
             $domain_extensions = wp_get_post_terms($product_id, 'extension');
             $extension_names = array();
