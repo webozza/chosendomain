@@ -63,65 +63,126 @@
             $uses = $use_cases[0];
         }
     ?>
-    <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
-        <div class="product-details">
 
-            <div class="product-head">
-                <!-- <div class="product-img">
-                    <?php if ($product_image_url) { ?>
-                        <img src="<?= $product_image_url ?>" alt="product image">
-                    <?php } else { ?>
-                        <img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
-                    <?php } ?>
-                </div> -->
-                <div class="product-title"> 
-					<span class="obscured-domain-name"> <?= $domain_type !== "Premium Domain 2" && !is_user_logged_in() ? obscureDomain($product_title) : $product_title ?> </span>
-					<div class="domain-name-revealer"><i class="flaticon-eye"></i></div>
-                </div>
-                
-                <div class="catsection">
-                    <div class="catgories">
-                    <b> Category: </b>
-                        <?php foreach($product_categories as $catagory) { ?>
-                           <span><?= $catagory?></span>
-                        <?php }?>
-                                <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+    <?php if($domain_type != "Aged Domain") { ?>
+        <div class="product-box visible" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-use-cases='<?= json_encode($uses) ?>'> 
+            <div class="product-details">
+
+                <div class="product-head">
+                    <!-- <div class="product-img">
+                        <?php if ($product_image_url) { ?>
+                            <img src="<?= $product_image_url ?>" alt="product image">
+                        <?php } else { ?>
+                            <img src="<?= get_site_url() . '/wp-content/uploads/woocommerce-placeholder.png' ?>" alt="product image">
+                        <?php } ?>
+                    </div> -->
+                    <div class="product-title"> 
+                        <span class="obscured-domain-name"> <?= $domain_type !== "Premium Domain 2" && !is_user_logged_in() ? obscureDomain($product_title) : $product_title ?> </span>
+                        <div class="domain-name-revealer"><i class="flaticon-eye"></i></div>
                     </div>
-					<div>
-						<div class="priceSection">
-							<h4>$<?= $product_price ?> </h4>
-						</div>
-						<a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
-					</div>
+                    
+                    <div class="catsection">
+                        <div class="catgories">
+                        <b> Category: </b>
+                            <?php foreach($product_categories as $catagory) { ?>
+                            <span><?= $catagory?></span>
+                            <?php }?>
+                                    <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+                        </div>
+                        <div>
+                            <div class="priceSection">
+                                <h4>$<?= $product_price ?> </h4>
+                            </div>
+                            <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <?php if($domain_type != "Premium Domain 2") { ?>
+                    <div class="product-body">
+                        <ul>
+                            <li> <span class="da"><?= $da ?></span> DA </li>
+                            <li> <span class="pa"><?= $pa ?></span> PA </li>
+                            <li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
+                            <li> <span class="live-rd"><?= $live_rd ?></span> RD </li>
+                            <li> <span class="hist-rd"><?= $hist_rd ?></span> BL </li>
+                            <li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
+                        </ul>
+                    </div>
+                <?php } ?>
+                <div class="product-description">
+                    <h4><span>Domain Details:</span></h4>
+                    <p><?= $product_description ?></p>
                 </div>
             </div>
-
-			<?php if($domain_type != "Premium Domain 2") { ?>
-				<div class="product-body">
-					<ul>
-						<li> <span class="da"><?= $da ?></span> DA </li>
-						<li> <span class="pa"><?= $pa ?></span> PA </li>
-						<li class="hidden"> <span class="dr"><?= $dr ?></span> DR </li>
-						<li> <span class="live-rd"><?= $live_rd ?></span> RD </li>
-						<li> <span class="hist-rd"><?= $hist_rd ?></span> BL </li>
-						<li class="hidden"> <span class="age"><?= $age ?></span> Age </li>
-					</ul>
-				</div>
-			<?php } ?>
-			<div class="product-description">
-				<h4><span>Domain Details:</span></h4>
-				<p><?= $product_description ?></p>
-			</div>
+            <!-- <div class="product-card">
+                <ul>
+                    <li>
+                        <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
+                    </li>
+                    <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>">More Data </a> </li>
+                </ul>
+            </div> -->
         </div>
-        <!-- <div class="product-card">
-            <ul>
-                <li>
-                    <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Buy Now</a>
-                </li>
-                <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>">More Data </a> </li>
-            </ul>
-        </div> -->
-    </div>
+    <?php } else { ?>
+        <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200" data-domain-name="<?= $product_title ?>">
+            <div class="auction-inner">
+                <div>
+                    <div class="upcoming-badge" title="Upcoming Auction">
+                        <img src="/wp-content/uploads/2024/03/new-domain.png">
+                    </div>
+                    <div class="catgories"> 
+                        <h5>Niche</h5>
+                        <?php foreach($product_categories as $catagory) { ?>
+                            <span><?= $catagory?></span>
+                        <?php }?>
+                            <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+                    </div>
+                </div>
+                <div class="auction-thumb">
+                    <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><img src="./assets/images/auction/upcoming/upcoming-2.png" alt="upcoming"></a>
+                    <a href="#0" class="rating"><i class="far fa-star"></i></a>
+                </div>
+                <div class="auction-content">
+                    <div class="title-area">
+                        <div>
+                            <h6 class="title">
+                                <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+                            </h6>
+                            <div class="domain-name-revealer">
+                                <i class="flaticon-eye"></i>
+                            </div>
+                        </div>
+                        <div class="product-body">
+                            <div class="bid-area">
+                                <ul>
+                                    <li> DA <span class="da"><?= $da ?></span></li>
+                                    <li> PA <span class="pa"><?= $pa ?></span></li>
+                                    <li> DR <span class="dr"><?= $dr ?></span></li>
+                                    <li> TF <span class="tf"><?= $tf ?></span></li>
+                                    <li> RD <span class="rd"><?= $rd ?></span></li>
+                                    <li> Age <span class="age"><?= $age ?></span></li>
+                                    <li> Google Index <span class="google-index"><?= $google_index ?></span></li>
+                                </ul>
+                            </div>
+                            <div class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="auction-bidding product-card">
+                    <div class="bid-incr">
+                        <h4>$<?= $price ?></h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="?add-to-cart=<?= $product_id ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart " data-product_id="<?= $product_id ?>" data-product_sku="" aria-label="Add “<?= $product_title ?>” to your cart" aria-describedby="" rel="nofollow">Add to cart</a>
+                        </li>
+                        <li> <a href="<?= get_site_url() . '/product/' . $product_slug ?>"> More Data </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
     <div class="no-results-found" style="display:none;">
         No results found to the selected filters. Please change/remove filters to show domains.
