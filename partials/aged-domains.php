@@ -747,12 +747,14 @@
                                         </div>
                                         <div class="auction-content">
                                             <div class="title-area">
-                                                <h6 class="title">
-                                                    <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+                                                <div>
+													<h6 class="title">
+														<a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+													</h6>
 													<div class="domain-name-revealer">
 														<i class="flaticon-eye"></i>
 													</div>
-                                                </h6>
+												</div>
                                                 <div class="product-body">
                                                     <div class="bid-area">
                                                         <ul>

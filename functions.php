@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.12' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.13' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -498,12 +498,14 @@ function render_product_loop($productIds, $filterData, $cd_page) {
                         </div>
                         <div class="auction-content">
                             <div class="title-area">
-                                <h6 class="title">
-                                    <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+                                <div>
+                                    <h6 class="title">
+                                        <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+                                    </h6>
                                     <div class="domain-name-revealer">
                                         <i class="flaticon-eye"></i>
                                     </div>
-                                </h6>
+                                </div>
                                 <div class="product-body">
                                     <div class="bid-area">
                                         <ul>
@@ -768,12 +770,14 @@ function render_premium_product_loop($productIds, $filterData) {
                             </div>
                             <div class="auction-content">
                                 <div class="title-area">
-                                    <h6 class="title">
-                                        <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
+                                    <div>
+                                        <h6 class="title">
+                                            <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+                                        </h6>
                                         <div class="domain-name-revealer">
                                             <i class="flaticon-eye"></i>
                                         </div>
-                                    </h6>
+                                    </div>
                                     <div class="product-body">
                                         <div class="bid-area">
                                             <ul>
