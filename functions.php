@@ -257,6 +257,7 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             $product_slug = get_post_field('post_name', $product_id);
             $price = get_post_meta($product_id, '_price', true);
             $product_description = get_the_content();
+            $excerpt = get_the_excerpt($product_id);
             $da = get_post_meta($product_id, 'da', true);
             $pa = get_post_meta($product_id, 'pa', true);
             $live_rd = get_post_meta($product_id, 'live_rd', true);
@@ -464,7 +465,7 @@ function render_product_loop($productIds, $filterData, $cd_page) {
                                             <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
                                         </ul>
                                     </div>
-                                    <div class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
+                                    <div class="product-short-desc"><p><?= $product_id ?></p></div>
                                 </div>
                             </div>
                         </div>
