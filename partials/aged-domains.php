@@ -731,9 +731,17 @@
 								</div>
                                 <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200">
                                     <div class="auction-inner">
-                                        <div class="upcoming-badge" title="Upcoming Auction">
-                                            <img src="/wp-content/uploads/2024/03/new-domain.png">
-                                        </div>
+                                        <div>
+											<div class="upcoming-badge" title="Upcoming Auction">
+												<img src="/wp-content/uploads/2024/03/new-domain.png">
+											</div>
+											<div class="catgories"> 
+												<?php foreach($product_categories as $catagory) { ?>
+													<span><?= $catagory?></span>
+												<?php }?>
+													<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+											</div>
+										</div>
                                         <div class="auction-thumb">
                                             <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><img src="./assets/images/auction/upcoming/upcoming-2.png" alt="upcoming"></a>
                                             <a href="#0" class="rating"><i class="far fa-star"></i></a>
@@ -744,12 +752,6 @@
                                                     <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
                                                 </h6>
                                                 <div class="product-body">
-                                                    <div class="catgories"> 
-                                                        <?php foreach($product_categories as $catagory) { ?>
-                                                            <span><?= $catagory?></span>
-                                                        <?php }?>
-                                                            <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
-                                                    </div>
                                                     <div class="bid-area">
                                                         <ul>
                                                             <li> <span class="da"><?= $da ?></span> DA </li>
