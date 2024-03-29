@@ -172,6 +172,18 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             'compare' => '>=',
             'value' => $minTf,
         );
+        if (isset($filterData['categoryFilter'])) {
+            $categoryFilter = $filterData['categoryFilter'];
+        
+            $args['meta_query'] = array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $categoryFilter,
+                    'operator' => 'IN',
+                ),
+            );
+        }
     }
 
     // Check if the extensionFilter is defined before adding the tax query
