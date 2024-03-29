@@ -33,7 +33,6 @@
 		$pa = get_post_meta($product_id, 'pa', true);
         $dr = get_post_meta($product_id, 'dr', true);
         $tf = get_post_meta($product_id, 'tf', true);
-        $rd = get_post_meta($product_id, 'rd', true);
         $google_index = get_post_meta($product_id, 'google_index', true);
         $live_rd = get_post_meta($product_id, 'live_rd', true);
         $hist_rd = get_post_meta($product_id, 'hist_rd', true);
@@ -163,7 +162,7 @@
                                     <li> PA <span class="pa"><?= $pa ?></span></li>
                                     <li> DR <span class="dr"><?= $dr ?></span></li>
                                     <li> TF <span class="tf"><?= $tf ?></span></li>
-                                    <li> RD <span class="rd"><?= $rd ?></span></li>
+                                    <li> RD <span class="rd"><?= $live_rd ?></span></li>
                                     <li> Age <span class="age"><?= $age ?></span></li>
                                     <li> Google Index <span class="google-index"><?= $google_index ?></span></li>
                                 </ul>
