@@ -217,7 +217,18 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             'terms' => $extensionFilter,
             'operator' => 'IN',
         );
-    }   
+    } 
+    
+    // Check if the tldFilter is defined before adding the tax query
+    if (isset($filterData['tldFilter'])) {
+        $tldFilter = $filterData['tldFilter'];
+        $args['tax_query'][] = array(
+            'taxonomy' => 'tld',
+            'field' => 'slug',
+            'terms' => $tldFilter,
+            'operator' => 'IN',
+        );
+    }
     
     // Check if the authority Backlinks Filter is defined before adding the tax query
     if (isset($filterData['authorityBacklinksFilter'])) {
