@@ -735,6 +735,7 @@
 												<img src="/wp-content/uploads/2024/03/new-domain.png">
 											</div>
 											<div class="catgories"> 
+												<h5>Niche</h5>
 												<?php foreach($product_categories as $catagory) { ?>
 													<span><?= $catagory?></span>
 												<?php }?>
