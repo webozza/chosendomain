@@ -185,26 +185,26 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             'key' => 'dr',
             'type' => 'NUMERIC',
             'compare' => '<=',
-            'value' => $maxTf,
+            'value' => $maxDr,
         );
         $args['meta_query'][] = array(
             'key' => 'dr',
             'type' => 'NUMERIC',
             'compare' => '>=',
-            'value' => $minTf,
+            'value' => $minDr,
         );
         // Age Query
         $args['meta_query'][] = array(
             'key' => 'age',
             'type' => 'NUMERIC',
             'compare' => '<=',
-            'value' => $maxTf,
+            'value' => $maxAge,
         );
         $args['meta_query'][] = array(
             'key' => 'age',
             'type' => 'NUMERIC',
             'compare' => '>=',
-            'value' => $minTf,
+            'value' => $minAge,
         );
     }
 
