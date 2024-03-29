@@ -726,23 +726,36 @@ jQuery(document).ready(function ($) {
 
   //---------------- Reveal domain name ------------
   let domainRevealerFunc = () => {
-    $(".domain-name-revealer").click(function () {
-      let isLoggedIn = $("body").hasClass("logged-in");
+    if (window.location.pathname !== "/aged-domains/") {
+      $(".domain-name-revealer").click(function () {
+        let isLoggedIn = $("body").hasClass("logged-in");
 
+        if (isLoggedIn) {
+          $(".domain-name-revealer").each(function () {
+            let unobscuredDomainName = $(this)
+              .closest(".product-box")
+              .data("domain-name");
+            $(this)
+              .closest(".product-box")
+              .find(".obscured-domain-name")
+              .text(unobscuredDomainName);
+          });
+        } else {
+          $(".ast-account-action-login").click();
+        }
+      });
+    } else {
       if (isLoggedIn) {
-        $(".domain-name-revealer").each(function () {
-          let unobscuredDomainName = $(this)
-            .closest(".product-box")
-            .data("domain-name");
-          $(this)
-            .closest(".product-box")
-            .find(".obscured-domain-name")
-            .text(unobscuredDomainName);
+        $(".auction-item-5 .domain-name-revealer").click(function () {
+          $(".auction-item-5").each(function () {
+            let domainName = $(this).prev().data("domain-name").trim();
+            $(this).find(".obscured-domain-name").text(domainName);
+          });
         });
       } else {
         $(".ast-account-action-login").click();
       }
-    });
+    }
   };
 
   window.domainRevealerFunc = domainRevealerFunc;
