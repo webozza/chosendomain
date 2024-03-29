@@ -747,7 +747,7 @@ jQuery(document).ready(function ($) {
       if (isLoggedIn) {
         $(".auction-item-5 .domain-name-revealer").click(function () {
           $(".auction-item-5").each(function () {
-            let domainName = $(this).prev().data("domain-name").trim();
+            let domainName = $(this).data("domain-name").trim();
             $(this).find(".obscured-domain-name").text(domainName);
           });
         });
