@@ -9,6 +9,7 @@ jQuery(document).ready(function ($) {
   var ageSlider = $(".age-slider")[0];
   var paSlider = $(".pa-slider")[0];
   var tfSlider = $(".tf-slider")[0];
+  var ageSlider = $(".age-slider")[0];
 
   const curPath = window.location.pathname;
 
@@ -24,7 +25,6 @@ jQuery(document).ready(function ($) {
       });
     };
 
-    runUiSlider(ageSlider, 50);
     runUiSlider(liveRdSlider, 10000);
     //runUiSlider(drSlider, 100);
     runUiSlider(daSlider, 100);
@@ -34,6 +34,7 @@ jQuery(document).ready(function ($) {
     if (window.location.href.includes("/aged-domains")) {
       runUiSlider(tfSlider, 100);
       runUiSlider(drSlider, 100);
+      runUiSlider(ageSlider, 50);
     }
   }
 
@@ -434,6 +435,25 @@ jQuery(document).ready(function ($) {
 
       applyFiltersWithAjax(searchTerm); // Call the combined filtering function
       updateFiltersApplied("age", minPrice, maxPrice, 50);
+    });
+
+    $(".age-range-min").on("change", function () {
+      let newMinPrice = parseFloat($(this).val());
+      let newMaxPrice = parseFloat($(".age-range-max").val());
+
+      // Update slider positions
+      ageSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+      applyFiltersWithAjax(searchTerm);
+      updateFiltersApplied("age", newMinPrice, newMaxPrice, 100);
+    });
+
+    $(".age-range-max").on("change", function () {
+      let newMinPrice = parseFloat($(".age-range-min").val());
+      let newMaxPrice = parseFloat($(this).val());
+      // Update slider positions
+      ageSlider.noUiSlider.set([newMinPrice, newMaxPrice]);
+      applyFiltersWithAjax(searchTerm);
+      updateFiltersApplied("age", newMinPrice, newMaxPrice, 100);
     });
   }
 
