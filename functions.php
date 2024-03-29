@@ -457,7 +457,6 @@ function render_product_loop($productIds, $filterData, $cd_page) {
                                             <li> <span class="tf"><?= $tf ?></span> TF </li>
                                             <li> <span class="rd"><?= $live_rd ?></span> RD </li>
                                             <li> <span class="age"><?= $age ?></span> Age </li>
-                                            <li> <span class="tld"><?= $tld ?></span> TLD </li>
                                             <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
                                         </ul>
                                     </div>
@@ -618,6 +617,7 @@ function render_premium_product_loop($productIds, $filterData) {
             $age = get_post_meta($product_id, 'age', true);
             $product_image_url = get_the_post_thumbnail_url($product_id, 'full');
             $product_categories = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+            $google_index = get_post_meta($product_id, 'google_index', true);
 
             // Domain Extensions
             $domain_extensions = wp_get_post_terms($product_id, 'extension');
