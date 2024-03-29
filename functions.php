@@ -465,7 +465,7 @@ function render_product_loop($productIds, $filterData, $cd_page) {
                                             <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
                                         </ul>
                                     </div>
-                                    <div class="product-short-desc"><p><?= $product_id ?></p></div>
+                                    <div class="product-short-desc"><p><?= $excerpt ?></p></div>
                                 </div>
                             </div>
                         </div>
