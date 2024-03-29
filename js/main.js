@@ -1,5 +1,6 @@
 jQuery(document).ready(function ($) {
   $("body.logged-in .ast-account-action-link").attr("href", "/my-account");
+  let isLoggedIn = $("body").hasClass("logged-in");
 
   // jQuery code to initialize the range slider
   var priceSlider = $(".price-slider")[0];
@@ -728,8 +729,6 @@ jQuery(document).ready(function ($) {
   let domainRevealerFunc = () => {
     if (window.location.pathname !== "/aged-domains/") {
       $(".domain-name-revealer").click(function () {
-        let isLoggedIn = $("body").hasClass("logged-in");
-
         if (isLoggedIn) {
           $(".domain-name-revealer").each(function () {
             let unobscuredDomainName = $(this)
