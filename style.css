@@ -606,7 +606,7 @@ li.sf-field-post-meta-_sale_price.open {
 .domain-inventory-content .product-title {
   position: relative;
 }
-.domain-name-revealer {
+body:not(.page-template-aged-domains) .domain-name-revealer {
   width: fit-content;
   position: absolute;
   right: -25px;
