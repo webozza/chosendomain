@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.00' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.01' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -160,6 +160,7 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             'value' => 'Aged Domain',
             'compare' => '=',
         );
+        // TF Query
         $args['meta_query'][] = array(
             'key' => 'tf',
             'type' => 'NUMERIC',
@@ -168,6 +169,32 @@ function render_product_loop($productIds, $filterData, $cd_page) {
         );
         $args['meta_query'][] = array(
             'key' => 'tf',
+            'type' => 'NUMERIC',
+            'compare' => '>=',
+            'value' => $minTf,
+        );
+        // DR Query
+        $args['meta_query'][] = array(
+            'key' => 'dr',
+            'type' => 'NUMERIC',
+            'compare' => '<=',
+            'value' => $maxTf,
+        );
+        $args['meta_query'][] = array(
+            'key' => 'dr',
+            'type' => 'NUMERIC',
+            'compare' => '>=',
+            'value' => $minTf,
+        );
+        // Age Query
+        $args['meta_query'][] = array(
+            'key' => 'age',
+            'type' => 'NUMERIC',
+            'compare' => '<=',
+            'value' => $maxTf,
+        );
+        $args['meta_query'][] = array(
+            'key' => 'age',
             'type' => 'NUMERIC',
             'compare' => '>=',
             'value' => $minTf,
