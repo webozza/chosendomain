@@ -921,6 +921,8 @@
 					maxLiveRd: parseFloat(jQuery(".live-rd-range-max").val()),
                     minTf: parseFloat(jQuery(".tf-range-min").val()),
 					maxTf: parseFloat(jQuery(".tf-range-max").val()),
+					minAge: parseFloat(jQuery(".age-range-min").val()),
+					maxAge: parseFloat(jQuery(".age-range-max").val()),
 					searchTerm: searchTerm,
 					categoryFilter: uniqueCategoryFilters,
 					extensionFilter: uniqueExtensionFilters,
