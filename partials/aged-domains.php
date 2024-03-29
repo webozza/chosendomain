@@ -923,6 +923,8 @@
 					maxTf: parseFloat(jQuery(".tf-range-max").val()),
 					minAge: parseFloat(jQuery(".age-range-min").val()),
 					maxAge: parseFloat(jQuery(".age-range-max").val()),
+					minDr: parseFloat(jQuery(".dr-range-min").val()),
+					maxDr: parseFloat(jQuery(".dr-range-max").val()),
 					searchTerm: searchTerm,
 					categoryFilter: uniqueCategoryFilters,
 					extensionFilter: uniqueExtensionFilters,

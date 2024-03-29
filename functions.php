@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.03' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.04' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -74,8 +74,15 @@ function render_product_loop($productIds, $filterData, $cd_page) {
     $minPa = $filterData['minPa'];
 
     if($cd_page == "aged_domains") {
+        // TF
         $maxTf = $filterData['maxTf'];
         $minTf = $filterData['minTf'];
+        // Age
+        $maxAge = $filterData['maxAge'];
+        $minAge = $filterData['minAge'];
+        // DR
+        $maxDr = $filterData['maxDr'];
+        $minDr = $filterData['minDr'];
     }
     
     $maxLiveRd = $filterData['maxLiveRd'];
