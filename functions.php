@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.98' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.2.99' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -429,7 +429,7 @@ function render_product_loop($productIds, $filterData, $cd_page) {
                     <?php
                 } ?>
             <?php } else { ?>
-                <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200">
+                <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200" data-domain-name="<?= $product_title ?>" data-domain-extension='<?= esc_attr(json_encode($extension_names)); ?>' data-domain-type="<?= $domain_type ?>" data-auth-backlinks='<?= json_encode($ab_names) ?>' data-languages='<?= json_encode($langs) ?>' data-use-cases='<?= json_encode($uses) ?>'>
                     <div class="auction-inner">
                         <div class="upcoming-badge" title="Upcoming Auction">
                             <img src="/wp-content/uploads/2024/03/new-domain.png">
