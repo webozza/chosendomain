@@ -479,7 +479,7 @@ jQuery(document).ready(function ($) {
 
   //---------------- Category Filter ------------
   $(".google-index-filter.slide-accor select").change(function () {
-    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
+    // applyFiltersWithAjax(searchTerm);
   });
 
   //---------------- Domain Extension Filter ------------
