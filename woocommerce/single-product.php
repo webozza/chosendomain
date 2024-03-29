@@ -32,6 +32,9 @@
         $da = get_post_meta($product_id, 'da', true);
 		$pa = get_post_meta($product_id, 'pa', true);
         $dr = get_post_meta($product_id, 'dr', true);
+        $tf = get_post_meta($product_id, 'tf', true);
+        $rd = get_post_meta($product_id, 'rd', true);
+        $rd = get_post_meta($product_id, 'google_index', true);
         $live_rd = get_post_meta($product_id, 'live_rd', true);
         $hist_rd = get_post_meta($product_id, 'hist_rd', true);
         $age = get_post_meta($product_id, 'age', true);
@@ -147,7 +150,7 @@
                     <div class="title-area">
                         <div>
                             <h6 class="title">
-                                <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
+                                <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
                             </h6>
                             <div class="domain-name-revealer">
                                 <i class="flaticon-eye"></i>
@@ -171,7 +174,7 @@
                 </div>
                 <div class="auction-bidding product-card">
                     <div class="bid-incr">
-                        <h4>$<?= $price ?></h4>
+                        <h4>$<?= $product_price ?></h4>
                     </div>
                     <ul>
                         <li>
