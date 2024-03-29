@@ -66,7 +66,7 @@
 
 <div class="domain-section">
 	<!-- upper Heading -->
-	        <div class="upper-heading" style="display:none;">
+	        <div class="upper-heading">
 				<style>
 				.upper-heading {
     max-width: 800px;
@@ -105,22 +105,57 @@
 					}  */
 					.seodomain-point li a{color:#f45a2a;}
 				</style>
-            <h2>Aged and Expired Domain With Strong Links</h2>
-				<ul class="seodomain-point">
-					<li>👉  Click on the <b>"Eye"</b> button to view the domain.</li>
-					<li>👉 <b>Register</b> or <b>log in</b> to access and view the domain details.</li>
-					<li>👉 Utilize filters to narrow down options based on your specific requirements.</li>
-					<li>👉 Once you've selected a domain, click <b>"Add to Cart."</b></li>
-					<li>👉 Proceed to checkout and complete the purchase.</li>
-					<li>👉 Our team will initiate the domain transfer process promptly.</li>
-					<li>👉 Learn more about the transfer process by reading our "<a href="https://chosendomain.com/how-it-works/">How It Works</a>" section.</li>
-					<li>👉 For any queries, Contact us on <a href="https://join.skype.com/invite/u9iflIaZWX5y">Skype</a></li>
-				</ul>
+            <h2>Aged Domains</h2>
+				<div class="aged--domain-content">
+					<p>Secure Your Investment: Get 100% Refund Guarantee for 180 Days on Domain Purchases!</p>
+
+					<p>Are you considering purchasing a domain for your business or personal brand? Making this decision is pivotal, as your domain name is the cornerstone of your online presence. But what if you're unsure if it's the right choice? What if you change your mind?</p>
+					
+					<p>Introducing Our Refund Guarantee<p>
+
+					<p>Here at ChosenDomain, we understand the importance of confidence in your investments. That's why we're proud to offer you a unique proposition – a 100% Refund Guarantee for 180 days on all domain purchases. Let's dive into why this offer is a game-changer:</p>
+
+					<strong>1. Peace of Mind</strong>
+					<p>With our refund guarantee, you can purchase your domain with peace of mind. Whether you're a seasoned entrepreneur or a first-time blogger, knowing that your investment is protected gives you the freedom to explore and experiment with your online presence. If for any reason you're not satisfied within 180 days of purchase, we'll refund your investment in full.</p>
+
+					<strong>2. Risk-Free Exploration</strong>
+					<p>Not sure if a particular domain fits your vision? No problem. Take advantage of our generous refund period to test the waters. If it's not the right fit, simply contact our support team, and we'll process your refund promptly.</p>
+
+					<strong>3. Customer-Centric Approach</strong>
+					<p>At ChosenDomain, your satisfaction is our top priority. We're dedicated to providing you with exceptional service and support every step of the way. Our refund guarantee is just one way we demonstrate our commitment to your success.</p>
+
+					<strong>How It Works</strong>
+					<p>Securing your domain with us is easy:</p>
+
+					<ul class="seodomain-point">
+						<li>👉 1. Browse our extensive collection of premium domains.</li>
+						<li>👉 2. Choose the one that aligns with your brand identity and goals.</li>
+						<li>👉 3. Complete your purchase and start building your online presence.</li>
+						<li>👉 4. If you're not completely satisfied within 180 days, contact us for a full refund – no questions asked.</li>
+					</ul>
+
+					<strong>Conclusion</strong>
+					<p>Don't let uncertainty hold you back. With our 100% Refund Guarantee for 180 days, you can secure your domain with confidence. Explore, innovate, and build your online empire knowing that we've got your back.</p>
+
+					<strong>Ready to secure your investment?</strong>
+					<p>Browse our domain collection today and take the first step towards your online success!</p>
+
+					<strong>Why Choose ChosenDomain!</strong>
+					<ul class="seodomain-point">
+						<li>👉 High Value Domain</li>
+						<li>👉 Ultra Premium</li>
+						<li>👉 High Authority Link </li>
+						<li>👉 Expert Due Diligence</li>
+						<li>👉 Spam & penalty-free</li>
+						<li>👉 No trademarks</li>
+						<li>👉 Professional logo</li>
+						<li>👉 Quick domain transfer</li>
+						<li>👉 Built-in SEO</li>
+						<li>👉 Zero Risks</li>
+					</ul>
+				</div>
         </div>
 	<!-- upper Heading ending -->
-    <div class="aged-domain-heading">
-        <h2>Aged Domains</h2>
-    </div>
     <div class="domain-inventory-wrap">
         <!-- Domain Inventory Search Box -->
         <div class="domain-inventory-search-box" style="display:none;">
