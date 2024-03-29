@@ -707,14 +707,13 @@
 													<a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
 											</div>
 											<ul>
-												<li> <span class="da"><?= $da ?></span> DA </li>
-												<li> <span class="pa"><?= $pa ?></span> PA </li>
-												<li> <span class="dr"><?= $dr ?></span> DR </li>
-                                                <li> <span class="dr"> 0 </span> TF </li>
-												<li> <span class="rd">0</span> RD </li>
-												<li> <span class="age"><?= $age ?></span> Age </li>
-                                                <li> <span class="tld"> 0 </span> TLD </li>
-                                                <li> <span class="google-index"> 0 </span> Google Index </li>
+												<li> DA <span class="da"><?= $da ?></span></li>
+												<li> PA <span class="pa"><?= $pa ?></span></li>
+												<li> DR <span class="dr"><?= $dr ?></span></li>
+												<li> TF <span class="tf"><?= $tf ?></span></li>
+												<li> RD <span class="rd"><?= $rd ?></span></li>
+												<li> Age <span class="age"><?= $age ?></span></li>
+												<li> Google Index <span class="google-index"><?= $google_index ?></span></li>
 											</ul>
 											<div class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
 										</div>
@@ -754,13 +753,13 @@
                                                 <div class="product-body">
                                                     <div class="bid-area">
                                                         <ul>
-                                                            <li> <span class="da"><?= $da ?></span> DA </li>
-                                                            <li> <span class="pa"><?= $pa ?></span> PA </li>
-                                                            <li> <span class="dr"><?= $dr ?></span> DR </li>
-                                                            <li> <span class="tf"><?= $tf ?></span> TF </li>
-                                                            <li> <span class="rd"><?= $rd ?></span> RD </li>
-                                                            <li> <span class="age"><?= $age ?></span> Age </li>
-                                                            <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
+                                                            <li> DA <span class="da"><?= $da ?></span></li>
+                                                            <li> PA <span class="pa"><?= $pa ?></span></li>
+                                                            <li> DR <span class="dr"><?= $dr ?></span></li>
+                                                            <li> TF <span class="tf"><?= $tf ?></span></li>
+                                                            <li> RD <span class="rd"><?= $rd ?></span></li>
+                                                            <li> Age <span class="age"><?= $age ?></span></li>
+                                                            <li> Google Index <span class="google-index"><?= $google_index ?></span></li>
                                                         </ul>
                                                     </div>
                                                     <div class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
