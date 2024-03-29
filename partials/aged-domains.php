@@ -748,7 +748,7 @@
                                         <div class="auction-content">
                                             <div class="title-area">
                                                 <h6 class="title">
-                                                    <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
+                                                    <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
                                                 </h6>
                                                 <div class="product-body">
                                                     <div class="bid-area">

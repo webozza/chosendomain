@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.09' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.10' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -481,8 +481,16 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             <?php } else { ?>
                 <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200">
                     <div class="auction-inner">
-                        <div class="upcoming-badge" title="Upcoming Auction">
-                            <img src="/wp-content/uploads/2024/03/new-domain.png">
+                        <div>
+                            <div class="upcoming-badge" title="Upcoming Auction">
+                                <img src="/wp-content/uploads/2024/03/new-domain.png">
+                            </div>
+                            <div class="catgories"> 
+                                <?php foreach($product_categories as $catagory) { ?>
+                                    <span><?= $catagory?></span>
+                                <?php }?>
+                                    <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+                            </div>
                         </div>
                         <div class="auction-thumb">
                             <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><img src="./assets/images/auction/upcoming/upcoming-2.png" alt="upcoming"></a>
@@ -491,23 +499,18 @@ function render_product_loop($productIds, $filterData, $cd_page) {
                         <div class="auction-content">
                             <div class="title-area">
                                 <h6 class="title">
-                                    <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
+                                    <a class="obscured-domain-name" href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= obscureDomain($product_title) ?></a>
                                 </h6>
                                 <div class="product-body">
-                                    <div class="catgories"> 
-                                        <?php foreach($product_categories as $catagory) { ?>
-                                            <span><?= $catagory?></span>
-                                        <?php }?>
-                                    </div>
                                     <div class="bid-area">
                                         <ul>
-                                            <li> <span class="da"><?= $da ?></span> DA </li>
-                                            <li> <span class="pa"><?= $pa ?></span> PA </li>
-                                            <li> <span class="dr"><?= $dr ?></span> DR </li>
-                                            <li> <span class="tf"><?= $tf ?></span> TF </li>
-                                            <li> <span class="rd"><?= $live_rd ?></span> RD </li>
-                                            <li> <span class="age"><?= $age ?></span> Age </li>
-                                            <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
+                                            <li> DA <span class="da"><?= $da ?></span></li>
+                                            <li> PA <span class="pa"><?= $pa ?></span></li>
+                                            <li> DR <span class="dr"><?= $dr ?></span></li>
+                                            <li> TF <span class="tf"><?= $tf ?></span></li>
+                                            <li> RD <span class="rd"><?= $rd ?></span></li>
+                                            <li> Age <span class="age"><?= $age ?></span></li>
+                                            <li> Google Index <span class="google-index"><?= $google_index ?></span></li>
                                         </ul>
                                     </div>
                                     <div class="product-short-desc"><p><?= $excerpt ?></p></div>
@@ -745,8 +748,16 @@ function render_premium_product_loop($productIds, $filterData) {
                 <?php } else { ?>
                     <div class="auction-item-5 live aos-init aos-animate" data-aos="zoom-out-up" data-aos-duration="1200">
                         <div class="auction-inner">
-                            <div class="upcoming-badge" title="Upcoming Auction">
-                                <img src="/wp-content/uploads/2024/03/new-domain.png">
+                            <div>
+                                <div class="upcoming-badge" title="Upcoming Auction">
+                                    <img src="/wp-content/uploads/2024/03/new-domain.png">
+                                </div>
+                                <div class="catgories"> 
+                                    <?php foreach($product_categories as $catagory) { ?>
+                                        <span><?= $catagory?></span>
+                                    <?php }?>
+                                        <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
+                                </div>
                             </div>
                             <div class="auction-thumb">
                                 <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><img src="./assets/images/auction/upcoming/upcoming-2.png" alt="upcoming"></a>
@@ -758,22 +769,15 @@ function render_premium_product_loop($productIds, $filterData) {
                                         <a href="<?= get_site_url() . '/product/' . $product_slug ?>"><?= $product_title ?></a>
                                     </h6>
                                     <div class="product-body">
-                                        <div class="catgories"> 
-                                            <?php foreach($product_categories as $catagory) { ?>
-                                                <span><?= $catagory?></span>
-                                            <?php }?>
-                                                <a class="hidden" href="<?= the_permalink($catagory_id -> ID);?>"> View Links </a> 
-                                        </div>
                                         <div class="bid-area">
                                             <ul>
-                                                <li> <span class="da"><?= $da ?></span> DA </li>
-                                                <li> <span class="pa"><?= $pa ?></span> PA </li>
-                                                <li> <span class="dr"><?= $dr ?></span> DR </li>
-                                                <li> <span class="tf"><?= $tf ?></span> TF </li>
-                                                <li> <span class="rd"><?= $rd ?></span> RD </li>
-                                                <li> <span class="age"><?= $age ?></span> Age </li>
-                                                <li> <span class="tld"><?= $tld ?></span> TLD </li>
-                                                <li> <span class="google-index"><?= $google_index ?></span> Google Index </li>
+                                                <li> DA <span class="da"><?= $da ?></span></li>
+                                                <li> PA <span class="pa"><?= $pa ?></span></li>
+                                                <li> DR <span class="dr"><?= $dr ?></span></li>
+                                                <li> TF <span class="tf"><?= $tf ?></span></li>
+                                                <li> RD <span class="rd"><?= $rd ?></span></li>
+                                                <li> Age <span class="age"><?= $age ?></span></li>
+                                                <li> Google Index <span class="google-index"><?= $google_index ?></span></li>
                                             </ul>
                                         </div>
                                         <div style="display:none" class="product-short-desc"><p><?php echo $product->post->post_excerpt; ?></p></div>
