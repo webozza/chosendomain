@@ -34,7 +34,7 @@
         $dr = get_post_meta($product_id, 'dr', true);
         $tf = get_post_meta($product_id, 'tf', true);
         $rd = get_post_meta($product_id, 'rd', true);
-        $rd = get_post_meta($product_id, 'google_index', true);
+        $google_index = get_post_meta($product_id, 'google_index', true);
         $live_rd = get_post_meta($product_id, 'live_rd', true);
         $hist_rd = get_post_meta($product_id, 'hist_rd', true);
         $age = get_post_meta($product_id, 'age', true);
