@@ -909,8 +909,8 @@
 
 				// Pass the Gogole Index
 				let googleIndex = "";
-				$('.google-index-filter select').change(function() {
-					let selected = $(this).find(':selected').val();
+				jQuery('.google-index-filter select').change(function() {
+					let selected = jQuery(this).find(':selected').val();
 					console.log(selected);
 				});
 
