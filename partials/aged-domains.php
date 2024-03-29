@@ -630,6 +630,17 @@
                     </div>
 
                     <!-- Google Index -->
+                    <div class="google-index-filter slide-accor">
+                        <div class="filter-title">
+                            <h3>Google Index</h3>
+                        </div>
+						<div class="answer">
+							<select>
+								<option value="Yes">Yes</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+					</div>
                 </div>
             </div>
 
