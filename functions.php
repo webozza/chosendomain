@@ -139,20 +139,6 @@ function render_product_loop($productIds, $filterData, $cd_page) {
         ),
     );
     
-    // Check if the categoryFilter is defined before adding the tax query
-    if (isset($filterData['categoryFilter'])) {
-        $categoryFilter = $filterData['categoryFilter'];
-    
-        $args['meta_query'] = array(
-            array(
-                'taxonomy' => 'product_cat',
-                'field' => 'slug',
-                'terms' => $categoryFilter,
-                'operator' => 'IN',
-            ),
-        );
-    }
-    
     // If is aged domains page
     if($cd_page == "aged_domains") {
         $args['meta_query'][] = array(
@@ -204,6 +190,20 @@ function render_product_loop($productIds, $filterData, $cd_page) {
             'key' => 'domain_type',
             'value' => $domainType,
             'compare' => '=',
+        );
+    }
+
+    // Check if the categoryFilter is defined before adding the tax query
+    if (isset($filterData['categoryFilter'])) {
+        $categoryFilter = $filterData['categoryFilter'];
+    
+        $args['meta_query'] = array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => $categoryFilter,
+                'operator' => 'IN',
+            ),
         );
     }
     
