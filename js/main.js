@@ -477,6 +477,11 @@ jQuery(document).ready(function ($) {
     applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
+  //---------------- Category Filter ------------
+  $(".google-index-filter.slide-accor select").change(function () {
+    applyFiltersWithAjax(searchTerm); // Call the combined filtering function
+  });
+
   //---------------- Domain Extension Filter ------------
   $('[name="extension_filter[]"]').change(async function () {
     let extension = $(this);
