@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.21' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.22' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -83,6 +83,8 @@ function render_product_loop($productIds, $filterData, $cd_page) {
         // DR
         $maxDr = $filterData['maxDr'];
         $minDr = $filterData['minDr'];
+        // Google Index
+        $googleIndex = $filterData['googleIndexSelected'];
     }
     
     $maxLiveRd = $filterData['maxLiveRd'];
@@ -148,6 +150,11 @@ function render_product_loop($productIds, $filterData, $cd_page) {
     
     // If is aged domains page
     if($cd_page == "aged_domains") {
+        $args['meta_query'][] = array(
+            'key' => 'google_index',
+            'value' => $googleIndex,
+            'compare' => '=',
+        );
         $args['meta_query'][] = array(
             'key' => 'domain_type',
             'value' => 'Aged Domain',
