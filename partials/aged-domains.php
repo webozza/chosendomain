@@ -981,6 +981,13 @@
 					}
 				})
 
+				// Pass the Gogole Index
+				let googleIndex = "";
+				jQuery('.google-index-filter select').change(function() {
+					let selected = jQuery(this).find(':selected').val();
+					googleIndex = selected;
+				});
+
 				const filterData = {
 					minPrice: parseFloat(jQuery(".price-range-min").val()),
 					maxPrice: parseFloat(jQuery(".price-range-max").val()),
@@ -1002,6 +1009,7 @@
                     tldFilter: uniqueTldFilters,
 					authorityBacklinksFilter: uniqueAuthorityBacklinks,
 					domainTypeFilter: domainTypeSelected,
+					googleIndexSelected: googleIndex;
 				};
 
 				jQuery.ajax({
