@@ -477,9 +477,11 @@ jQuery(document).ready(function ($) {
     applyFiltersWithAjax(searchTerm); // Call the combined filtering function
   });
 
-  //---------------- Category Filter ------------
+  //---------------- Google Index Filter ------------
   $(".google-index-filter.slide-accor select").change(function () {
-    applyFiltersWithAjax(searchTerm);
+    setTimeout(() => {
+      applyFiltersWithAjax(searchTerm);
+    }, 600);
   });
 
   //---------------- Domain Extension Filter ------------
