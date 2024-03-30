@@ -11,7 +11,7 @@
 /**
  * Define Constants
  */
-define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.28' );
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.3.29' );
 
 // Enable error reporting and display errors for debugging
 error_reporting(E_ALL);
@@ -152,13 +152,13 @@ function render_product_loop($productIds, $filterData, $cd_page) {
     if($cd_page == "aged_domains") {
         
         // Google Index
-        // if( isset($filterData['googleIndexSelected']) ) {
-        //     $args['meta_query'][] = array(
-        //         'key' => 'google_index',
-        //         'value' => $googleIndex,
-        //         'compare' => '=',
-        //     );
-        // }
+        if( isset($filterData['googleIndexSelected']) ) {
+            $args['meta_query'][] = array(
+                'key' => 'google_index',
+                'value' => $googleIndex,
+                'compare' => '=',
+            );
+        }
 
         // Domain Type
         $args['meta_query'][] = array(

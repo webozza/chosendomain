@@ -588,6 +588,7 @@
                         </div>
 						<div class="answer">
 							<select>
+								<option value="" disabled selected>Select</option>
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -863,7 +864,7 @@
 				let googleIndex = "";
 				jQuery('.google-index-filter select').change(function() {
 					let selected = jQuery(this).find(':selected').val();
-					console.log(selected);
+					googleIndex = selected;
 				});
 
 				const filterData = {
