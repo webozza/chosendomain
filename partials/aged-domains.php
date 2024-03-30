@@ -1009,7 +1009,7 @@
                     tldFilter: uniqueTldFilters,
 					authorityBacklinksFilter: uniqueAuthorityBacklinks,
 					domainTypeFilter: domainTypeSelected,
-					googleIndexSelected: googleIndex;
+					googleIndexSelected: googleIndex
 				};
 
 				jQuery.ajax({
